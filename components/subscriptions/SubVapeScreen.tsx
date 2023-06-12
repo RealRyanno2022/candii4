@@ -1,60 +1,80 @@
-
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
-import { Header, SearchBar, Icon } from 'react-native-elements';
 import ShopHeader from '../shop/ShopHeader';
+import BrandData from '../data/BrandData';
 import ShopFooter from '../shop/ShopFooter';
-
+import { NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
-import { NavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
-type VapeScreenProps = {
-  navigation: NavigationProp<StackParamList>;
+
+type ProductType = {
+  id: string;
+  name: string;
+  price: number;
+  brand?: string; // Make brand property optional
+  image: string;
+};
+
+type SubVapeScreenProps = {
+  navigation: StackNavigationProp<StackParamList, "SubVapeScreen">;
 }
 
-const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
-
+const SubVapeScreen: React.FC<SubVapeScreenProps> = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleBrandPress = (brandName: string) => {
-    navigation.dispatch(StackActions.push('ChooseFlavours', { brandName }));
+    navigation.dispatch(StackActions.push('BrandVarieties', { brandName }));
   };
-
+  
   const handleBackPress = () => {
-    navigation.dispatch(StackActions.push(("SubSignUp")));
-  }
+    navigation.pop();
+  };
 
   const handleSearch = () => {
     navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
-}
+  }
+
+  const brands = [
+    { name: "Kinship", image: require('../pictures/JuiceScreen/kinship.png') },
+    { name: "BMG", image: require('../pictures/JuiceScreen/bmg.png') },
+    { name: "Hale", image: require('../pictures/JuiceScreen/hale.png') },
+    { name: "Slushie", image: require('../pictures/JuiceScreen/slushie.png') },
+    { name: "Yeti", image: require('../pictures/JuiceScreen/yeti.png') },
+    { name: "IVGSalt", image: require('../pictures/VapePics/juice.png') },
+    { name: "Elfiq", image: require('../pictures/JuiceScreen/elfiq.png') },
+  ];
+
 
   return (
     <View style={{flex: 1}}>
-     <ShopHeader navigation={navigation} />
-      <ScrollView>
-        <View style={styles.cardContainer}>
-          {["Elfa Bar", "Jewel Mini", "Lost Mary", "Elf Bar", "IVG Bar"].map(brand => (
-            <TouchableOpacity
-              key={brand}
-              style={styles.card}
-              onPress={() => handleBrandPress(brand)}
-            >
-              <Text style={styles.cardText}>{brand}</Text>
-            </TouchableOpacity>
-          ))}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => handleBackPress()}
-          >
-            <Text style={styles.cardText}>Go Back</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-      <ShopFooter navigation={navigation}/>
-    </View>
+    <ShopHeader navigation={navigation} />
+     <ScrollView>
+       <View style={styles.cardContainer}>
+         {brands.map(brand => (
+           <TouchableOpacity
+             key={brand.name}
+             style={styles.card}
+             onPress={() => handleBrandPress(brand.name)}
+           >
+             <Image style={styles.image} source={brand.image}></Image>
+             <Text style={styles.cardText}>{brand.name}</Text>
+           </TouchableOpacity>
+         ))}
+         <TouchableOpacity
+           style={styles.card}
+           onPress={() => handleBackPress()}
+         >
+           <Image style={styles.image} source={require('../pictures/goback.png')}></Image>
+           <Text style={styles.cardText}>Go Back</Text>
+         </TouchableOpacity>
+       </View>
+     </ScrollView>
+     <ShopFooter navigation={navigation}/>
+   </View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -78,6 +98,12 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     padding: 20,
   },
+  image: {
+    width: '100%',
+    height: 100,
+    resizeMode: 'contain',
+    marginBottom: 10,
+  },
   card: {
     width: '45%',
     backgroundColor: '#FFFFFF',
@@ -99,6 +125,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
   },
+  buffer: {
+    marginBottom: 150,
+  },
 });
 
-export default VapeScreen;
+export default SubVapeScreen;

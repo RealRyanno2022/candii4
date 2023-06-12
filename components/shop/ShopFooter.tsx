@@ -10,7 +10,8 @@ type ShopFooterProps = {
 }
 
 const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
-  const [isSubscribed, setIsSubscribed] = useState(true);
+  const [isSubscribed, setIsSubscribed] = useState(false); // Add this line
+
   const route = useRoute();
 
   const componentNames = ['BrandVarieties','JuiceProductPage','SearchProducts','ContinueShopping','ProductPage','ShopFront', 'VapeScreen', 'JuiceScreen'];
@@ -21,14 +22,15 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
   const isAccountInfoComponent = route?.name === 'AccountInfo';
 
   const isSubSignUpComponent = signUpComponentNames.includes(route?.name);
+  const subscription = { isSubscribed, setIsSubscribed };
 
   const handleVapePress = () => {
     if (isSubscribed) {
-      navigation.dispatch(StackActions.push('ManageSubscription', { isSubscribed, setIsSubscribed }));
+      navigation.dispatch(StackActions.push('ManageSubscription', { subscription }));
     } else {
-      navigation.dispatch(StackActions.push('SubSignUp', { isSubscribed, setIsSubscribed }));
+      navigation.dispatch(StackActions.push('SubSignUp', { subscription }));
     }
-  };
+  }
 
   return (
     <SafeAreaView style={styles.container}>

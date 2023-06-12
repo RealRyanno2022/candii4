@@ -10,6 +10,8 @@ import LanguageSelect from './components/onboarding/LanguageSelect';
 import ShopFront from './components/onboarding/ShopFront';
 import VerifyAge from './components/onboarding/VerifyAge';
 
+import CustomerBasket from './components/account/CustomerBasket';
+
 // Shop components
 import VapeScreen from './components/shop/VapeScreen';
 import JuiceScreen from './components/shop/JuiceScreen';
@@ -36,6 +38,7 @@ import ChangeFlavours from './components/subscriptions/ChangeFlavours';
 import ManageSubscription from './components/subscriptions/ManageSubscription';
 import SubVapeScreen from './components/subscriptions/SubVapeScreen';
 import ChooseFlavours from './components/subscriptions/ChooseFlavours';
+import SubSignUp from './components/subscriptions/SubSignUp';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -54,6 +57,9 @@ export default function App() {
         <Stack.Screen name="LostConnection" component={LostConnection} />
         <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
         <Stack.Screen name="DeliveryAddress" component={DeliveryAddress} />
+
+        <Stack.Screen name="CustomerBasket" component={CustomerBasket} />
+
         <Stack.Screen name="FormInput" component={FormInput} />
         <Stack.Screen name="BrandVarieties" component={BrandVarieties} />
         <Stack.Screen name="CancelConfirm" component={CancelConfirm} />
@@ -64,6 +70,7 @@ export default function App() {
         <Stack.Screen name="ManageSubscription" component={ManageSubscription} />
         <Stack.Screen name="SubVapeScreen" component={SubVapeScreen} />
         <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
+        <Stack.Screen name="SubSignUp" component={SubSignUp} />
 
         <Stack.Screen name="ProductPage" component={ProductPage} />
         <Stack.Screen name="JuiceProductPage" component={JuiceProductPage} />

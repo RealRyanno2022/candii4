@@ -5,13 +5,17 @@ import ShopFooter from '../shop/ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
 
 type SubSignUpProps = {
   navigation: StackNavigationProp<StackParamList>;
+  route: RouteProp<StackParamList,'SubSignUp'>;
 }
 
-const SubSignUp: React.FC<SubSignUpProps> = ({ navigation }) => {
+const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
   const [subscriptionType, setSubscriptionType] = useState('yearly');
+  const { subscription } = route.params;
+  const { isSubscribed, setIsSubscribed } = subscription;
 
   const handleSubscriptionTypeChange = (type: string) => {
     setSubscriptionType(type);
@@ -37,7 +41,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation }) => {
             onPress={() => handleSubscriptionTypeChange('monthly')}
           >
             <Text style={styles.subscriptionOptionText}>Monthly</Text>
-            <Text style={styles.subscriptionOptionPrice}>€29.99/month</Text>
+            <Text style={styles.subscriptionOptionPrice}>One juice of your choice, each week!</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={[
@@ -47,7 +51,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation }) => {
             onPress={() => handleSubscriptionTypeChange('yearly')}
           >
             <Text style={styles.subscriptionOptionText}>Yearly</Text>
-            <Text style={styles.subscriptionOptionPrice}>€279.99/year</Text>
+            <Text style={styles.subscriptionOptionPrice}>A vape every week of the year!</Text>
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push("SubVapeScreen"))}>

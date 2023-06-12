@@ -1,4 +1,6 @@
 import { NavigationProp } from "@react-navigation/native";
+import React from "react";
+
 
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -7,6 +9,11 @@ export type BrandVarietiesProps = {
   route: RouteProp<StackParamList, 'BrandVarieties'>;
   navigation: StackNavigationProp<StackParamList, 'BrandVarieties'>;
   brandName: string;
+};
+
+type Subscription = {
+  isSubscribed: boolean;
+  setIsSubscribed: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
 export type StackParamList = {
@@ -34,11 +41,11 @@ export type StackParamList = {
   ProductPage: undefined;
   SearchProducts: undefined;
   VapeScreen: undefined;
-  SubSignUp: undefined;
+  SubSignUp: { subscription: Subscription, navigation: any, route: any };
   SubVapeScreen: undefined;
   NotFoundScreen: undefined;
   ChooseFlavours: undefined;
-  ManageSubscription: undefined;
+  ManageSubscription: { subscription: Subscription };
   CancelMembership: undefined;
   ChangeAddress: undefined;
   ChangeFlavours: undefined;
@@ -46,4 +53,5 @@ export type StackParamList = {
   NonDisposableScreen: undefined;
   NonDisposableProductPage: undefined;
   BrandBox: { product: any, selected: boolean, quantity: number, onSelect: () => void, onDeselect: () => void };
+  ShopFooter: { subscription: Subscription };
 };

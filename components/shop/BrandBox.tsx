@@ -5,7 +5,7 @@ import BrandData from '../data/BrandData';
 
 type Product = {
   id: string;
-  name: string;
+  name: string; 
   price: number;
   brand: string;
   image: string;
@@ -31,12 +31,13 @@ const BrandBox: React.FC<BrandBoxProps> = ({
   const handleProductPress = () => {
     navigation.navigate('ProductScreen', { product });
   };
+  console.log(product);
 
   return (
     <TouchableOpacity style={styles.brandBox} onPress={handleProductPress}>
       <Image style={styles.productImage} source={{ uri: product.image }} />
       <Text style={styles.productName}>{product.name}</Text>
-      <Text style={styles.productPrice}>{`${product.price.toFixed(2)}`}</Text>
+      <Text style={styles.productPrice}>{`${product.price?.toFixed(2)}`}</Text>
     </TouchableOpacity>
   );
 };
