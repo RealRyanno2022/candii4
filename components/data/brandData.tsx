@@ -1,5 +1,5 @@
 import images from './images';
-const brandData = {
+const BrandData = {
 "1": {
 "name": "StrawberryRaspberryCherryIce",
 "price": 7.99,
@@ -837,4 +837,4 @@ const brandData = {
 "undefined":{}
 }
 
-export default brandData;
+export default BrandData;

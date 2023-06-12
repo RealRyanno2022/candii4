@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import images from '../data/images'
-import brandData from '../data/brandData';
+import brandData from '../data/BrandData';
 
 type Product = {
   id: string;

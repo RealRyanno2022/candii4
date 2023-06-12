@@ -12,6 +12,13 @@ import JuiceScreen from './components/shop/JuiceScreen';
 import NonDisposableScreen from './components/shop/NonDisposableScreen';
 import LostConnection from './components/anomalies/LostConnection';
 import BrandVarieties from './components/shop/BrandVarieties';
+import CancelConfirm from './components/subscriptions/CancelConfirm';
+import CancelMembership from './components/subscriptions/CancelMembership';
+import ChangeAddress from './components/subscriptions/ChangeAddress';
+import ChangeFlavours from './components/subscriptions/ChangeFlavours';
+import ManageSubscription from './components/subscriptions/ManageSubscription';
+import SubVapeScreen from './components/subscriptions/SubVapeScreen';
+import ChooseFlavours from './components/subscriptions/ChooseFlavours';
 
 export default function App() {
 
@@ -37,6 +44,19 @@ export default function App() {
 
 
             <Stack.Screen name="BrandVarieties" component={BrandVarieties} />
+
+            <Stack.Screen name="CancelConfirm" component={CancelConfirm} />
+            <Stack.Screen name="BrandVarieties" component={CancelMembership} />
+            <Stack.Screen name="BrandVarieties" component={ChangeAddress} />
+            <Stack.Screen name="BrandVarieties" component={ChangeFlavours} />
+            <Stack.Screen name="BrandVarieties" component={ChooseFlavours} />
+            <Stack.Screen name="BrandVarieties" component={ManageSubscription} />
+            <Stack.Screen name="BrandVarieties" component={SubVapeScreen} />
+
+
+
+
+
          </Stack.Navigator>
         </NavigationContainer>
   );

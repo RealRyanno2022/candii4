@@ -1,50 +1,28 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import BrandBox from './BrandBox';
-import brandData from '../data/brandData';
+import brandData from '../data/BrandData';
 import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-type Product = {
-  id: string;
-  name: string;
-  price: number;
-  brand: string;
-  image: string;
-};
-
-type BrandBoxProps = {
-  product: Product;
-  navigation: any;
-  selected: boolean;
-  quantity: number;
-  onSelect: () => void;
-  onDeselect: () => void;
-};
-
 type BrandVarietiesProps = {
   route: RouteProp<StackParamList, 'BrandVarieties'>;
   navigation: StackNavigationProp<StackParamList, 'BrandVarieties'>;
-  brandName: string;
+  brand: string;
 };
-
-type BrandData = {
-  [id: string]: Product;
-};
-
 
 const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) => {
-  const { brandName } = route.params;
+  const { brand } = route.params;
 
-  const [varieties, setVarieties] = useState<Product[]>([]);
+  const [varieties, setVarieties] = useState<string[]>([]);
 
   useEffect(() => {
-    const filteredData = Object.values(brandData).filter((product) => (product as Product).brand === brandName);
-    setVarieties(filteredData as Product[]);
-  }, [brandName]);
+    const filteredData = Object.values(brandData).filter((product) => product === brand);
+    setVarieties(filteredData);
+  }, [brand]);
 
   const handleSelect = () => {
     console.log('Selected product');
@@ -57,13 +35,12 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
-      <Text style={styles.title}>{brandName} Varieties</Text>
+      <Text style={styles.title}>{brand} Varieties</Text>
       <FlatList 
         data={varieties}
-        keyExtractor={item => item.id}
+        keyExtractor={(item, index) => 'key'+index}
         renderItem={({ item }) => (
           <BrandBox 
-            product={item} 
             navigation={navigation} 
             selected={false}
             quantity={0}

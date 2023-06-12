@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import ShopHeader from './ShopHeader';
-import brandData from '../data/BrandData';
+import BrandData from '../data/BrandData';
 import ShopFooter from './ShopFooter';
 import { NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';

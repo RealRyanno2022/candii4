@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
 import BrandBox from '../shop/BrandBox';
-import brandData from '../data/brandData';
+import BrandData from '../data/BrandData';
 import ShopHeader from '../shop/ShopHeader';
 import ShopFooter from '../shop/ShopFooter';
 import { StackParamList } from '../../types/types';
@@ -37,7 +37,7 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
   };
 
   useEffect(() => {
-    const dataAsArray = Object.entries(brandData).map(([id, product]) => ({ id, ...product }));
+    const dataAsArray = Object.entries(BrandData).map(([id, product]) => ({ id, ...product }));
     const filteredData = dataAsArray.filter(product => 'brand' in product && product.brand === brandName);
     const validatedData = filteredData.filter(isBrandData);
     setVarieties(validatedData);

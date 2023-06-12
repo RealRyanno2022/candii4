@@ -8,6 +8,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 
 type VapeScreenProps = {
   navigation: StackNavigationProp<StackParamList>;
+  brand: string;
 }
 
 const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
@@ -22,8 +23,8 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
 
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleBrandPress = (brandName: string) => {
-    navigation.dispatch(StackActions.push('BrandVarieties', { brandName }));
+  const handleBrandPress = (brand: string) => {
+    navigation.dispatch(StackActions.push('BrandVarieties', { brand }));
   };
 
   const handleBackPress = () => {
@@ -80,7 +81,7 @@ const styles = StyleSheet.create({
     color: '#FB5B5A',
   },
   image: {
-      width: '100%',
+      width: '100%', 
       height: 100,
       resizeMode: 'contain',
       marginBottom: 10,
