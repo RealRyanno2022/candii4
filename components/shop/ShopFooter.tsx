@@ -23,12 +23,12 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
   const isSubSignUpComponent = signUpComponentNames.includes(route?.name);
 
   const handleVapePress = () => {
-    if(isSubscribed) {
-      navigation.dispatch(StackActions.push('ManageSubscription', { isSubscribed, setIsSubscribed}));
+    if (isSubscribed) {
+      navigation.dispatch(StackActions.push('ManageSubscription', { isSubscribed, setIsSubscribed }));
     } else {
-      navigation.dispatch(StackActions.push("SubSignUp", { isSubscribed, setIsSubscribed }));
+      navigation.dispatch(StackActions.push('SubSignUp', { isSubscribed, setIsSubscribed }));
     }
-  }
+  };
 
   return (
     <SafeAreaView style={styles.container}>

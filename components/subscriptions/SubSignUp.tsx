@@ -4,10 +4,10 @@ import ShopHeader from '../shop/ShopHeader';
 import ShopFooter from '../shop/ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
-import { NavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type SubSignUpProps = {
-  navigation: NavigationProp<StackParamList>;
+  navigation: StackNavigationProp<StackParamList>;
 }
 
 const SubSignUp: React.FC<SubSignUpProps> = ({ navigation }) => {

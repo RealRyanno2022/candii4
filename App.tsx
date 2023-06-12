@@ -42,7 +42,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="DeliveryAddress">
+      <Stack.Navigator initialRouteName="Intro">
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
         <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
