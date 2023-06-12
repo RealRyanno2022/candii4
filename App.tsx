@@ -19,6 +19,9 @@ import ChangeFlavours from './components/subscriptions/ChangeFlavours';
 import ManageSubscription from './components/subscriptions/ManageSubscription';
 import SubVapeScreen from './components/subscriptions/SubVapeScreen';
 import ChooseFlavours from './components/subscriptions/ChooseFlavours';
+import ConfirmationPage from './components/sales/ConfirmationPage';
+import DeliveryAddress from './components/sales/DeliveryAddress';
+import FormInput from './components/sales/FormInput';
 
 export default function App() {
 
@@ -41,6 +44,10 @@ export default function App() {
             <Stack.Screen name="JuiceScreen" component={JuiceScreen} />
             <Stack.Screen name="NonDisposableScreen" component={NonDisposableScreen} />
             <Stack.Screen name="LostConnection" component={LostConnection} />
+
+            <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
+            <Stack.Screen name="DeliveryAddress" component={DeliveryAddress} />
+            <Stack.Screen name="FormInput" component={FormInput} />
 
 
             <Stack.Screen name="BrandVarieties" component={BrandVarieties} />
