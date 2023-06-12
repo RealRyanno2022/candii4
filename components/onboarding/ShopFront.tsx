@@ -20,6 +20,8 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
     }
     if (productType === 'Juice') {
       navigation.navigate('JuiceScreen');
+    }  if (productType === 'NonDisposable') {
+      navigation.navigate('NonDisposableScreen');
     } 
   };
 
@@ -55,8 +57,20 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
             <Text style={styles.cardText}>Juice</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.space} />
-       
+        <View style={styles.cardContainer}>
+          <TouchableOpacity
+            id="nondisposable"
+            style={styles.card}
+            onPress={() => handleBrandPress('NonDisposable')}
+          >
+            <Image 
+              source={require('../pictures/VapePics/dragx.png')} 
+              style={styles.imageStyle}
+            />
+            <Text style={styles.cardText}>Non Disposables</Text>
+          </TouchableOpacity>
+        </View>
+       {/* <View style={styles.space} /> */}
       </ScrollView>
       <ShopFooter navigation={navigation} />
     </View>

@@ -1,4 +1,4 @@
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
 import { Header, Icon, SearchBar } from 'react-native-elements';
 import { NavigationProp } from '@react-navigation/native';
@@ -12,6 +12,7 @@ type ShopHeaderProps = {
 const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
+
   const handleSearchTextChange = () => {
     // Implement your logic here to handle the text change
   };
@@ -19,7 +20,7 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
   return (
     <View>
       <Header
-        // header configuration
+        containerStyle={styles.headerColor}
       />
       <SearchBar
         platform="default"
@@ -40,9 +41,15 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
         cancelButtonProps={{}} // Add empty object for cancelButtonProps
         clearIcon={{ name: 'clear' }} // Provide a valid icon name for clearIcon
         showCancel={false} // Set showCancel to false
+
       />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  headerColor: {     backgroundColor: '#FCCC7C' }
+})
+
 
 export default ShopHeader;

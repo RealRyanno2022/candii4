@@ -1,25 +1,37 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Linking, Image, Animated } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Dimensions } from 'react-native';
 import { StackParamList } from '../../types/types';
-import { StackActions } from '@react-navigation/native';
+import { RouteProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import { NavigationProp } from '@react-navigation/native';
 
 type LanguageSelectProps = {
-    navigation: NavigationProp<StackParamList>;
+  navigation: NavigationProp<StackParamList>;
 }
 
-const LanguageSelect: React.FC<LanguageSelectProps> = () => {
+const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation }) => {
   const [index, setIndex] = useState(0);
+  const [activeButton, setActiveButton] = useState(null);
 
   const languageData = [
-    { language: 'English', flag: require('../pictures/british-flag.png') },
-    { language: 'Irish', flag: require('../pictures/irish-flag.png') },
-    { language: 'Chinese', flag: require('../pictures/chinese-flag.png') },
-    { language: 'Lithuanian', flag: require('../pictures/lithuanian-flag.png') },
-    { language: 'Spanish', flag: require('../pictures/spanish-flag.png') },
-    { language: 'Polish', flag: require('../pictures/polish-flag.png') },
-    { language: 'French', flag: require('../pictures/french-flag.png') },
+    { language: 'English', flag: require('../pictures/british-flag.png'), translation: 'Select a language' },
+    { language: 'Irish', flag: require('../pictures/irish-flag.png'), translation: 'Roghnaigh teanga' },
+    { language: 'Chinese', flag: require('../pictures/chinese-flag.png'), translation: '选择语言' },
+    { language: 'Lithuanian', flag: require('../pictures/lithuanian-flag.png'), translation: 'Pasirinkite kalbą' },
+    { language: 'Spanish', flag: require('../pictures/spanish-flag.png'), translation: 'Seleccione un idioma' },
+    { language: 'Polish', flag: require('../pictures/polish-flag.png'), translation: 'Wybierz język' },
+    { language: 'French', flag: require('../pictures/french-flag.png'), translation: 'Sélectionnez une langue' },
   ];
+
+  const handleLanguageSelect = (language) => {
+    // You can set your selected language here
+    // This is a filler function for now.
+    console.log("Selected Language:", language);
+
+    // Navigate to the VerifyAge screen
+    navigation.navigate("VerifyAge");
+  };
+
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -31,10 +43,33 @@ const LanguageSelect: React.FC<LanguageSelectProps> = () => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.typingText}>{languageData[index].language}</Text>
+      <Text style={styles.typingText}>{languageData[index].translation}</Text>
       <View style={styles.flagContainer}>
-        {languageData.map((item, idx) => (
-          <TouchableOpacity key={idx} style={styles.flagButton}>
+        {languageData.slice(0, 4).map((item, idx) => (
+          <TouchableOpacity 
+            key={idx} 
+            style={[styles.flagButton, activeButton === idx ? { backgroundColor: 'gray' } : {}]}
+            onPressIn={() => setActiveButton(idx)}
+            onPressOut={() => {
+              setActiveButton(null);
+              handleLanguageSelect(item.language);
+            }}
+          >
+            <Image source={item.flag} style={styles.flagImage} />
+          </TouchableOpacity>
+        ))}
+      </View>
+      <View style={styles.flagContainer}>
+        {languageData.slice(4, 8).map((item, idx) => (
+          <TouchableOpacity 
+            key={idx + 4} 
+            style={[styles.flagButton, activeButton === (idx + 4) ? { backgroundColor: 'gray' } : {}]}
+            onPressIn={() => setActiveButton(idx + 4)}
+            onPressOut={() => {
+              setActiveButton(null);
+              handleLanguageSelect(item.language);
+            }}
+          >
             <Image source={item.flag} style={styles.flagImage} />
           </TouchableOpacity>
         ))}
@@ -48,9 +83,12 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#FCCC7C',
   },
   typingText: {
-    fontSize: 24,
+    fontSize: 30,
+    color: '#fff',
+    fontWeight: 'bold',
     marginBottom: 20,
   },
   flagContainer: {
@@ -61,11 +99,14 @@ const styles = StyleSheet.create({
   },
   flagButton: {
     padding: 10,
-    borderRadius: 5,
+    borderRadius: 50,
+    backgroundColor: '#fff1',
+    overflow: 'hidden',
   },
   flagImage: {
-    width: 40,
-    height: 40,
+    width: Dimensions.get('window').width / 5,
+    height: Dimensions.get('window').width / 5,
+    borderRadius: 50,
   },
 });
 

@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet, Linking } from 'react-native'
 
 type VerifyAgeProps = {
   navigation: any;
-}
+ }
 
 
 const VerifyAge: React.FC<VerifyAgeProps> = ({ navigation }) => {
@@ -19,7 +19,7 @@ const VerifyAge: React.FC<VerifyAgeProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Age Verification</Text>
+            <Text style={styles.typingText}>You must be at least 18 years old in Ireland to purchase vape.</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleVerification(true)}
@@ -41,21 +41,36 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: '#FCCC7C',
+    paddingHorizontal: 20, // give some padding from the sides
   },
-  title: {
-    fontSize: 24,
+  typingText: {
+    fontSize: 20,
+    color: '#fff',
     fontWeight: 'bold',
-    marginBottom: 20,
+    marginBottom: 30, // bigger space after the text
+    textAlign: 'center', // center the text
   },
   button: {
-    backgroundColor: '#e0e0e0',
-    padding: 10,
-    borderRadius: 5,
-    marginBottom: 20,
+    backgroundColor: '#4C7B8B', // a more modern color
+    paddingVertical: 15, // bigger padding
+    paddingHorizontal: 30, // bigger padding
+    borderRadius: 30, // fully rounded corners
+    marginBottom: 20, // space between buttons
+    shadowColor: "#000", // adding shadow
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   buttonText: {
-    fontSize: 16,
+    fontSize: 18,
+    color: '#fff', // text color that contrasts with the button color
     fontWeight: 'bold',
+    textAlign: 'center', // center the text inside the button
   },
 });
 

@@ -26,17 +26,19 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ navigation }) => {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerText}>Privacy Policy</Text>
-      </View>
-
+      </View>  
       <View style={styles.policyContainer}>
-        <ScrollView style={styles.policyScrollView}>
+      <ScrollView style={styles.policyScrollView}>
+        <Text>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at rutrum ipsum. Cras pharetra vulputate mattis.
+        </Text>
+      </ScrollView>
+    </View>
 
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at rutrum ipsum. Cras pharetra vulputate mattis.
-        </ScrollView>
-      </View>
+
       <Text style={styles.acceptanceText}>I have read and accepted the Privacy Policy.</Text>
       <TouchableOpacity
-        // style={[styles.checkBox, isPolicyAccepted && styles.checkBoxSelected]}
+        style={[styles.checkBox, isPolicyAccepted && styles.checkBoxSelected]}
         onPress={handlePolicyAcceptance}
       >
         {isPolicyAccepted && <Text style={styles.checkBoxText}>✓</Text>}
@@ -59,6 +61,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     paddingHorizontal: 20,
+    backgroundColor: '#FCCC7C',
   },
   header: {
     marginBottom: 20,
@@ -73,6 +76,7 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     marginBottom: 20,
+    backgroundColor: '#f5f5f5',
   },
   policyScrollView: {
     flex: 1,
@@ -80,6 +84,7 @@ const styles = StyleSheet.create({
   acceptanceText: {
     fontSize: 12,
     fontWeight: 'bold',
+    marginBottom: 30,
   },
   policyContent: {
     padding: 10,
@@ -92,13 +97,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     marginBottom: 20,
+    backgroundColor: '#f5f5f5',
   },
   checkBoxText: {
     fontSize: 18,
     fontWeight: 'bold',
+    backgroundColor: 'f5f5f5',
   },
   disabledCheckBox: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: 'f5f5f5',
   },
   continueButton: {
     width: 120,

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { View, Text, Animated, ActivityIndicator, StyleSheet, Dimensions } from 'react-native';
+import { View, Animated, ActivityIndicator, StyleSheet, Dimensions, Image } from 'react-native';
 
 type IntroProps = {
   navigation: any;
@@ -41,22 +41,20 @@ const Intro: React.FC<IntroProps> = ({ navigation }) => {
 
     setTimeout(() => {
       navigation.navigate('LanguageSelect');
-    }, 2000);  // Adjust this line
+    }, 2000);
   }, []);
 
   return (
     <View style={styles.container}>
-      <Animated.Text style={[styles.text, { transform: [{ scale: scaleValue }], marginBottom: 40 }]}>
-        Candii
-      </Animated.Text>
+      <Animated.Image 
+        style={[styles.logo, { transform: [{ scale: scaleValue }] }]} 
+        source={require('../pictures/logosvg2.png')}
+        resizeMode="contain"
+      />
       <View style={styles.space} />
       <View style={styles.placeholder}>
         {loadingVisible && <ActivityIndicator style={{marginTop: 20}} size="large" color="#1F1F1F" />}
       </View>
-      <View style={styles.space} />
-      <Animated.View style={{position: 'absolute', width: '80%', left: scrollValue, alignSelf: 'center'}}>
-        <Text style={styles.subText}>Disposable e-cigarettes and e-juice</Text>
-      </Animated.View>
     </View>
   );
 };
@@ -64,24 +62,17 @@ const Intro: React.FC<IntroProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FCCC7C',
     alignItems: 'center',
     justifyContent: 'center',
   },
   space: {
     marginTop: 50,
   },
-  text: {
-    color: '#1F1F1F',
-    fontSize: 50,
-    fontWeight: 'bold',
+  logo: {
+    width: 300,
+    height: 300,
     marginBottom: 20,
-  },
-  subText: {
-    color: '#1F1F1F',
-    fontSize: 20,
-    fontWeight: 'bold',
-    textAlign: 'center',
   },
   placeholder: {
     height: 50,
