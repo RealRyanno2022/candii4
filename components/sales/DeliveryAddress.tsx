@@ -183,25 +183,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
       navigation.navigate('ShopFront');
     }
   };
-
-  const input1Ref = useRef<RNTextInput | null>(null);
-  const input2Ref = useRef<RNTextInput | null>(null);
-  const input3Ref = useRef<RNTextInput | null>(null);
-  const input4Ref = useRef<RNTextInput | null>(null);
-  const input5Ref = useRef<RNTextInput | null>(null);
-  const input6Ref = useRef<RNTextInput | null>(null);
-  const input7Ref = useRef<RNTextInput | null>(null);
-  const input8Ref = useRef<RNTextInput | null>(null);
-
-  const input1Layout = useRef<number | null>(null);
-  const input2Layout = useRef<number | null>(null);
-  const input3Layout = useRef<number | null>(null);
-  const input4Layout = useRef<number | null>(null);
-  const input5Layout = useRef<number | null>(null);
-  const input6Layout = useRef<number | null>(null);
-  const input7Layout = useRef<number | null>(null);
-  const input8Layout = useRef<number | null>(null);
-
   const formFields = [
     { name: 'email', label: 'Email *', rules: { required: 'This field is required', validate: validateEmail } },
     { name: 'firstName', label: 'First name *', rules: { required: 'This field is required', validate: validateFirstName } },
@@ -254,7 +235,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
               <View style={styles.card}>
                 <View id="dropin-container" style={{ marginBottom: 20 }} />
                 <TouchableOpacity
-                  onPress={handleSubmit(onSubmit)} // Pass handleSubmit as the onPress handler
+                  onPress={handleSubmit(onSubmit)}
                   style={styles.button}
                 >
                   <Text style={styles.buttonText}>Confirm and Pay</Text>
@@ -267,9 +248,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
       </KeyboardAvoidingView>
     </View>
   );
-};
-
-// test
+}
 
 const styles = StyleSheet.create({
   label: {
