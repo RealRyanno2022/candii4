@@ -6,10 +6,10 @@ import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
-import { NavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 
 type VapeScreenProps = {
-  navigation: NavigationProp<StackParamList>;
+  navigation: StackNavigationProp<StackParamList>;
 }
 
 const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
@@ -21,7 +21,7 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
   };
 
   const handleBackPress = () => {
-    navigation.dispatch(StackActions.push("ShopFront"));
+    navigation.pop();
   }
 
   const handleSearch = () => {

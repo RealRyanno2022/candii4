@@ -5,10 +5,11 @@ import brandData from '../data/BrandData';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
-import { NavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 
 type NonDisposableScreenProps = {
-  navigation: NavigationProp<StackParamList>;
+  navigation: StackNavigationProp<StackParamList>;
 }
 
 
@@ -21,7 +22,7 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
   };
 
   const handleBackPress = () => {
-    navigation.dispatch(StackActions.push(("ShopFront")));
+    navigation.pop();
   }
 
   const handleSearch = () => {

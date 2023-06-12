@@ -20,7 +20,7 @@ const LostConnection: React.FC = () => {
   return (
     <View style={styles.container}>
       <Image 
-        source={require('../path-to-your-image/wifi-icon.png')} 
+        source={require('../pictures/nowifi.png')} 
         style={styles.imageStyle}
       />
       <Text style={styles.titleText}>Cannot connect to Candii</Text>

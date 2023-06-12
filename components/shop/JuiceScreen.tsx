@@ -6,6 +6,8 @@ import ShopFooter from './ShopFooter';
 import { NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+
 
 type ProductType = {
   id: string;
@@ -16,7 +18,7 @@ type ProductType = {
 };
 
 type JuiceScreenProps = {
-  navigation: NavigationProp<StackParamList, "JuiceScreen">;
+  navigation: StackNavigationProp<StackParamList, "JuiceScreen">;
 }
 
 const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
@@ -27,7 +29,7 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
   };
   
   const handleBackPress = () => {
-    navigation.dispatch(StackActions.push('ShopFront'));
+    navigation.pop();
   };
 
   const handleSearch = () => {

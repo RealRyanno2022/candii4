@@ -7,6 +7,10 @@ import React from 'react';
 import LanguageSelect from './components/onboarding/LanguageSelect';
 import ShopFront from './components/onboarding/ShopFront';
 import VerifyAge from './components/onboarding/VerifyAge';
+import VapeScreen from './components/shop/VapeScreen';
+import JuiceScreen from './components/shop/JuiceScreen';
+import NonDisposableScreen from './components/shop/NonDisposableScreen';
+import LostConnection from './components/anomalies/LostConnection';
 
 export default function App() {
 
@@ -24,6 +28,11 @@ export default function App() {
             <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
             <Stack.Screen name="ShopFront" component={ShopFront} />
             <Stack.Screen name="VerifyAge" component={VerifyAge} />
+
+            <Stack.Screen name="VapeScreen" component={VapeScreen} />
+            <Stack.Screen name="JuiceScreen" component={JuiceScreen} />
+            <Stack.Screen name="NonDisposable" component={NonDisposableScreen} />
+            <Stack.Screen name="LostConnection" component={LostConnection} />
          </Stack.Navigator>
         </NavigationContainer>
   );
