@@ -27,7 +27,7 @@ export type StackParamList = {
   VerifyEmail: undefined;
   ConfirmationPage: undefined;
   DeliveryAddress: undefined;
-  BrandVarieties: BrandVarietiesProps;
+  BrandVarieties: { brand: string };
   ContinueShopping: undefined;
   JuiceProductPage: undefined;
   JuiceScreen: undefined;

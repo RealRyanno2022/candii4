@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import BrandBox from './BrandBox';
-import brandData from '../data/BrandData';
+import BrandData from '../data/BrandData';
 import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
@@ -11,8 +11,9 @@ import { StackNavigationProp } from '@react-navigation/stack';
 type BrandVarietiesProps = {
   route: RouteProp<StackParamList, 'BrandVarieties'>;
   navigation: StackNavigationProp<StackParamList, 'BrandVarieties'>;
-  brand: string;
 };
+
+// 300 commits!ß
 
 const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) => {
   const { brand } = route.params;
@@ -20,7 +21,9 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
   const [varieties, setVarieties] = useState<string[]>([]);
 
   useEffect(() => {
-    const filteredData = Object.values(brandData).filter((product) => product === brand);
+    const filteredData = Object.values(BrandData)
+  .filter((product) => product.brand === brand)
+  .map((product) => product.variety); // You need to replace 'variety' with the actual property name that you want to extract
     setVarieties(filteredData);
   }, [brand]);
 
@@ -46,6 +49,7 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
             quantity={0}
             onSelect={handleSelect}
             onDeselect={handleDeselect}
+            product={item}
           />
         )}
       />

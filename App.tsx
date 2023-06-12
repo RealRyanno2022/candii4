@@ -39,19 +39,19 @@ export default function App() {
 
             <Stack.Screen name="VapeScreen" component={VapeScreen} />
             <Stack.Screen name="JuiceScreen" component={JuiceScreen} />
-            <Stack.Screen name="NonDisposable" component={NonDisposableScreen} />
+            <Stack.Screen name="NonDisposableScreen" component={NonDisposableScreen} />
             <Stack.Screen name="LostConnection" component={LostConnection} />
 
 
             <Stack.Screen name="BrandVarieties" component={BrandVarieties} />
 
             <Stack.Screen name="CancelConfirm" component={CancelConfirm} />
-            <Stack.Screen name="BrandVarieties" component={CancelMembership} />
-            <Stack.Screen name="BrandVarieties" component={ChangeAddress} />
-            <Stack.Screen name="BrandVarieties" component={ChangeFlavours} />
-            <Stack.Screen name="BrandVarieties" component={ChooseFlavours} />
-            <Stack.Screen name="BrandVarieties" component={ManageSubscription} />
-            <Stack.Screen name="BrandVarieties" component={SubVapeScreen} />
+            <Stack.Screen name="CancelMembership" component={CancelMembership} />
+            <Stack.Screen name="ChangeAddress" component={ChangeAddress} />
+            <Stack.Screen name="ChangeFlavours" component={ChangeFlavours} />
+            <Stack.Screen name="ChooseFlavours" component={ChooseFlavours} />
+            <Stack.Screen name="ManageSubscription" component={ManageSubscription} />
+            <Stack.Screen name="SubVapeScreen" component={SubVapeScreen} />
 
 
 
