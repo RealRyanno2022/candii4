@@ -117,22 +117,22 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const { control, handleSubmit, formState: { errors } } = useForm<UserData>();
 
   const handleSaveUserInformation: SubmitHandlerType = async (data: UserData) => {
-    try {
-      const response = await axios.post('https://candii-vapes-backend.herokuapp.com/save_user_information', {
-        state: data.state,
-        country: data.country,
-        email: data.email,
-        address: data.address,
-        phoneNumber: data.phoneNumber,
-        postCode: data.postCode,
-        firstName: data.firstName,
-        lastName: data.lastName,
-      });
+    // try {
+    //   const response = await axios.post('https://candii-vapes-backend.herokuapp.com/save_user_information', {
+    //     state: data.state,
+    //     country: data.country,
+    //     email: data.email,
+    //     address: data.address,
+    //     phoneNumber: data.phoneNumber,
+    //     postCode: data.postCode,
+    //     firstName: data.firstName,
+    //     lastName: data.lastName,
+    //   });
   
-      console.log(response.data.message);
-    } catch (error) {
-      console.error('Error saving user information:', error);
-    }
+    //   console.log(response.data.message);
+    // } catch (error) {
+    //   console.error('Error saving user information:', error);
+    // }
   };
 
   const onSubmit: SubmitHandler<UserData> = async (data) => {
@@ -142,56 +142,56 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   }
 
   const handlePayment = async () => {
-    try {
-      // Fetch the client token from your server
-      const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
-      const { clientToken } = await tokenResponse.json();
+    // try {
+    //   // Fetch the client token from your server
+    //   const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
+    //   const { clientToken } = await tokenResponse.json();
   
-      const dropinInstance = await Dropin.create({
-        authorization: clientToken,
-        container: '#dropin-container',
-        card: {
-          cardholderName: {
-            required: true
-          }
-        }
-      });
+    //   const dropinInstance = await Dropin.create({
+    //     authorization: clientToken,
+    //     container: '#dropin-container',
+    //     card: {
+    //       cardholderName: {
+    //         required: true
+    //       }
+    //     }
+    //   });
   
-      const { nonce } = await dropinInstance.requestPaymentMethod();
+    //   const { nonce } = await dropinInstance.requestPaymentMethod();
   
-      const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          paymentMethodNonce: nonce,
-          amount: '1.00', // Replace with the actual amount
-        }),
-      });
+    //   const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
+    //     method: 'POST',
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     body: JSON.stringify({
+    //       paymentMethodNonce: nonce,
+    //       amount: '1.00', // Replace with the actual amount
+    //     }),
+    //   });
   
-      if (!paymentResponse.ok) {
-        throw new Error('Payment failed');
-      }
+    //   if (!paymentResponse.ok) {
+    //     throw new Error('Payment failed');
+    //   }
   
-      const { message } = await paymentResponse.json();
-      console.log(message);
-      navigation.navigate('ConfirmationDetails');
-    } catch (error) {
-      console.error(error);
-      alert('Payment failed... please try again');
-      navigation.navigate('ShopFront');
-    }
+    //   const { message } = await paymentResponse.json();
+    //   console.log(message);
+    //   navigation.navigate('ConfirmationDetails');
+    // } catch (error) {
+    //   console.error(error);
+    //   alert('Payment failed... please try again');
+    //   navigation.navigate('ShopFront');
+    // }
   };
   const formFields = [
-    { name: 'email', label: 'Email *', rules: { required: 'This field is required', validate: validateEmail } },
-    { name: 'firstName', label: 'First name *', rules: { required: 'This field is required', validate: validateFirstName } },
-    { name: 'lastName', label: 'Last name *', rules: { required: 'This field is required', validate: validateLastName } },
-    { name: 'phoneNumber', label: 'Phone number *', rules: { required: 'This field is required', validate: validatePhoneNumber } },
-    { name: 'city', label: 'City *', rules: { required: 'This field is required', validate: validateCity } },
-    { name: 'country', label: 'Country *', rules: { required: 'This field is required', validate: validateCountry }, setCountry: true },
-    { name: 'state', label: country === 'Ireland' ? 'County *' : 'State *', rules: { required: 'This field is required', validate: validateStateOrCounty } },
-    { name: 'postcode', label: country === 'Ireland' ? 'Eir Code' : 'Post Code', rules: { validate: validatePostOrEirCode } },
+    { name: 'email', label: 'Email *', placeholder: 'Enter your email', rules: { required: 'This field is required', validate: validateEmail } },
+    { name: 'firstName', label: 'First name *', placeholder: 'Enter your first name', rules: { required: 'This field is required', validate: validateFirstName } },
+    { name: 'lastName', label: 'Last name *', placeholder: 'Enter your last name', rules: { required: 'This field is required', validate: validateLastName } },
+    { name: 'phoneNumber', label: 'Phone number *', placeholder: 'Enter your phone number', rules: { required: 'This field is required', validate: validatePhoneNumber } },
+    { name: 'city', label: 'City *', placeholder: 'Enter your city', rules: { required: 'This field is required', validate: validateCity } },
+    { name: 'country', label: 'Country *', placeholder: 'Select your country', rules: { required: 'This field is required', validate: validateCountry }, setCountry: true },
+    { name: 'state', label: country === 'Ireland' ? 'County *' : 'State *', placeholder: country === 'Ireland' ? 'Enter your county' : 'Enter your state', rules: { required: 'This field is required', validate: validateStateOrCounty } },
+    { name: 'postcode', label: country === 'Ireland' ? 'Eir Code' : 'Post Code', placeholder: 'Enter your postcode', rules: { validate: validatePostOrEirCode } },
   ];
 
   const handleSearch = () => {
@@ -224,6 +224,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
                   key={field.name}
                   name={field.name}
                   label={field.label}
+                  placeholder={field.placeholder}
                   scrollViewRef={scrollViewRef}
                   rules={field.rules}
                   control={control} // Add control property
@@ -293,7 +294,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   button: {
-    backgroundColor: '#007AFF',
+    backgroundColor: '#FCCC7C',
     borderRadius: 10,
     paddingVertical: 12,
     paddingHorizontal: 24,
@@ -314,6 +315,16 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: '#ccc',
     marginBottom: 10,
+    backgroundColor: '#FFFFFF',
+    borderRadius: 8,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
   },
 });
 

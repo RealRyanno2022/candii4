@@ -3,7 +3,6 @@ import { View, TextInput, TextInputProps, StyleSheet } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { HelperText } from 'react-native-paper';
 
-
 type FormInputProps = {
   control: any;
   name: string;
@@ -11,10 +10,11 @@ type FormInputProps = {
   errors: any;
   scrollViewRef: any;
   rules?: any;
+  placeholder?: string; // Add placeholder prop to the interface
   setCountry?: any;
 };
 
-const FormInput: React.FC<FormInputProps> = ({ control, name, label, errors, scrollViewRef, rules, setCountry }) => {
+const FormInput: React.FC<FormInputProps> = ({ control, name, label, errors, scrollViewRef, rules, placeholder, setCountry }) => {
   const layoutRef = useRef<number | null>(null);
   const inputRef = useRef<TextInput | null>(null);
 
@@ -37,7 +37,8 @@ const FormInput: React.FC<FormInputProps> = ({ control, name, label, errors, scr
             value={value}
             ref={inputRef}
             onFocus={() => scrollViewRef.current && scrollViewRef.current.scrollTo({ x: 0, y: layoutRef.current, animated: true })}
-            style={styles.input} // Make sure the 'styles' object is imported correctly
+            style={styles.input}
+            placeholder={placeholder} // Add placeholder prop here
           />
         )}
         name={name}
@@ -50,12 +51,24 @@ const FormInput: React.FC<FormInputProps> = ({ control, name, label, errors, scr
 
 const styles = StyleSheet.create({
   input: {
-    // replace with the styles you had in your styles file
     height: 40,
-    borderColor: 'gray',
     borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 8,
+    backgroundColor: '#FFFFFF',
+    padding: 10,
+    marginBottom: 10,
+    shadowColor: '#000000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    fontSize: 20,
+    shadowOpacity: 0.1,
+    shadowRadius: 4,
+    elevation: 5,
+    fontWeight: 'bold',
   },
 });
-
 
 export default FormInput;
