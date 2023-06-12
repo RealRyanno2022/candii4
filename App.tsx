@@ -11,6 +11,7 @@ import VapeScreen from './components/shop/VapeScreen';
 import JuiceScreen from './components/shop/JuiceScreen';
 import NonDisposableScreen from './components/shop/NonDisposableScreen';
 import LostConnection from './components/anomalies/LostConnection';
+import BrandVarieties from './components/shop/BrandVarieties';
 
 export default function App() {
 
@@ -33,6 +34,9 @@ export default function App() {
             <Stack.Screen name="JuiceScreen" component={JuiceScreen} />
             <Stack.Screen name="NonDisposable" component={NonDisposableScreen} />
             <Stack.Screen name="LostConnection" component={LostConnection} />
+
+
+            <Stack.Screen name="BrandVarieties" component={BrandVarieties} />
          </Stack.Navigator>
         </NavigationContainer>
   );

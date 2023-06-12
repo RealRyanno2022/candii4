@@ -1,59 +1,52 @@
+
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
-import ShopHeader from './ShopHeader';
-import ShopFooter from './ShopFooter';
+import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { Header, SearchBar, Icon } from 'react-native-elements';
+import ShopHeader from '../shop/ShopHeader';
+import ShopFooter from '../shop/ShopFooter';
+
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigationProp } from '@react-navigation/native';
 
 type VapeScreenProps = {
-  navigation: StackNavigationProp<StackParamList>;
+  navigation: NavigationProp<StackParamList>;
 }
 
 const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
 
-  const brands = [
-    { name: "Elfa Bar", image: require('../pictures/DisposablePics/elfabar.png') },
-    { name: "Jewel Mini", image: require('../pictures/DisposablePics/jewelmini.png') },
-    { name: "Lost Mary", image: require('../pictures/DisposablePics/lostmary.png') },
-    { name: "Elf Bar", image: require('../pictures/VapePics/elfbar.png') },
-    { name: "IVG Bar", image: require('../pictures/DisposablePics/ivgbar.png') },
-  ];
-
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleBrandPress = (brandName: string) => {
-    navigation.dispatch(StackActions.push('BrandVarieties', { brandName }));
+    navigation.dispatch(StackActions.push('ChooseFlavours', { brandName }));
   };
 
   const handleBackPress = () => {
-    navigation.pop();
+    navigation.dispatch(StackActions.push(("SubSignUp")));
   }
 
   const handleSearch = () => {
     navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
-  }
+}
 
   return (
     <View style={{flex: 1}}>
      <ShopHeader navigation={navigation} />
       <ScrollView>
         <View style={styles.cardContainer}>
-          {brands.map(brand => (
+          {["Elfa Bar", "Jewel Mini", "Lost Mary", "Elf Bar", "IVG Bar"].map(brand => (
             <TouchableOpacity
-              key={brand.name}
+              key={brand}
               style={styles.card}
-              onPress={() => handleBrandPress(brand.name)}
+              onPress={() => handleBrandPress(brand)}
             >
-              <Image style={styles.image} source={brand.image}></Image>
-              <Text style={styles.cardText}>{brand.name}</Text>
+              <Text style={styles.cardText}>{brand}</Text>
             </TouchableOpacity>
           ))}
           <TouchableOpacity
             style={styles.card}
             onPress={() => handleBackPress()}
           >
-            <Image style={styles.image} source={require('../pictures/goback.png')}></Image>
             <Text style={styles.cardText}>Go Back</Text>
           </TouchableOpacity>
         </View>
@@ -78,12 +71,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     fontSize: 25,
     color: '#FB5B5A',
-  },
-  image: {
-      width: '100%',
-      height: 100,
-      resizeMode: 'contain',
-      marginBottom: 10,
   },
   cardContainer: {
     flexDirection: 'row',

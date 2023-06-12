@@ -18,7 +18,7 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
   };
 
   return (
-    <View>
+    <View style={styles.headerColor}>
       <Header
         containerStyle={styles.headerColor}
       />

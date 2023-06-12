@@ -36,30 +36,43 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
     navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
   }
 
+  const brands = [
+    { name: "Kinship", image: require('../pictures/JuiceScreen/kinship.png') },
+    { name: "BMG", image: require('../pictures/JuiceScreen/bmg.png') },
+    { name: "Hale", image: require('../pictures/JuiceScreen/hale.png') },
+    { name: "Slushie", image: require('../pictures/JuiceScreen/slushie.png') },
+    { name: "Yeti", image: require('../pictures/JuiceScreen/yeti.png') },
+    { name: "IVGSalt", image: require('../pictures/VapePics/juice.png') },
+    { name: "Elfiq", image: require('../pictures/JuiceScreen/elfiq.png') },
+  ];
+
+
   return (
     <View style={{flex: 1}}>
-      <ShopHeader navigation={navigation}  />
-      <ScrollView>
-        <View style={styles.cardContainer}>
-          {["Kinship", "BMG", "Hale", "Slushie", "Yeti", "IVG Salt", "Elfiq"].map(brand => (
-            <TouchableOpacity
-              key={brand}
-              style={styles.card}
-              onPress={() => handleBrandPress(brand)}
-            >
-              <Text style={styles.cardText}>{brand}</Text>
-            </TouchableOpacity>
-          ))}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => handleBackPress()}
-          >
-            <Text style={styles.cardText}>Go Back</Text>
-          </TouchableOpacity>
-        </View>
-      </ScrollView>
-      <ShopFooter navigation={navigation}/>
-    </View>
+    <ShopHeader navigation={navigation} />
+     <ScrollView>
+       <View style={styles.cardContainer}>
+         {brands.map(brand => (
+           <TouchableOpacity
+             key={brand.name}
+             style={styles.card}
+             onPress={() => handleBrandPress(brand.name)}
+           >
+             <Image style={styles.image} source={brand.image}></Image>
+             <Text style={styles.cardText}>{brand.name}</Text>
+           </TouchableOpacity>
+         ))}
+         <TouchableOpacity
+           style={styles.card}
+           onPress={() => handleBackPress()}
+         >
+           <Image style={styles.image} source={require('../pictures/goback.png')}></Image>
+           <Text style={styles.cardText}>Go Back</Text>
+         </TouchableOpacity>
+       </View>
+     </ScrollView>
+     <ShopFooter navigation={navigation}/>
+   </View>
   );
 }
 
@@ -84,6 +97,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     padding: 20,
+  },
+  image: {
+    width: '100%',
+    height: 100,
+    resizeMode: 'contain',
+    marginBottom: 10,
   },
   card: {
     width: '45%',
