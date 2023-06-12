@@ -19,9 +19,6 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
 
   return (
     <View style={styles.headerColor}>
-      <Header
-        containerStyle={styles.headerColor}
-      />
       <SearchBar
         platform="default"
         containerStyle={{ width: '100%' }}

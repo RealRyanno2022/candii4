@@ -1,45 +1,48 @@
 import React, { useState } from 'react';
-import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
-import { Header, SearchBar, Icon } from 'react-native-elements';
-import ShopHeader from '../shop/ShopHeader';
-import ShopFooter from '../shop/ShopFooter';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { StackParamList } from '../../types/types';
 import { NavigationProp } from '@react-navigation/native';
 
-
 type ShopFrontProps = {
   navigation: NavigationProp<StackParamList>;
-}
+};
 
 const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
-  const [searchTerm, setSearchTerm] = useState('');
-
   const handleBrandPress = (productType: string) => {
     if (productType === 'Disposables') {
       navigation.navigate('VapeScreen');
     }
     if (productType === 'Juice') {
       navigation.navigate('JuiceScreen');
-    }  if (productType === 'NonDisposable') {
+    }
+    if (productType === 'NonDisposable') {
       navigation.navigate('NonDisposableScreen');
-    } 
+    }
   };
 
-  // const { styles } = navigation.screenProps;
-
   return (
-    <View>
-      <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.scrollViewContent} stickyHeaderIndices={[1]}>
+    <View style={styles.container}>
+      <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.cardContainer}>
           <View style={styles.space} />
+          <TouchableOpacity
+            id="nondisposable"
+            style={styles.card}
+            onPress={() => handleBrandPress('NonDisposable')}
+          >
+            <Image
+              source={require('../pictures/VapePics/dragx.png')}
+              style={styles.imageStyle}
+            />
+            <Text style={styles.cardText}>Non Disposables</Text>
+          </TouchableOpacity>
           <TouchableOpacity
             id="disposables"
             style={styles.card}
             onPress={() => handleBrandPress('Disposables')}
           >
-            <Image 
-              source={require('../pictures/VapePics/elfbar.png')} 
+            <Image
+              source={require('../pictures/VapePics/elfbar.png')}
               style={styles.imageStyle}
             />
             <Text style={styles.cardText}>Disposables</Text>
@@ -50,29 +53,14 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
             style={styles.card}
             onPress={() => handleBrandPress('Juice')}
           >
-            <Image 
-              source={require('../pictures/VapePics/juice.png')} 
+            <Image
+              source={require('../pictures/VapePics/juice.png')}
               style={styles.imageStyle}
             />
             <Text style={styles.cardText}>Juice</Text>
           </TouchableOpacity>
         </View>
-        <View style={styles.cardContainer}>
-          <TouchableOpacity
-            id="nondisposable"
-            style={styles.card}
-            onPress={() => handleBrandPress('NonDisposable')}
-          >
-            <Image 
-              source={require('../pictures/VapePics/dragx.png')} 
-              style={styles.imageStyle}
-            />
-            <Text style={styles.cardText}>Non Disposables</Text>
-          </TouchableOpacity>
-        </View>
-       {/* <View style={styles.space} /> */}
       </ScrollView>
-      <ShopFooter navigation={navigation} />
     </View>
   );
 };

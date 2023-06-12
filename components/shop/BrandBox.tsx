@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image } from 'react-native';
-import images from '../data/images'
-import brandData from '../data/BrandData';
+import images from '../data/images';
+import BrandData from '../data/BrandData';
 
 type Product = {
   id: string;
@@ -20,8 +20,14 @@ type BrandBoxProps = {
   navigation: any;
 };
 
-
-const BrandBox: React.FC<BrandBoxProps> = ({ product, selected, quantity, onSelect, onDeselect, navigation }) => {
+const BrandBox: React.FC<BrandBoxProps> = ({
+  product,
+  selected,
+  quantity,
+  onSelect,
+  onDeselect,
+  navigation,
+}) => {
   const handleProductPress = () => {
     navigation.navigate('ProductScreen', { product });
   };
@@ -35,7 +41,8 @@ const BrandBox: React.FC<BrandBoxProps> = ({ product, selected, quantity, onSele
   );
 };
 
-// ... the rest of your code ...
+
+
 
 
 const styles = StyleSheet.create({

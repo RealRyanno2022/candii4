@@ -8,24 +8,36 @@ import { StackParamList } from '../../types/types';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
+type ProductImage = string;
+
 type BrandVarietiesProps = {
   route: RouteProp<StackParamList, 'BrandVarieties'>;
   navigation: StackNavigationProp<StackParamList, 'BrandVarieties'>;
 };
 
-// 300 commits!ß
+// 300 commits!
+
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  brand: string;
+  image: ProductImage;
+};
 
 const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) => {
   const { brand } = route.params;
 
-  const [varieties, setVarieties] = useState<string[]>([]);
+  const [varieties, setVarieties] = useState<Product[]>([]);
 
   useEffect(() => {
-    const filteredData = Object.values(BrandData)
-  .filter((product) => product.brand === brand)
-  .map((product) => product.variety); // You need to replace 'variety' with the actual property name that you want to extract
+    console.log("Brand from route parameters:", brand);
+    const filteredData = Object.values(BrandData).filter((product: any) => product.brand === brand) as Product[];
     setVarieties(filteredData);
+    console.log("Filtered data for brand:", filteredData);
   }, [brand]);
+  
+  
 
   const handleSelect = () => {
     console.log('Selected product');

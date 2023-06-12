@@ -45,4 +45,5 @@ export type StackParamList = {
   CancelConfirm: undefined;
   NonDisposableScreen: undefined;
   NonDisposableProductPage: undefined;
+  BrandBox: { product: any, selected: boolean, quantity: number, onSelect: () => void, onDeselect: () => void };
 };
