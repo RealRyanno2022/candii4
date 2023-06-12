@@ -21,9 +21,9 @@ export default function App() {
             <Stack.Screen name="Intro" component={Intro} />
             <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
 
-            <Stack.Screen name="PrivacyPolicy" component={LanguageSelect} />
-            <Stack.Screen name="PrivacyPolicy" component={ShopFront} />
-            <Stack.Screen name="PrivacyPolicy" component={VerifyAge} />
+            <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
+            <Stack.Screen name="ShopFront" component={ShopFront} />
+            <Stack.Screen name="VerifyAge" component={VerifyAge} />
          </Stack.Navigator>
         </NavigationContainer>
   );

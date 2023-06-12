@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Linking, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Linking, Image, Animated } from 'react-native';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { NavigationProp } from '@react-navigation/native';
@@ -8,14 +8,8 @@ type LanguageSelectProps = {
     navigation: NavigationProp<StackParamList>;
 }
 
-const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation }) => {
-  const [selectedLanguage, setSelectedLanguage] = useState('');
-
-  const handleLanguageSelect = (language: string) => {
-    setSelectedLanguage(language);
-    // You can navigate to the VerifyAge component here or perform any other actions based on the selected language
-    navigation.dispatch(StackActions.push("VerifyAge"));
-  };
+const LanguageSelect: React.FC<LanguageSelectProps> = () => {
+  const [index, setIndex] = useState(0);
 
   const languageData = [
     { language: 'English', flag: require('../pictures/british-flag.png') },
@@ -27,22 +21,24 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation }) => {
     { language: 'French', flag: require('../pictures/french-flag.png') },
   ];
 
-  const renderLanguageButtons = () => {
-    return languageData.map((item, index) => (
-      <TouchableOpacity
-        key={index}
-        style={styles.flagButton}
-        onPress={() => handleLanguageSelect(item.language)}
-      >
-        <Image source={item.flag} style={styles.flagImage} />
-      </TouchableOpacity>
-    ));
-  };
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setIndex((prevIndex) => (prevIndex + 1) % languageData.length);
+    }, 3000);
+
+    return () => clearInterval(timer);
+  }, []);
 
   return (
     <View style={styles.container}>
-      <Text style={styles.typingText}>What language do you speak?</Text>
-      <View style={styles.flagContainer}>{renderLanguageButtons()}</View>
+      <Text style={styles.typingText}>{languageData[index].language}</Text>
+      <View style={styles.flagContainer}>
+        {languageData.map((item, idx) => (
+          <TouchableOpacity key={idx} style={styles.flagButton}>
+            <Image source={item.flag} style={styles.flagImage} />
+          </TouchableOpacity>
+        ))}
+      </View>
     </View>
   );
 };

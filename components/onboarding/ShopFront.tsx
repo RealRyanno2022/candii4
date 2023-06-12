@@ -3,6 +3,9 @@ import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView 
 import { Header, SearchBar, Icon } from 'react-native-elements';
 import ShopHeader from '../shop/ShopHeader';
 import ShopFooter from '../shop/ShopFooter';
+import { StackParamList } from '../../types/types';
+import { NavigationProp } from '@react-navigation/native';
+
 
 type ShopFrontProps = {
   navigation: NavigationProp<StackParamList>;
@@ -20,10 +23,10 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
     } 
   };
 
-  const { styles } = navigation.screenProps;
+  // const { styles } = navigation.screenProps;
 
   return (
-    <View style={{backgroundColor: styles.background}}>
+    <View>
       <ShopHeader navigation={navigation} />
       <ScrollView contentContainerStyle={styles.scrollViewContent} stickyHeaderIndices={[1]}>
         <View style={styles.cardContainer}>
@@ -34,7 +37,7 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
             onPress={() => handleBrandPress('Disposables')}
           >
             <Image 
-              source={require('my-project/components/pictures/VapePics/elfbar-fotor-bg-remover-20230514115238.png')} 
+              source={require('../pictures/VapePics/elfbar.png')} 
               style={styles.imageStyle}
             />
             <Text style={styles.cardText}>Disposables</Text>
@@ -46,7 +49,7 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
             onPress={() => handleBrandPress('Juice')}
           >
             <Image 
-              source={require('my-project/components/pictures/VapePics/juice-fotor-bg-remover-20230514115248.png')} 
+              source={require('../pictures/VapePics/juice.png')} 
               style={styles.imageStyle}
             />
             <Text style={styles.cardText}>Juice</Text>
