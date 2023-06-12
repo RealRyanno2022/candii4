@@ -142,48 +142,46 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   }
 
   const handlePayment = async () => {
-    // try {
-    //   // Fetch the client token from your server
-    //   const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
-    //   const { clientToken } = await tokenResponse.json();
-
-      // Show the Braintree Drop-in UI
-      // const dropinInstance = await Dropin.create({
-      //   authorization: clientToken,
-      //   container: '#dropin-container',
-      //   card: {
-      //     cardholderName: {
-      //       required: true
-      //     }
-      //   }
-      // });
-
-      // const { nonce } = await dropinInstance.requestPaymentMethod();
-
-      // Send the nonce to your server for processing the payment
-      // const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
-      //   method: 'POST',
-      //   headers: {
-      //     'Content-Type': 'application/json',
-      //   },
-      //   body: JSON.stringify({
-      //     paymentMethodNonce: nonce,
-      //     amount: '1.00', // Replace with the actual amount
-      //   }),
-      // });
-
-      // if (!PaymentResponse.ok) {
-      //   throw new Error('Payment failed');
-      // }
-
-    //   const { message } = await paymentResponse.json();
-    //   console.log(message);
-    //   navigation.navigate('ConfirmationDetails');
-    // } catch (error) {
-    //   console.error(error);
-    //   Alert.alert('Error', 'Payment failed, please try again');
-    //   navigation.navigate('ShopFront');
-    // }
+    try {
+      // Fetch the client token from your server
+      const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
+      const { clientToken } = await tokenResponse.json();
+  
+      const dropinInstance = await Dropin.create({
+        authorization: clientToken,
+        container: '#dropin-container',
+        card: {
+          cardholderName: {
+            required: true
+          }
+        }
+      });
+  
+      const { nonce } = await dropinInstance.requestPaymentMethod();
+  
+      const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          paymentMethodNonce: nonce,
+          amount: '1.00', // Replace with the actual amount
+        }),
+      });
+  
+      if (!paymentResponse.ok) {
+        throw new Error('Payment failed');
+      }
+  
+      const { message } = await paymentResponse.json();
+      console.log(message);
+      navigation.navigate('ConfirmationDetails');
+    } catch (error) {
+      console.error(error);
+      alert('Payment failed... please try again');
+      navigation.navigate('ShopFront');
+    }
   };
 
   const input1Ref = useRef<RNTextInput | null>(null);
