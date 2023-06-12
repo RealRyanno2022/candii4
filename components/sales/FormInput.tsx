@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { View, TextInput, TextInputProps, StyleSheet } from 'react-native';
 import { Controller } from 'react-hook-form';
 import { HelperText } from 'react-native-paper';
+import { StyleProp, ViewStyle } from 'react-native';
 
 type FormInputProps = {
   control: any;
@@ -12,9 +13,10 @@ type FormInputProps = {
   rules?: any;
   placeholder?: string; // Add placeholder prop to the interface
   setCountry?: any;
+  style?: StyleProp<ViewStyle>;
 };
 
-const FormInput: React.FC<FormInputProps> = ({ control, name, label, errors, scrollViewRef, rules, placeholder, setCountry }) => {
+const FormInput: React.FC<FormInputProps> = ({ style, control, name, label, errors, scrollViewRef, rules, placeholder, setCountry }) => {
   const layoutRef = useRef<number | null>(null);
   const inputRef = useRef<TextInput | null>(null);
 

@@ -171,7 +171,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     //   });
   
     //   if (!paymentResponse.ok) {
-    //     throw new Error('Payment failed');
+    //     throw new Error('Payment failed'); 
     //   }
   
     //   const { message } = await paymentResponse.json();
@@ -184,15 +184,26 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     // }
   };
   const formFields = [
-    { name: 'email', label: 'Email *', placeholder: 'Enter your email', rules: { required: 'This field is required', validate: validateEmail } },
-    { name: 'firstName', label: 'First name *', placeholder: 'Enter your first name', rules: { required: 'This field is required', validate: validateFirstName } },
-    { name: 'lastName', label: 'Last name *', placeholder: 'Enter your last name', rules: { required: 'This field is required', validate: validateLastName } },
-    { name: 'phoneNumber', label: 'Phone number *', placeholder: 'Enter your phone number', rules: { required: 'This field is required', validate: validatePhoneNumber } },
-    { name: 'city', label: 'City *', placeholder: 'Enter your city', rules: { required: 'This field is required', validate: validateCity } },
-    { name: 'country', label: 'Country *', placeholder: 'Select your country', rules: { required: 'This field is required', validate: validateCountry }, setCountry: true },
-    { name: 'state', label: country === 'Ireland' ? 'County *' : 'State *', placeholder: country === 'Ireland' ? 'Enter your county' : 'Enter your state', rules: { required: 'This field is required', validate: validateStateOrCounty } },
+    { name: 'email', label: 'Email', placeholder: 'Enter your email', rules: { required: 'This field is required', validate: validateEmail } },
+    { name: 'firstName', label: 'First name', placeholder: 'Enter your first name', rules: { required: 'This field is required', validate: validateFirstName } },
+    { name: 'lastName', label: 'Last name ', placeholder: 'Enter your last name', rules: { required: 'This field is required', validate: validateLastName } },
+    { name: 'phoneNumber', label: 'Phone number ', placeholder: 'Enter your phone number', rules: { required: 'This field is required', validate: validatePhoneNumber } },
+    { name: 'city', label: 'City ', placeholder: 'Enter your city', rules: { required: 'This field is required', validate: validateCity } },
+    { name: 'country', label: 'Country ', placeholder: 'Select your country', rules: { required: 'This field is required', validate: validateCountry }, setCountry: true },
+    { name: 'state', label: country === 'Ireland' ? 'County ' : 'State ', placeholder: country === 'Ireland' ? 'Enter your county' : 'Enter your state', rules: { required: 'This field is required', validate: validateStateOrCounty } },
     { name: 'postcode', label: country === 'Ireland' ? 'Eir Code' : 'Post Code', placeholder: 'Enter your postcode', rules: { validate: validatePostOrEirCode } },
   ];
+
+
+  const renderLabel = (label: string, required: boolean) => {
+    return (
+      <View style={styles.label}>
+        <Text style={styles.labelText}>{label}</Text>
+        {required && <Text style={styles.asterisk}> *</Text>}
+      </View>
+    );
+  };
+
 
   const handleSearch = () => {
     navigation.push('SearchProducts', { searchTerm });
@@ -205,6 +216,10 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
       }
     });
 
+    if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
+      scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
+    }
+
     return unsubscribe;
   }, [navigation]);
 
@@ -215,22 +230,24 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
           <ShopHeader navigation={navigation} />
           <ScrollView ref={scrollViewRef} contentContainerStyle={{ paddingBottom: 100 }}>
             <View style={{ paddingBottom: 100 }}>
-              <View style={styles.label}>
-                <Text style={styles.labelText}>Delivery Address</Text>
-              </View>
+              {renderLabel('Delivery Address', false)}
 
               {formFields.map(field => (
-                <FormInput
-                  key={field.name}
-                  name={field.name}
-                  label={field.label}
-                  placeholder={field.placeholder}
-                  scrollViewRef={scrollViewRef}
-                  rules={field.rules}
-                  control={control} // Add control property
-                  errors={errors} // Add errors property
-                  setCountry={field.setCountry ? setCountry : undefined}
-                />
+                <View key={field.name}>
+                  {renderLabel(field.label, !!field.rules.required)}
+                  <FormInput
+                    key={field.name}
+                    name={field.name}
+                    label={field.label}
+                    placeholder={field.placeholder}
+                    scrollViewRef={scrollViewRef}
+                    rules={field.rules}
+                    control={control}
+                    errors={errors}
+                    setCountry={field.setCountry ? setCountry : undefined}
+                    style={styles.formFieldsText} // Update the style prop here
+                  />
+                </View>
               ))}
 
               <View style={styles.card}>
@@ -242,7 +259,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
                   <Text style={styles.buttonText}>Confirm and Pay</Text>
                 </TouchableOpacity>
               </View>
-            </View>
+              </View>
           </ScrollView>
           <View style={styles.space}></View>
         </View>
@@ -262,6 +279,11 @@ const styles = StyleSheet.create({
   },
   labelText: {
     fontSize: 24,
+  },
+  formFieldsText: {
+    justifyContent: 'center',
+    alignItems: 'flex-start',
+    textAlign: 'left', // Add this line
   },
   asterisk: {
     fontSize: 16,
