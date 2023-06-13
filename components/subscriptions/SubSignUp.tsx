@@ -25,6 +25,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
     <View style={styles.mainContainer}>
       <ShopHeader navigation={navigation} />
       <ScrollView contentContainerStyle={styles.container}>
+  
         <View style={styles.content}>
           <Text style={styles.title}>Try our Vape Pass!</Text>
           <Text style={styles.title}>Get a discounted vape every week!</Text>
@@ -61,7 +62,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
         </View>
       </ScrollView>
       <ShopFooter navigation={navigation} />
-      <View style={styles.backgroundWave} />
+  
     </View>
   );
 };

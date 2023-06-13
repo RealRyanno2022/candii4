@@ -71,6 +71,8 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
             <Text style={styles.cardText}>Juice</Text>
           </TouchableOpacity>
         </View>
+        <View style={styles.space} />
+        <View style={styles.space} />
       </ScrollView>
       <ShopFooter navigation={navigation} />
       {email && (
