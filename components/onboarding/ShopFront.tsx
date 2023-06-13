@@ -1,17 +1,19 @@
 import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { StackParamList } from '../../types/types';
-import { NavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
 import ShopFooter from '../shop/ShopFooter';
 import ShopHeader from '../shop/ShopHeader';
+import CustomerBasket from '../shop/CustomerBasket';
 
 
 
 type ShopFrontProps = {
-  navigation: NavigationProp<StackParamList>;
+  navigation: StackNavigationProp<StackParamList, "CustomerBasket">;
+  email: string;
 };
 
-const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
+const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
   const handleBrandPress = (productType: string) => {
     if (productType === 'Disposables') {
       navigation.navigate('VapeScreen');
@@ -22,6 +24,10 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
     if (productType === 'NonDisposable') {
       navigation.navigate('NonDisposableScreen');
     }
+  };
+
+  const navigateToBasket = () => {
+    navigation.navigate('CustomerBasket', { email }); // use the correct screen name here
   };
 
   return (
@@ -67,9 +73,13 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
         </View>
       </ScrollView>
       <ShopFooter navigation={navigation} />
+      {email && (
+        <CustomerBasket navigation={navigation} email={email} />
+      )}
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

@@ -18,20 +18,21 @@ type Subscription = {
 
 export type StackParamList = {
   AccountInfo: { userId: number };
-  CustomerBasket: undefined;
+  CustomerBasket: { email: string };
   DeleteAccount: undefined;
   ProjectInfo: undefined;
   Queries: undefined;
   LanguageSelect: undefined;
   Intro: undefined;
   PrivacyPolicy: undefined;
-  ShopFront: undefined;
+  ShopFront: { email: string };
   VerifyAge: undefined;
   ForgotPassword: undefined;
   LoginScreen: undefined;
   NewPassword: undefined;
   SignUp: undefined;
   VerifyEmail: undefined;
+  RegisterEmail: undefined;
   ConfirmationPage: undefined;
   DeliveryAddress: undefined;
   BrandVarieties: { brand: string };

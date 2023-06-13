@@ -48,7 +48,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation }) => {
         {languageData.slice(0, 4).map((item, idx) => (
           <TouchableOpacity 
             key={idx} 
-            style={[styles.flagButton, activeButton === idx ? { backgroundColor: 'gray' } : {}]}
+            style={[styles.flagButton, activeButton === idx ? { backgroundColor: '#FFFFFF' } : {}]}
             onPressIn={() => setActiveButton(idx)}
             onPressOut={() => {
               setActiveButton(null);
@@ -63,7 +63,7 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation }) => {
         {languageData.slice(4, 8).map((item, idx) => (
           <TouchableOpacity 
             key={idx + 4} 
-            style={[styles.flagButton, activeButton === (idx + 4) ? { backgroundColor: 'gray' } : {}]}
+            style={[styles.flagButton, activeButton === (idx + 4) ? { backgroundColor: '#FFFFFF' } : {}]}
             onPressIn={() => setActiveButton(idx + 4)}
             onPressOut={() => {
               setActiveButton(null);

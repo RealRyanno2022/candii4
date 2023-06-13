@@ -5,6 +5,8 @@ import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native'; // add this line
+
 
 type ProductImage = string;
 
@@ -17,10 +19,11 @@ type Product = {
 };
 
 type CustomerBasketProps = {
-  navigation: StackNavigationProp<StackParamList, "CustomerBasket">;
+  navigation: StackNavigationProp<StackParamList, 'CustomerBasket'>;
+  email: string;
 };
 
-const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation }) => {
+const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, email }) => {
   // Assume that you have a basket as an array of products.
   // You might replace this with actual basket data from your application state.
   const [basket, setBasket] = useState<Product[]>([]);
@@ -40,15 +43,20 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation }) => {
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
       <Text style={styles.title}>Your Basket</Text>
+      {email ? (
+        <Text style={styles.emailText}>For: {email}</Text>
+      ) : (
+        <Text style={styles.emailText}>NO EMAIL GIVEN</Text>
+      )}
       {numItems > 0 ? (
         <View>
           <Text style={styles.subtotal}>Subtotal: {subtotal.toFixed(2)}</Text>
-          <FlatList 
+          <FlatList
             data={basket}
             keyExtractor={(item) => item.id}
             renderItem={({ item }) => (
-              <BrandBox 
-                navigation={navigation} 
+              <BrandBox
+                navigation={navigation}
                 selected={false}
                 quantity={1} // Replace with actual quantity if you have this information.
                 onSelect={() => {}}
@@ -63,13 +71,14 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation }) => {
         </View>
       ) : (
         <View style={styles.emptyBasket}>
-          <Text style={styles.emptyText}>Your basket is currently empty. Let's get shopping!</Text>
+          <Text style={styles.emptyText}>Your basket is currently empty.</Text>
+          <Text style={styles.emptyText}>Let's get shopping!</Text>
           <TouchableOpacity style={styles.button} onPress={handleShopFrontPress}>
             <Text style={styles.buttonText}>Start Shopping</Text>
           </TouchableOpacity>
         </View>
       )}
-      <ShopFooter navigation={navigation}/>
+      <ShopFooter navigation={navigation} />
     </View>
   );
 };
@@ -77,22 +86,20 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#FCCC7C',
   },
   title: {
     fontWeight: 'bold',
     fontSize: 25,
-    color: '#fb5b5a',
-    paddingHorizontal: 20,
+    color: 'white',
+    textAlign: 'center',
     paddingVertical: 10,
     marginBottom: 10,
-    borderBottomWidth: 1,
-    borderBottomColor: '#e0e0e0',
   },
   subtotal: {
     fontWeight: 'bold',
     fontSize: 20,
-    color: '#333',
+    color: 'white',
     paddingHorizontal: 20,
     paddingVertical: 10,
   },
@@ -102,20 +109,29 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   emptyText: {
-    fontSize: 18,
-    color: '#333',
-    marginBottom: 20,
+    fontSize: 22,
+    color: 'white',
+    fontWeight: 'bold',
+    marginBottom: 5,
+    textAlign: 'center',
   },
   button: {
-    backgroundColor: '#fb5b5a',
+    backgroundColor: '#FF6347',
     borderRadius: 5,
     padding: 10,
     margin: 20,
   },
   buttonText: {
-    color: '#fff',
+    color: 'white',
     fontWeight: 'bold',
     textAlign: 'center',
+  },
+  emailText: {
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    marginBottom: 10,
   },
 });
 

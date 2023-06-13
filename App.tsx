@@ -40,6 +40,7 @@ import ManageSubscription from './components/subscriptions/ManageSubscription';
 import SubVapeScreen from './components/subscriptions/SubVapeScreen';
 import ChooseFlavours from './components/subscriptions/ChooseFlavours';
 import SubSignUp from './components/subscriptions/SubSignUp';
+import RegisterEmail from './components/shop/RegisterEmail';
 
 import CandiiTalk from './components/onboarding/CandiiTalk';
 
@@ -61,7 +62,7 @@ export default function App() {
         <Stack.Screen name="LostConnection" component={LostConnection} />
         <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
         <Stack.Screen name="DeliveryAddress" component={DeliveryAddress} />
-
+        <Stack.Screen name="RegisterEmail" component={RegisterEmail} />
         <Stack.Screen name="FormScreen" component={FormScreen} />
         <Stack.Screen name="CustomerBasket" component={CustomerBasket} />
 
