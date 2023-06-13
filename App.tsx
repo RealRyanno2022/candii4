@@ -9,6 +9,7 @@ import PrivacyPolicy from './components/onboarding/PrivacyPolicy';
 import LanguageSelect from './components/onboarding/LanguageSelect';
 import ShopFront from './components/onboarding/ShopFront';
 import VerifyAge from './components/onboarding/VerifyAge';
+import FormScreen from './components/onboarding/FormScreen';
 
 import CustomerBasket from './components/account/CustomerBasket';
 
@@ -58,6 +59,7 @@ export default function App() {
         <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
         <Stack.Screen name="DeliveryAddress" component={DeliveryAddress} />
 
+        <Stack.Screen name="FormScreen" component={FormScreen} />
         <Stack.Screen name="CustomerBasket" component={CustomerBasket} />
 
         <Stack.Screen name="FormInput" component={FormInput} />

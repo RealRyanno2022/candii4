@@ -41,6 +41,7 @@ export type StackParamList = {
   ProductPage: undefined;
   SearchProducts: undefined;
   VapeScreen: undefined;
+  FormScreen: undefined;
   SubSignUp: { subscription: Subscription, navigation: any, route: any };
   SubVapeScreen: undefined;
   NotFoundScreen: undefined;

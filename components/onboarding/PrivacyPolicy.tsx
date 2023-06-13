@@ -18,7 +18,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ navigation }) => {
     if (isPolicyAccepted) {
       // Handle logic to proceed further
       console.log('Continue button clicked');
-      navigation.navigate('ShopFront');
+      navigation.navigate('FormScreen');
     }
   };
 
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
+    color: 'white',
   },
   policyContainer: {
     width: '100%',
@@ -85,6 +86,7 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: 'bold',
     marginBottom: 30,
+    color: 'white',
   },
   policyContent: {
     padding: 10,
