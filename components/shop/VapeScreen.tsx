@@ -36,7 +36,7 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
   }
 
   return (
-    <View style={{flex: 1}}>
+    <View style={styles.container}>
      <ShopHeader navigation={navigation} />
       <ScrollView>
         <View style={styles.cardContainer}>
@@ -66,12 +66,12 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FCCC7C',
   },
   header: {
     paddingTop: 50,
     paddingBottom: 30,
-    backgroundColor: '#1F1F1F',
+    backgroundColor: '#FCCC7C',
     alignItems: 'center',
     justifyContent: 'center',
   },

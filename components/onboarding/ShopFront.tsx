@@ -2,6 +2,10 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import { StackParamList } from '../../types/types';
 import { NavigationProp } from '@react-navigation/native';
+import ShopFooter from '../shop/ShopFooter';
+import ShopHeader from '../shop/ShopHeader';
+
+
 
 type ShopFrontProps = {
   navigation: NavigationProp<StackParamList>;
@@ -22,6 +26,7 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
+      <ShopHeader navigation={navigation} />
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.cardContainer}>
           <View style={styles.space} />
@@ -61,6 +66,7 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
           </TouchableOpacity>
         </View>
       </ScrollView>
+      <ShopFooter navigation={navigation} />
     </View>
   );
 };
@@ -68,7 +74,7 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FCCC7C',
   },
   scrollViewContent: {
     flexGrow: 1,

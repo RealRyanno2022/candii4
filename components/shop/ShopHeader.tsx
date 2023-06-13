@@ -21,12 +21,13 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
     <View style={styles.headerColor}>
       <SearchBar
         platform="default"
-        containerStyle={{ width: '100%' }}
+        containerStyle={styles.searchBarContainer}
         lightTheme
         searchIcon={{ name: 'search', size: 24 }}
         onChangeText={handleSearchTextChange}
         onClear={() => setSearchTerm('')}
         placeholder="Search..."
+        style={styles.searchBar}
         value={searchTerm}
         loadingProps={{}} // Add empty object for loadingProps
         showLoading={false} // Set showLoading to false
@@ -38,14 +39,28 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
         cancelButtonProps={{}} // Add empty object for cancelButtonProps
         clearIcon={{ name: 'clear' }} // Provide a valid icon name for clearIcon
         showCancel={false} // Set showCancel to false
-
+        inputContainerStyle={styles.inputContainerStyle}
       />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  headerColor: {     backgroundColor: '#FCCC7C' }
+  headerColor: {     
+    backgroundColor: '#FFFFFF',
+  },
+  searchBarContainer: { 
+    width: '100%', 
+    backgroundColor: '#FFFFFF',
+    borderBottomColor: 'transparent', // Remove the border at the bottom
+    borderTopColor: 'transparent', // Remove the border at the top
+  },
+  inputContainerStyle: {
+    backgroundColor: '#FFFFFF', // Set the background color of the input field
+  },
+  searchBar: {
+    backgroundColor: '#FFFFFF',
+  },
 })
 
 
