@@ -14,11 +14,11 @@ type VapeScreenProps = {
 const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
 
   const brands = [
-    { name: "Elfa Bar", image: require('../pictures/DisposablePics/elfabar.png') },
-    { name: "Jewel Mini", image: require('../pictures/DisposablePics/jewelmini.png') },
-    { name: "Lost Mary", image: require('../pictures/DisposablePics/lostmary.png') },
-    { name: "Elf Bar", image: require('../pictures/VapePics/elfbar.png') },
-    { name: "IVG Bar", image: require('../pictures/DisposablePics/ivgbar.png') },
+    { name: "ElfaBar", image: require('../pictures/DisposablePics/elfabar.png') },
+    { name: "JewelMini", image: require('../pictures/DisposablePics/jewelmini.png') },
+    { name: "LostMary", image: require('../pictures/DisposablePics/lostmary.png') },
+    { name: "ElfBar", image: require('../pictures/VapePics/elfbar.png') },
+    { name: "IVGBar", image: require('../pictures/DisposablePics/ivgbar.png') },
   ];
 
   const [searchTerm, setSearchTerm] = useState('');

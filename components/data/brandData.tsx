@@ -4,835 +4,917 @@ const BrandData = {
 "name": "StrawberryRaspberryCherryIce",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.StrawberryRaspberryCherryIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/StrawberryRaspberryCherryIce.png",
 },
 "2": {
 "name": "Blueberry",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.Blueberry,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/Blueberry.png",
 },
 "3": {
 "name": "Watermelon",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.Watermelon,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/Watermelon.png",
 },
 // "4": {
 // "name": "Grape",
 // "price": 7.99,
 // "brand": "Elfbar",
-// "image": images.Grape,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Grape,
 // },
 "5": {
 "name": "StrawberryIce",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.StrawberryIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/StrawberryIce.png",
 },
 "6": {
 "name": "KiwiPassionfruitGuava",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.KiwiPassionfruitGuava,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/KiwiPassionfruitGuava.png",
 },
 "7": {
 "name": "BananaIce",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.BananaIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/BananaIce.png",
 },
 "8": {
 "name": "ElfbullIce",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.ElfbullIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/ElfbullIce.png",
 },
 "9": {
 "name": "Spearmint",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.Spearmint,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/Spearmint.png",
 },
 // "10": {
 // "name": "Cola",
 // "price": 7.99,
 // "brand": "Elfbar",
-// "image": images.Cola,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Cola,
 // },
 "11": {
 "name": "CherryCola",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.CherryCola,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/CherryCola.png",
 },
 "12": {
 "name": "PinkLemonade",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.PinkLemonade,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/PinkLemonade.png",
 },
 // "13": {
 // "name": "PeachIce",
 // "price": 7.99,
 // "brand": "Elfbar",
-// "image": images.PeachIce,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/PeachIce,
 // },
 "14": {
 "name": "Mango",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.Mango,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/Mango.png",
 },
 "15": {
 "name": "CottonCandyIce",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.CottonCandyIce,
+"image": 
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/CottonCandyIce.png",
 },
 "16": {
 "name": "Cherry",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.Cherry,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/Cherry.png",
 },
 "17": {
 "name": "BlueberrySourRaspberry",
 "price": 7.99,
 "brand": "Elfbar",
-"image": images.BlueberrySourRaspberry,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/BlueberrySourRaspberry.png",
 },
 // "18": {
 // "name": "AlolaGrapeIce",
 // "price": 7.99,
 // "brand": "IVGBar",
-// "image": images.AlolaGrapeIce,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/AlolaGrapeIce,
 // },
 "19": {
 "name": "PolarMint",
 "price": 7.99,
 "brand": "IVGBar",
-"image": images.PolarMint,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/PolarMint.png",
 },
 // "20": {
 // "name": "BerryLemonadeIce",
 // "price": 7.99,
 // "brand": "IVGBar",
-// "image": images.BerryLemonadeIce,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/BerryLemonadeIce,
 // },
 "21": {
 "name": "EnergyIce",
 "price": 7.99,
 "brand": "IVGBar",
-"image": images.EnergyIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/EnergyIce.png",
 },
 "22": {
 "name": "ColaIce",
 "price": 7.99,
 "brand": "IVGBar",
-"image": images.ColaIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfbar/ColaIce.png",
 },
 // "23": {
 // "name": "StrawberryRaspberryPinkApple",
 // "price": 7.99,
 // "brand": "IVGBar",
-// "image": images.StrawberryRaspberryPinkApple,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/StrawberryRaspberryPinkApple,
 // },
 "24":{
 "name":"RaspberryOrangeMix",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.RaspberryOrangeMix,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/RaspberryOrangeMix.png",
 },
 "25":{
 "name":"RaspberryLemonade",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.RaspberryLemonade,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/RaspberryLemonade.png",
 },
 "26":{
 "name":"StrawberryWatermelon",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.StrawberryWatermelon,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/StrawberryWatermelon.png",
 },
 "27":{
 "name":"RubyGuavaIce",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.RubyGuavaIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/RubyGuavaIce.png",
 },
 // "28":{
 // "name":"PinkLemonade",
 // "price":7.99,
 // "brand":"IVGBar",
-// "image":images.PinkLemonade,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/PinkLemonade,
 // },
 // "29":{
 // "name":"FujiAppleMelon",
 // "price":7.99,
 // "brand":"IVGBar",
-// "image":images.FujiAppleMelon,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/FujiAppleMelon,
 // },
 "30":{
 "name":"Rainbow",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.Rainbow,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/Rainbow.png",
 },
 "31":{
 "name":"BlueRaspberryIce",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.BlueRaspberryIce,
+"image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/BlueRaspberryIce.png",
 },
 "32":{
 "name":"PassionFruit",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.PassionFruit,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/PassionFruit.png",
 },
 // "33":{
 // "name":"ClassicMenthol",
 // "price":7.99,
 // "brand":"IVGBar",
-// "image":images.ClassicMenthol,
+// "image": "https://s3.amazonaws.com/candii-bucket/pictures/VapePics/ClassicMenthol,
 // },
 // "34":{
 // "name":"MangoLychee",
 // "price":7.99,
 // "brand":"IVGBar",
-// "image":images.MangoLychee,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/MangoLychee,
 // },
 "35":{
 "name":"ExoticMango",
 "price":7.99,
 "brand":"IVGBar",
-"image":images.ExoticMango,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGBar/ExoticMango.png",
 },
 // "36":{
 // "name":"BlueRazzCherry",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.BlueRazzCherry,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/BlueRazzCherry,
 // },
 // "37":{
 // "name":"MarybullIce",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.MarybullIce,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/MarybullIce,
 // },
 // "38":{
 // "name":"Menthol",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.Menthol,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Menthol,
 // },
 // "39":{
 // "name":"RedAppleIce",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.RedAppleIce,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/RedAppleIce,
 // },
 // "40":{
 // "name":"JuicyPeach",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.JuicyPeach,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JuicyPeach,
 // },
 "41":{
 "name":"StrawberryKiwi",
 "price":7.99,
 "brand":"LostMary",
-"image":images.StrawberryKiwi,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/StrawberryKiwi.png",
 },
 // "42":{
 // "name":"BlueRazzIce",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.BlueRazzIce,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/BlueRazzIce,
 // },
 // "43":{
 // "name":"TripleMelon",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.TripleMelon,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/TripleMelon,
 // },
 // "44":{
 // "name":"PineappleIce",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.PineappleIce,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/PineappleIce,
 // },
 // "45":{
 // "name":"Blueberry",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.Blueberry,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Blueberry,
 // },
 "46":{
 "name":"PinkGrapefruit",
 "price":7.99,
 "brand":"LostMary",
-"image":images.PinkGrapefruit,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/PinkGrapefruit.png",
 },
 "47":{
 "name":"DoubleApple",
 "price":7.99,
 "brand":"LostMary",
-"image":images.DoubleApple,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/DoubleApple.png",
 },
 "48":{
 "name":"MadBlue",
 "price":7.99,
 "brand":"LostMary",
-"image":images.MadBlue,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/MadBlue.png",
 },
 "49":{
 "name":"Grape",
 "price":7.99,
 "brand":"LostMary",
-"image":images.Grape,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/Grape.png",
 },
 // "50":{
 // "name":"StrawberryIce",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.StrawberryIce,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/StrawberryIce,
 // },
 // "51":{
 // "name":"WatermelonLemon",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.WatermelonLemon,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/WatermelonLemon,
 // },
 "52":{
 "name":"PinkLemonade",
 "price":7.99,
 "brand":"LostMary",
-"image":images.PinkLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/PinkLemonade.png",
 },
 "53":{
 "name":"CherryIce",
 "price":7.99,
 "brand":"LostMary",
-"image":images.CherryIce,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/CherryIce.png",
 },
 "54":{
 "name":"WatermelonIce",
 "price":7.99,
 "brand":"LostMary",
-"image":images.WatermelonIce,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/WatermelonIce.png",
 },
 // "55":{
 // "name":"BlueberrySourRaspberry",
 // "price":7.99,
 // "brand":"LostMary",
-// "image":images.BlueberrySourRaspberry,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/BlueberrySourRaspberry,
 // },
 "56":{
 "name":"TripleMango",
 "price":7.99,
 "brand":"LostMary",
-"image":images.TripleMango,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/TripleMango.png",
 },
 "57":{
 "name":"KiwiPassionfruitGuava",
 "price":7.99,
 "brand":"LostMary",
-"image":images.KiwiPassionfruitGuava,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/LostMary/KiwiPassionfruitGuava.png",
+
 },
 "76":{
 "name":"Orange",
 "price":8.99,
 "brand":"ElfaBar",
-"image":images.Orange,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/ElfaBar/Orange.png",
 },
 "77":{
 "name":"NavyBlue",
 "price":8.99,
 "brand":"ElfaBar",
-"image":images.NavyBlue,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/ElfaBar/NavyBlue.png",
 },
 "78":{
 "name":"Cola",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.Cola,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/Cola.png",
 },
 "79":{
 "name":"KiwiPassionfruitGuava",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.KiwiPassionfruitGuava,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/KiwiPassionfruitGuava.png",
 },
 "80":{
 "name":"StrawberryIceCream",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.StrawberryIceCream,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/StrawberryIceCream.png",
 },
 // "81":{
 // "name":"StrawberryIce",
 // "price":5.99,
 // "brand":"Elfiq",
-// "image":images.StrawberryIce,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/StrawberryIce,
 // },
 "82":{
 "name":"StrawberryKiwi",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.StrawberryKiwi,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/StrawberryKiwi.png",
 },
 "83":{
 "name":"ElfbullIce",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.ElfbullIce,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/ElfbullIce.png",
 },
 "84":{
 "name":"PinkGrapefruit",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.PinkGrapefruit,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/PinkGrapefruit.png",
 },
 "85":{
 "name":"Mango",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.Mango,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/Mango.png",
 },
 "86":{
 "name":"Spearmint",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.Spearmint,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/Spearmint.png",
 },
 "87":{
 "name":"BlueRazzLemonade",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.BlueRazzLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/BlueRazzLemonade.png",
 },
 "88":{
 "name":"CreamTobacco",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.CreamTobacco,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/CreamTobacco.png",
 },
 "89":{
 "name":"ApplePeach",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.ApplePeach,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/ApplePeach.png",
 },
 "90":{
 "name":"CherryCola",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.CherryCola,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/CherryCola.png",
 },
 "91":{
 "name":"BlueberrySourRaspberry",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.BlueberrySourRaspberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/BlueberrySourRaspberry.png",
 },
 "92":{
 "name":"CottonCandyIce",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.CottonCandyIce,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/CottonCandyIce.png",
 },
 "93":{
 "name":"Watermelon",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.Watermelon,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/Watermelon.png",
 },
 // "94":{
 // "name":"PeachIce",
 // "price":5.99,
 // "brand":"Elfiq",
-// "image":images.PeachIce,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/PeachIce,
 // },
 "95":{
 "name":"Cherry",
 "price":5.99,
 "brand":"Elfiq",
-"image":images.Cherry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Elfiq/Cherry.png",
 },
 // "96":{
 // "name":"Blueberry",
 // "price":5.99,
 // "brand":"Elfiq",
-// "image":images.Blueberry,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Blueberry,
 // },
 "97":{
 "name":"CherryBlossomGrape",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.CherryBlossomGrape,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/CherryBlossomGrape.png",
 },
 "98":{
 "name":"RainbowCandy",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.RainbowCandy,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/RainbowCandy.png",
 },
 // "99":{
 // "name":"ColaMajito",
 // "price":7.99,
 // "brand":"JewelMini",
-// "image":images.ColaMajito,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/ColaMajito,
 // },
 // "100":{
 // "name":"RaspberryKiwi",
 // "price":7.99,
 // "brand":"JewelMini",
-// "image":images.RaspberryKiwi,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/RaspberryKiwi,
 // },
 "101":{
 "name":"ApplePeachLyche",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.ApplePeachLyche,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/ApplePeachLyche.png",
 },
 "102":{
 "name":"ValentineFruit",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.ValentineFruit,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/ValentineFruit.png",
 },
 "103":{
 "name":"TripleBerry",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.TripleBerry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/TripleBerry.png",
 },
 "104":{
 "name":"TripleMango",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.TripleMango,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/TripleMango.png",
 },
 "105":{
 "name":"PinkLemon",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.PinkLemon,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/PinkLemon.png",
 },
 "106":{
 "name":"VimtoCrush",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.VimtoCrush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/VimtoCrush.png",
 },
 "107":{
 "name":"BlueberryRaspberry",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.BlueberryRaspberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/BlueberryRaspberry.png",
 },
 "108":{
 "name":"RedAppleWatermelon",
 "price":7.99,
 "brand":"JewelMini",
-"image":images.RedAppleWatermelon,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/JewelMini/RedAppleWatermelon.png",
 },
 "109":{
 "name":"SummerBlaze",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.SummerBlaze,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/SummerBlaze.png",
 },
 "110":{
 "name":"KiwiLemonKool",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.KiwiLemonKool,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSaltKiwiLemonKool.png",
 },
 "111":{
 "name":"HoneyDewLemonade",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.HoneyDewLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/HoneyDewLemonade.png",
 },
 "112":{
 "name":"BluebergBurst",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.BluebergBurst,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/BluebergBurst.png",
 },
 "113":{
 "name":"RioRush",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.RioRush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/RioRush.png",
 },
 "114":{
 "name":"StrawberryWatermelonChew",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.StrawberryWatermelonChew,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/StrawberryWatermelonChew.png",
 },
 "115":{
 "name":"SourGreenApple",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.SourGreenApple,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/SourGreenApple.png",
 },
 "116":{
 "name":"FruitTwist",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.FruitTwist,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/FruitTwist.png",
 },
 "117":{
 "name":"PinkLemonade",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.PinkLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/PinkLemonade.png",
 },
 "118":{
 "name":"Spearmint",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.Spearmint,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/Spearmint.png",
 },
 "119":{
 "name":"NeonLime",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.NeonLime,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/NeonLime.png",
 },
 "120":{
 "name":"FreshLemonade",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.FreshLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/FreshLemonade.png",
 },
 "121":{
 "name":"BubbleGum",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.BubbleGum,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/BubbleGum.png",
 },
 // "122":{
 // "name":"ParadiseLagoon",
 // "price":5.99,
 // "brand":"IVGSalt",
-// "image":images.ParadiseLagoon,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/ParadiseLagoon,
 // },
 "123":{
 "name":"GreenEnergy",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.GreenEnergy,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/GreenEnergy.png",
 },
 "124":{
 "name":"RiberryLemonade",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.RiberryLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/RiberryLemonade.png",
 },
 "125":{
 "name":"CitrusLemonade",
 "price":5.99,
 "brand":"IVGSalt",
-"image":images.CitrusLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/IVGSalt/CitrusLemonade.png",
 },
 "126":{
 "name":"Energy",
 "price":5.99,
 "brand":"Yeti",
-"image":images.Energy,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/Energy.png",
 },
 "127":{
 "name":"Lemonade",
 "price":5.99,
 "brand":"Yeti",
-"image":images.Lemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/Lemonade.png",
 },
 "128":{
 "name":"Frostbite",
 "price":5.99,
 "brand":"Yeti",
-"image":images.Frostbite,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/Frostbite.png",
 },
 "129":{
 "name":"OrangeMango",
 "price":5.99,
 "brand":"Yeti",
-"image":images.OrangeMango,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/OrangeMango.png",
 },
 "130":{
 "name":"BlueRaspberry",
 "price":5.99,
 "brand":"Yeti",
-"image":images.BlueRaspberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/BlueRaspberry.png",
 },
 // "131":{
 // "name":"HoneydewBlackcurrent",
 // "price":5.99,
 // "brand":"Yeti",
-// "image":images.HoneydewBlackcurrant,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/HoneydewBlackcurrant,
 // },
 "132":{
 "name":"Watermelon",
 "price":5.99,
 "brand":"Yeti",
-"image":images.Watermelon,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/Watermelon.png",
 },
 "133":{
 "name":"DarkFruits",
 "price":5.99,
 "brand":"Yeti",
-"image":images.DarkFruits,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/DarkFruits.png",
 },
 "134":{
 "name":"AppleCranberry",
 "price":5.99,
 "brand":"Yeti",
-"image":images.AppleCranberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/AppleCranberry.png",
 },
 "135":{
 "name":"Grape",
 "price":5.99,
 "brand":"Yeti",
-"image":images.Grape,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/Grape.png",
 },
 // "136":{
 // "name":"PassionfruitLychee",
 // "price":5.99,
 // "brand":"Yeti",
-// "image":images.PassionFruitLyche,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/PassionFruitLyche,
 // },
 "137":{
 "name":"CitrusFreeze",
 "price":5.99,
 "brand":"Yeti",
-"image":images.CitrusFreeze,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/CitrusFreeze.png",
 },
 "138":{
 "name":"PinkRaspberry",
 "price":5.99,
 "brand":"Yeti",
-"image":images.PinkRaspberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/PinkRaspberry.png",
 },
 "139":{
 "name":"BloodOrangeGrape",
 "price":5.99,
 "brand":"Yeti",
-"image":images.BloodOrangeGrape,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/BloodOrangeGrape.png",
 },
 "140":{
 "name":"AppleCranberry",
 "price":5.99,
 "brand":"Yeti",
-"image":images.AppleCranberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/AppleCranberry.png",
 },
 // "141":{
 // "name":"FrozenPear",
 // "price":5.99,
 // "brand":"Yeti",
-// "image":images.FrozenPear,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/FrozenPear,
 // },
 "142":{
 "name":"Strawberry",
 "price":5.99,
 "brand":"Yeti",
-"image":images.Strawberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/Strawberry.png",
 },
 "143":{
 "name":"PineappleGrapefruit",
 "price":5.99,
 "brand":"Yeti",
-"image":images.PineappleGrapefruit,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/PineappleGrapefruit.png",
 },
 "144":{
 "name":"Blueberry",
 "price":5.99,
 "brand":"Yeti",
-"image":images.Blueberry,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Yeti/Blueberry.png",
 },
 "145":{
 "name":"CaribbeanSlush",
 "price":4.99,
 "brand":"Slushie",
-"image":images.CaribbeanSlush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/SlushieCaribbeanSlush.png",
 },
 "146":{
 "name":"BlueberrySlush",
 "price":4.99,
 "brand":"Slushie",
-"image":images.BlueberrySlush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Slushie/BlueberrySlush.png",
 },
 // "147":{
 // "name":"ColaSlush",
 // "price":4.99,
 // "brand":"Slushie",
-// "image":images.ColaSlush,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/ColaSlush,
 // },
 "148":{
 "name":"ParmaSlush",
 "price":4.99,
 "brand":"Slushie",
-"image":images.ParmaSlush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Slushie/ParmaSlush.png",
 },
 "149":{
 "name":"GrapefruitLemonade",
 "price":4.99,
 "brand":"Slushie",
-"image":images.GrapefruitLemonade,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Slushie/GrapefruitLemonade.png",
 },
 // "150":{
 // "name":"SourAppleandWatermelon",
 // "price":4.99,
 // "brand":"Slushie",
-// "image":images.SourAppleAndWatermelon,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/SourAppleAndWatermelon,
 // },
 // "151":{
 // "name":"BlackcurrentLemonade",
 // "price":4.99,
 // "brand":"Slushie",
-// "image":images.BlackcurrantLemonade,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/BlackcurrantLemonade,
 // },
 "152":{
 "name":"RaspberryBubblegum",
 "price":4.99,
 "brand":"Slushie",
-"image":images.RaspberryBubblegum,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Slushie/RaspberryBubblegum.png",
 },
 // "153":{
 // "name":"MangosteenandGuava",
 // "price":4.99,
 // "brand":"Slushie",
-// "image":images.MangosteenandGuava,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/MangosteenandGuava,
 // },
 "154":{
 "name":"BubblegumSlush",
 "price":4.99,
 "brand":"Slushie",
-"image":images.BubblegumSlush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Slushie/BubblegumSlush.png",
 },
 // "155":{
 // "name":"BlackCherryandRaspberry",
 // "price":4.99,
 // "brand":"Slushie",
-// "image":images.BlackCherryandRaspberry,
+// "image":"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/BlackCherryandRaspberry,
 // },
 "156":{
 "name":"IronSlush",
 "price":4.99,
 "brand":"Slushie",
-"image":images.IronSlush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Slushie/IronSlush.png",
 },
 "157":{
 "name":"StrawberrySlush",
 "price":4.99,
 "brand":"Slushie",
-"image":images.StrawberrySlush,
+"image":
+"https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Slushie/StrawberrySlush.png",
 },
 "undefined":{}
 }
