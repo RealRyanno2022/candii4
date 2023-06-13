@@ -9,7 +9,7 @@ import { RouteProp } from '@react-navigation/native';
 
 type SubSignUpProps = {
   navigation: StackNavigationProp<StackParamList>;
-  route: RouteProp<StackParamList,'SubSignUp'>;
+  route: RouteProp<StackParamList, 'SubSignUp'>;
 }
 
 const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
@@ -23,237 +23,134 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
 
   return (
     <View style={styles.mainContainer}>
-          <ShopHeader navigation={navigation} />
-    <ScrollView contentContainerStyle={styles.container}>
-    
-      <View style={styles.content}>
-        <Text style={styles.title}>Try our Vape Pass!</Text>
-        <Text style={styles.title}>Get a discounted vape every week!</Text>
-        <Text style={styles.title}></Text>
-        <Image source={require('../pictures/subs.jpg')} style={styles.image} />
-        {/* <View style={styles.subscriptionOptions}>
-          <TouchableOpacity
-            style={[
-              styles.subscriptionOption,
-              subscriptionType === 'monthly' && styles.selectedSubscription,
-            ]}
-            onPress={() => handleSubscriptionTypeChange('monthly')}
-          >
-            <Text style={styles.subscriptionOptionText}>Monthly</Text>
-            <Text style={styles.subscriptionOptionPrice}>One juice of your choice, each week!</Text>
+      <ShopHeader navigation={navigation} />
+      <ScrollView contentContainerStyle={styles.container}>
+        <View style={styles.content}>
+          <Text style={styles.title}>Try our Vape Pass!</Text>
+          <Text style={styles.title}>Get a discounted vape every week!</Text>
+          <Text style={styles.title}></Text>
+          <Image source={require('../pictures/subs.jpg')} style={styles.image} />
+          <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push('SubVapeScreen'))}>
+            <Text style={styles.signUpButtonText}>Sign Up</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={[
-              styles.subscriptionOption,
-              subscriptionType === 'yearly' && styles.selectedSubscription,
-            ]}
-            onPress={() => handleSubscriptionTypeChange('yearly')}
-          >
-            <Text style={styles.subscriptionOptionText}>Yearly</Text>
-            <Text style={styles.subscriptionOptionPrice}>A vape every week of the year!</Text>
-          </TouchableOpacity>
-        </View> */}
-        <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push("SubVapeScreen"))}>
-          <Text style={styles.signUpButtonText}>Sign Up</Text>
-        </TouchableOpacity>
-        <View style={styles.subscriptionInfo}>
+          <View style={styles.subscriptionInfo}>
             <Text style={styles.subscriptionInfoHeader}>What do I get?</Text>
             <Text style={styles.subscriptionInfoDescription}>
-            Get a juice of your choice each week, hassle free!
+              Get a juice of your choice each week, hassle-free!
             </Text>
-        </View>
-        <View style={styles.subscriptionInfo}>
+          </View>
+          <View style={styles.subscriptionInfo}>
             <Text style={styles.subscriptionInfoHeader}>Why Vape Pass?</Text>
             <Text style={styles.subscriptionInfoDescription}>
-            Save a fortune on shipping and have your flavours delivered automatically. You can cancel your subscription at any time.
+              Save a fortune on shipping and have your flavors delivered automatically. You can cancel your subscription at any time.
             </Text>
-        </View>
-        <View style={styles.subscriptionInfo}>
-            <Text style={styles.subscriptionInfoHeader}>Can I change flavours?</Text>
+          </View>
+          <View style={styles.subscriptionInfo}>
+            <Text style={styles.subscriptionInfoHeader}>Can I change flavors?</Text>
             <Text style={styles.subscriptionInfoDescription}>
-            Of course! You can change your flavours at any time.
+              Of course! You can change your flavors at any time.
             </Text>
-        </View>
-        <View style={styles.subscriptionInfo}>
+          </View>
+          <View style={styles.subscriptionInfo}>
             <Text style={styles.subscriptionInfoHeader}>What varieties are there?</Text>
             <Text style={styles.subscriptionInfoDescription}>
-              Any e-juice flavour we sell is available.
+              Any e-juice flavor we sell is available.
             </Text>
+          </View>
+          <View style={styles.space}></View>
         </View>
-      <View style={styles.space}></View>
-      </View> 
-     
-    </ScrollView>
-    <ShopFooter navigation={navigation}  />
+      </ScrollView>
+      <ShopFooter navigation={navigation} />
+      <View style={styles.backgroundWave} />
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-
-    mainContainer: {
-        flex: 1,
-        backgroundColor: '#FCCC7C',
-    },
-    container: {
-      backgroundColor: '#FCCC7C',
-        padding: 10,
-    },
-    header: {
-        paddingTop: 20,
-        paddingBottom: 20,
-        backgroundColor: '#FCCC7C',
-        alignItems: 'center',
-        justifyContent: 'center',
-        position: "absolute",
-    },
-    image: {
-        height: 225,
-        width: '100%',
-        borderRadius: 10,
-    },
-    title: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: 'white',
-      fontFamily: 'OpenSans-Bold',
-      marginBottom: 10,
-    },
-    subscriptionInfo: {
-        padding: 20,
-        marginTop: 20,
-        borderRadius: 10,
-        backgroundColor: '#fff',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        elevation: 2,
-    },
-    subscriptionInfoHeader: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: '#333',
-        marginBottom: 10,
-        fontFamily: 'OpenSans-Bold',
-
-    },
-    subscriptionInfoDescription: {
-        fontSize: 16,
-        fontFamily: 'OpenSans-Regular',
-    },
-    content: {
-        paddingHorizontal: 20,
-        paddingTop: 30,
-        marginBottom: 20,
-        backgroundColor: '#FCCC7C',
-        borderRadius: 10,
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        elevation: 2,
-    },
-    subtitle: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#333',
-        marginBottom: 20,
-        fontFamily: 'OpenSans-Bold',
-    },
-    subscriptionOptions: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 20,
-    },
-    space: {
-        marginBottom: 50,
-    },
-    subscriptionOption: {
-        backgroundColor: '#F2F2F2',
-        borderRadius: 10,
-        padding: 20,
-        width: '48%',
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        elevation: 2,
-    },
-    selectedSubscription: {
-        borderColor: '#FF6347',
-        borderWidth: 2,
-    },
-    subscriptionOptionText: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#333',
-        fontFamily: 'OpenSans-Regular',
-    },
-    subscriptionOptionPrice: {
-        fontSize: 14,
-        color: '#333',
-        fontFamily: 'OpenSans-Regular',
-    },
-    quantitySelector: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 20,
-    },
-    quantityButton: {
-        backgroundColor: '#F2F2F2',
-        borderRadius: 10,
-        padding: 10,
-        width: 40,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        elevation: 2,
-    },
-    quantityButtonText: {
-        fontSize: 18,
-        color: '#333',
-        fontFamily: 'OpenSans-Regular',
-    },
-    quantityText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#333',
-        marginHorizontal: 20,
-        fontFamily: 'OpenSans-Bold',
-    },
-    totalPrice: {
-        fontSize: 16,
-        fontWeight: 'bold',
-        color: '#FF6347',
-        marginBottom: 20,
-        fontFamily: 'OpenSans-Bold',
-    },
-    signUpButton: {
-        backgroundColor: '#FF6347',
-        borderRadius: 10,
-        paddingVertical: 15,
-        alignItems: 'center',
-        shadowColor: '#000',
-        shadowOffset: {width: 0, height: 2},
-        shadowOpacity: 0.3,
-        shadowRadius: 2,
-        elevation: 2,
-    },
-    signUpButtonText: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#FFFFFF',
-        fontFamily: 'OpenSans-Bold',
-    },
-    footerText: {
-        fontSize: 14,
-        color: '#333',
-        fontFamily: 'OpenSans-Regular',
-    },
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#FCCC7C',
+  },
+  container: {
+    backgroundColor: '#FCCC7C',
+    padding: 10,
+  },
+  backgroundWave: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+    top: 0,
+    borderBottomLeftRadius: 150,
+    backgroundColor: '#FF6347',
+    zIndex: -1,
+  },
+  content: {
+    paddingHorizontal: 20,
+    paddingTop: 30,
+    marginBottom: 20,
+    backgroundColor: 'transparent',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  image: {
+    height: 225,
+    width: '100%',
+    borderRadius: 10,
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: 'white',
+    fontFamily: 'OpenSans-Bold',
+    marginBottom: 10,
+  },
+  subscriptionInfo: {
+    padding: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  subscriptionInfoHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+    fontFamily: 'OpenSans-Bold',
+  },
+  subscriptionInfoDescription: {
+    fontSize: 16,
+    fontFamily: 'OpenSans-Regular',
+  },
+  space: {
+    marginBottom: 50,
+  },
+  signUpButton: {
+    backgroundColor: '#FF6347',
+    borderRadius: 10,
+    paddingVertical: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  signUpButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily: 'OpenSans-Bold',
+  },
 });
-  
-  export default SubSignUp;
+
+export default SubSignUp;

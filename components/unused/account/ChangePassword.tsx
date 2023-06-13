@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
-import ShopHeader from '../shop/ShopHeader';
-import { StackParamList } from '../../types/types';
+import ShopHeader from '../../shop/ShopHeader';
+import { StackParamList } from '../../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { NavigationProp } from '@react-navigation/native';
-import ShopFooter from '../shop/ShopFooter';
+import ShopFooter from '../../shop/ShopFooter';
 
 
 type ChangePasswordProps = {

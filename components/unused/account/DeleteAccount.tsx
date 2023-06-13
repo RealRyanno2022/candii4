@@ -7,8 +7,8 @@ import {
   Alert
 } from 'react-native';
 
-import ShopHeader from '../shop/ShopHeader';
-import ShopFooter from '../shop/ShopFooter';
+import ShopHeader from '../../shop/ShopHeader';
+import ShopFooter from '../../shop/ShopFooter';
 
 type DeleteAccountPageProps = { 
   navigation: any;

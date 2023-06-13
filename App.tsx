@@ -11,7 +11,7 @@ import ShopFront from './components/onboarding/ShopFront';
 import VerifyAge from './components/onboarding/VerifyAge';
 import FormScreen from './components/onboarding/FormScreen';
 
-import CustomerBasket from './components/account/CustomerBasket';
+import CustomerBasket from './components/shop/CustomerBasket';
 
 // Shop components
 import VapeScreen from './components/shop/VapeScreen';

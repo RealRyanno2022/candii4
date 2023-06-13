@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
-import BrandBox from '../shop/BrandBox';
-import ShopHeader from '../shop/ShopHeader';
-import ShopFooter from '../shop/ShopFooter';
+import BrandBox from './BrandBox';
+import ShopHeader from './ShopHeader';
+import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 

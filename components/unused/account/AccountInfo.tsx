@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
-import ShopHeader from '../shop/ShopHeader'
-import ShopFooter from '../shop/ShopFooter';
-import { StackParamList } from '../../types/types';
+import ShopHeader from '../../shop/ShopHeader'
+import ShopFooter from '../../shop/ShopFooter';
+import { StackParamList } from '../../../types/types';
 import { StackActions, NavigationProp } from '@react-navigation/native';
 
 type AccountInfoProps = {

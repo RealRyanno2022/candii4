@@ -6,8 +6,8 @@ import { Header, SearchBar, Icon } from 'react-native-elements';
 
 import emailjs from 'emailjs-com';
 import { init } from 'emailjs-com';
-import ShopHeader from '../shop/ShopHeader';
-import ShopFooter from '../shop/ShopFooter';
+import ShopHeader from '../../shop/ShopHeader';
+import ShopFooter from '../../shop/ShopFooter';
 
 type QueriesProps = {
   navigation: any;

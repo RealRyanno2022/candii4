@@ -1,8 +1,8 @@
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
 import { Header, SearchBar } from 'react-native-elements';
-import ShopHeader from '../shop/ShopHeader';
-import ShopFooter from '../shop/ShopFooter';
+import ShopHeader from '../../shop/ShopHeader';
+import ShopFooter from '../../shop/ShopFooter';
 
 type ProjectInfoProps = {
   navigation: any;
