@@ -1,6 +1,9 @@
 import React from 'react';
 import { ScrollView, View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ShopHeader from '../shop/ShopHeader';
+import ShopFooter from '../shop/ShopFooter';
+
 
 type CandiiTalkProps = {
   navigation: any;
@@ -9,7 +12,8 @@ type CandiiTalkProps = {
 const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
-      <ScrollView style={styles.policyScrollView}>
+        <ShopHeader navigation={navigation} />
+      <ScrollView contentContainerStyle={styles.scrollView}>
         <Image source={require('../pictures/logosvg2.png')} style={styles.candiiLogo} />
         <View style={styles.header}>
           <Text style={styles.headerText}>Welcome to Candii: </Text>
@@ -17,13 +21,13 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
         </View>
         
         <Text style={styles.policyContent}>
-          Candii is your trusted partner in a journey towards a healthier lifestyle. As a 100% Irish-owned business, we're redefining the vaping landscape by focusing on responsible vaping and being part of the solution.
+          Candii is your trusted partner in a journey towards a healthier lifestyle. As a 100% Irish-owned business, we're redefining the vaping landscape by focusing on responsible vaping.
         </Text>
 
         <Image source={require('../pictures/vapeboxfinal.png')} style={styles.candiiLogo} />
         
         <Text style={styles.policyContent}>
-          We proudly collaborate with the Vape Redemption Project, paving the way for eco-consciousness by recycling vape products - an initiative that sets us apart from the rest. We're not just an online vape shop, we're a revolution that brings along a smaller carbon footprint compared to traditional vape stores.
+          We proudly collaborate with the Vape Redemption Project, a social entrepreneurship company that recycles e-cigarette batteries. We also have a smaller carbon footprint compared to traditional vape stores.
         </Text>
 
         <Image source={require('../pictures/earthfinal2.gif')} style={styles.candiiLogo} />
@@ -33,10 +37,6 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
         </Text>
 
         <Image source={require('../pictures/vapegood.png')} style={styles.photo2} />
-        <Text style={styles.policyContent}>
-        Here at Candii, our mission extends beyond selling e-cigarettes - we aim to foster a healthier lifestyle. Pioneering this drive is our selection of nicotine-free options, specifically crafted for those aiming to eliminate nicotine dependence completely.
-        </Text>
-        
 
         <Text style={styles.policyContent}>
         We provide a nicotine concentration range from 3mg to 20mg of nicotine. This provides a flexible route to gradual nicotine reduction, allowing for a smoother and more manageable transition.
@@ -51,7 +51,9 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
         <TouchableOpacity style={styles.insta} onPress={() => Linking.openURL('https://www.instagram.com/candii.vapes/?hl=en')}>
           <Icon name="instagram" size={150} color="white" />
         </TouchableOpacity>
+        <View style={styles.space} />
       </ScrollView>
+      <ShopFooter navigation={navigation} />
     </View>
   );
 };
@@ -59,10 +61,14 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    paddingHorizontal: 20,
     backgroundColor: '#FCCC7C',
+  },
+  scrollView: {
+    alignItems: 'center',
+    padding: 20,
+  },
+  space: {
+    marginTop: 100,
   },
   insta: {
     alignItems: "center",
@@ -70,11 +76,12 @@ const styles = StyleSheet.create({
   candiiLogo: {
     width: '100%',
     height: 200,
-    alignItems: 'center',
+    resizeMode: 'contain',
   },
   photo2: {
     height: 280,
     width: '100%',
+    resizeMode: 'contain',
   },
   header: {
     marginBottom: 20,
@@ -84,8 +91,6 @@ const styles = StyleSheet.create({
     fontSize: 24,
     fontWeight: 'bold',
     color: 'white',
-    alignItems:'center',
-    justifyContent: 'center',
   },
   policyContainer: {
     width: '100%',
@@ -95,14 +100,12 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     backgroundColor: '#f5f5f5',
   },
-  policyScrollView: {
-    flex: 1,
-  },
   policyContent: {
     padding: 10,
     color: 'white',
     fontSize: 20,
     fontWeight: 'bold',
+    textAlign: 'left',
   },
 });
 
