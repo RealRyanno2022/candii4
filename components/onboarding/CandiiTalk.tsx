@@ -9,7 +9,7 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <ScrollView style={styles.policyScrollView}>
-        <Image source={require('../pictures/logosvg2.png')} />
+        <Image source={require('../pictures/logosvg2.png')} style={styles.candiiLogo} />
         <View style={styles.header}>
           <Text style={styles.headerText}>Welcome to Candii: </Text>
           <Text style={styles.headerText}>The responsible vape brand</Text>
@@ -42,6 +42,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingHorizontal: 20,
     backgroundColor: '#FCCC7C',
+  },
+  candiiLogo: {
+    width: 200,
+    height: 200,
+    alignItems: 'center',
   },
   header: {
     marginBottom: 20,
