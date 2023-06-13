@@ -41,7 +41,7 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
             style={[styles.icon, isShopComponent && styles.disabledIcon]}
           />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => navigation.dispatch(StackActions.push('AccountInfo'))} disabled={isAccountInfoComponent}>
+        <TouchableOpacity onPress={() => navigation.dispatch(StackActions.push('CandiiTalk'))} disabled={isAccountInfoComponent}>
           <Image 
             source={require('../pictures/person-removebg-preview.png')} 
             style={[styles.icon, isAccountInfoComponent && styles.disabledIcon]} 

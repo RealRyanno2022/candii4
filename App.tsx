@@ -41,6 +41,8 @@ import SubVapeScreen from './components/subscriptions/SubVapeScreen';
 import ChooseFlavours from './components/subscriptions/ChooseFlavours';
 import SubSignUp from './components/subscriptions/SubSignUp';
 
+import CandiiTalk from './components/onboarding/CandiiTalk';
+
 export default function App() {
   const Stack = createStackNavigator();
 
@@ -48,6 +50,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Intro">
         <Stack.Screen name="Intro" component={Intro} />
+        <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
         <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
         <Stack.Screen name="ShopFront" component={ShopFront} />

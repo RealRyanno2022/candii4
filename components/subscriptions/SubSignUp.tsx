@@ -31,8 +31,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
         <Text style={styles.title}>Get a discounted vape every week!</Text>
         <Text style={styles.title}></Text>
         <Image source={require('../pictures/subs.jpg')} style={styles.image} />
-        <Text style={styles.subtitle}>Choose a Subscription</Text>
-        <View style={styles.subscriptionOptions}>
+        {/* <View style={styles.subscriptionOptions}>
           <TouchableOpacity
             style={[
               styles.subscriptionOption,
@@ -53,7 +52,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
             <Text style={styles.subscriptionOptionText}>Yearly</Text>
             <Text style={styles.subscriptionOptionPrice}>A vape every week of the year!</Text>
           </TouchableOpacity>
-        </View>
+        </View> */}
         <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push("SubVapeScreen"))}>
           <Text style={styles.signUpButtonText}>Sign Up</Text>
         </TouchableOpacity>
@@ -78,7 +77,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
         <View style={styles.subscriptionInfo}>
             <Text style={styles.subscriptionInfoHeader}>What varieties are there?</Text>
             <Text style={styles.subscriptionInfoDescription}>
-            We offer all of our disposable vape varieties and will allow a similiar pass for e-juice in the future.
+              Any e-juice flavour we sell is available.
             </Text>
         </View>
       <View style={styles.space}></View>
@@ -94,15 +93,16 @@ const styles = StyleSheet.create({
 
     mainContainer: {
         flex: 1,
+        backgroundColor: '#FCCC7C',
     },
     container: {
-        backgroundColor: '#F2F2F2',
+      backgroundColor: '#FCCC7C',
         padding: 10,
     },
     header: {
         paddingTop: 20,
         paddingBottom: 20,
-        backgroundColor: '#fff',
+        backgroundColor: '#FCCC7C',
         alignItems: 'center',
         justifyContent: 'center',
         position: "absolute",
@@ -115,7 +115,7 @@ const styles = StyleSheet.create({
     title: {
       fontSize: 20,
       fontWeight: 'bold',
-      color: '#333',
+      color: 'white',
       fontFamily: 'OpenSans-Bold',
       marginBottom: 10,
     },
@@ -136,17 +136,17 @@ const styles = StyleSheet.create({
         color: '#333',
         marginBottom: 10,
         fontFamily: 'OpenSans-Bold',
+
     },
     subscriptionInfoDescription: {
         fontSize: 16,
-        color: '#666',
         fontFamily: 'OpenSans-Regular',
     },
     content: {
         paddingHorizontal: 20,
         paddingTop: 30,
         marginBottom: 20,
-        backgroundColor: '#fff',
+        backgroundColor: '#FCCC7C',
         borderRadius: 10,
         shadowColor: '#000',
         shadowOffset: {width: 0, height: 2},
