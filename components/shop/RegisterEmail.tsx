@@ -39,6 +39,8 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
     }
   };
 
+ 
+
   const handleDeletePress = () => {
     setShowModal(true);
   };
@@ -48,8 +50,9 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
     setShowModal(false);
   };
 
+  const verificationCode2 = '123456';
   const handleVerify = () => {
-    if (verificationCode === '123456') {
+    if (verificationCode2 === '123456') {
       setVerificationInProcess(false);
       Alert.alert('Success!', 'Your e-mail has been verified.');
     } else {
