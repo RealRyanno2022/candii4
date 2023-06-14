@@ -11,6 +11,9 @@ import ShopFront from './components/onboarding/ShopFront';
 import VerifyAge from './components/onboarding/VerifyAge';
 import FormScreen from './components/onboarding/FormScreen';
 
+
+import IDCheckScreen from './components/sales/IDCheckScreen';
+
 import CustomerBasket from './components/shop/CustomerBasket';
 
 // Shop components
@@ -50,7 +53,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Intro">
+      <Stack.Navigator initialRouteName="IDCheckScreen">
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
@@ -66,6 +69,7 @@ export default function App() {
         <Stack.Screen name="RegisterEmail" component={RegisterEmail} />
         <Stack.Screen name="FormScreen" component={FormScreen} />
         <Stack.Screen name="CustomerBasket" component={CustomerBasket} />
+        <Stack.Screen name="IDCheckScreen" component={IDCheckScreen} />
 
         <Stack.Screen name="PartScreen" component={PartScreen} />
 
