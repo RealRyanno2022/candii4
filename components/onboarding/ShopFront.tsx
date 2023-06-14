@@ -24,6 +24,9 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
     if (productType === 'NonDisposable') {
       navigation.navigate('NonDisposableScreen');
     }
+    if (productType === 'Parts') {
+      navigation.navigate('PartScreen');
+    }
   };
 
   const navigateToBasket = () => {
@@ -63,6 +66,17 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
             id="juice"
             style={styles.card}
             onPress={() => handleBrandPress('Juice')}
+          >
+            <Image
+              source={require('../pictures/VapePics/juice.png')}
+              style={styles.imageStyle}
+            />
+            <Text style={styles.cardText}>Juice</Text>
+          </TouchableOpacity>
+          <TouchableOpacity
+            id="parts"
+            style={styles.card}
+            onPress={() => handleBrandPress('Parts')}
           >
             <Image
               source={require('../pictures/VapePics/juice.png')}

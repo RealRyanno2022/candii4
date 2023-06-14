@@ -43,6 +43,7 @@ import SubSignUp from './components/subscriptions/SubSignUp';
 import RegisterEmail from './components/shop/RegisterEmail';
 
 import CandiiTalk from './components/onboarding/CandiiTalk';
+import PartScreen from './components/shop/PartScreen';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -65,6 +66,8 @@ export default function App() {
         <Stack.Screen name="RegisterEmail" component={RegisterEmail} />
         <Stack.Screen name="FormScreen" component={FormScreen} />
         <Stack.Screen name="CustomerBasket" component={CustomerBasket} />
+
+        <Stack.Screen name="PartScreen" component={PartScreen} />
 
         <Stack.Screen name="FormInput" component={FormInput} />
         <Stack.Screen name="BrandVarieties" component={BrandVarieties} />
