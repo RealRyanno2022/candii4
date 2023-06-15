@@ -38,7 +38,7 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
   return (
     <View style={styles.container}>
      <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.scrollContent}>
+      <ScrollView contentContainerStyle={styles.scrollContent} bounces={false}>
         <View style={styles.cardContainer}>
           {brands.map(brand => (
             <TouchableOpacity

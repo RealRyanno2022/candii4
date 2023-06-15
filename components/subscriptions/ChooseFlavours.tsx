@@ -69,7 +69,7 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
   return (
     <View>
     <ShopHeader navigation={navigation} />
-    <ScrollView>
+    <ScrollView bounces={false}>
     <View style={styles.container}>
       
       <Text style={styles.title}>{brandName} Varieties</Text>

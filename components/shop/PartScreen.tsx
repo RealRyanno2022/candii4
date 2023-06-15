@@ -33,7 +33,7 @@ const PartScreen: React.FC<PartScreenProps> = ({ navigation, email }) => {
 
   return (
     <View style={{flex: 1}}>
-      <ShopHeader navigation={navigation}  />
+      <ShopHeader navigation={navigation} bounces={false}  />
       <ScrollView>
         <View style={styles.cardContainer}>
           {["Kinship", "BMG", "Hale", "Slushie", "Yeti", "IVG Salt", "Elfiq"].map(brand => (

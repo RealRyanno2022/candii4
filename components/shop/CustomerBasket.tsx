@@ -44,7 +44,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
+      <ScrollView contentContainerStyle={styles.scrollViewContainer} bounces={false}>
         <View style={styles.content}>
           
         <Text style={styles.title}>Your Basket</Text>

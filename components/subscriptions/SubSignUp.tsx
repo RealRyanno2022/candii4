@@ -24,7 +24,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
   return (
     <View style={styles.mainContainer}>
       <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.container}>
+      <ScrollView contentContainerStyle={styles.container} bounces={false}>
   
         <View style={styles.content}>
           <View style={styles.subscriptionInfo}>

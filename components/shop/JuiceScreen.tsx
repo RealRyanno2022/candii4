@@ -50,7 +50,7 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
   return (
     <View style={{flex: 1}}>
     <ShopHeader navigation={navigation} />
-     <ScrollView>
+     <ScrollView bounces={false}>
        <View style={styles.cardContainer}>
          {brands.map(brand => (
            <TouchableOpacity
