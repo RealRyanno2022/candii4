@@ -20,8 +20,8 @@ type Product = {
   name: string;
   price: number;
   brand: string;
-  image: ProductImage;
   type: 'juice' | 'disposable' | 'nonDisposable' | 'part';
+  image: ProductImage;
 };
 
 const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) => {

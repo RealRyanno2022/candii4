@@ -8,6 +8,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Flexus',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Aspire/AquamarineGradient.png",
     },
     "2": {
@@ -15,6 +16,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Flexus',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Aspire/Black.png",
     },
     "3": {
@@ -22,6 +24,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Flexus',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Aspire/Gunmetal.png",
         },
     "4": {
@@ -29,6 +32,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Flexus',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Aspire/Red.png",
             },
     "5": {
@@ -36,6 +40,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Flexus',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Aspire/SierraBlue.png",
         },
     "6": {
@@ -43,6 +48,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Flexus',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Aspire/SnowMint.png",
     },
     "7": {
@@ -50,6 +56,7 @@ const NonDisposableBrandData {
         "price": 59.99,
         "brand": "DragX",
         "model":'Standard',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/DragX/BronzeKnight.png",
     }
     "8": {
@@ -57,6 +64,7 @@ const NonDisposableBrandData {
         "price": 59.99,
         "brand": "DragX",
         "model":'Standard',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/DragX/CarbonFiber.png",
     }
     "9": {
@@ -64,6 +72,7 @@ const NonDisposableBrandData {
         "price": 59.99,
         "brand": "DragX",
         "model":'Standard',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/DragX/Chestnut.png",
     }
     "10": {
@@ -71,6 +80,7 @@ const NonDisposableBrandData {
         "price": 59.99,
         "brand": "DragX",
         "model":'Standard',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/DragX/IronKnight.png",
     },
     "11": {
@@ -78,6 +88,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Favostix',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Favostix/GarnetRed.png",
     },
     "12": {
@@ -85,6 +96,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Favostix',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Favostix/HunterGreen.png",
     },
     "13": {
@@ -92,6 +104,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Favostix',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Favostix/Quicksilver.png",
     },
     "14": {
@@ -99,6 +112,7 @@ const NonDisposableBrandData {
         "price": 34.99,
         "brand": "Aspire",
         "model":'Favostix',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Favostix/SpaceGrey.png",
     },
     "15": {
@@ -106,6 +120,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'TeknoKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/TeknoKit/RainbowWave.png",
     },
     "16": {
@@ -113,6 +128,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'TeknoKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/TeknoKit/Gunmetal.png",
     },
     "17": {
@@ -120,6 +136,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'TeknoKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/TeknoKit/DigitalRed.png",
     },
     "18": {
@@ -127,6 +144,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'TeknoKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/TeknoKit/CarbonFibreBlack.png",
     },
     "19": {
@@ -134,6 +152,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/White.png",
     },
     "20": {
@@ -141,6 +160,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/StainlessSteel.png",
     },
     "21": {
@@ -148,6 +168,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/RoseGold.png",
     },
     "22": {
@@ -155,6 +176,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/Rainbow.png",
     },
     "23": {
@@ -162,6 +184,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/PinkGradient.png",
     },
     "24": {
@@ -169,6 +192,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/GreyGradient.png",
     },
     "25": {
@@ -176,6 +200,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/GoldGradi.png",
     },
     "26": {
@@ -183,6 +208,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire", 
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/BlackWhiteGradient.png",
     },
     "27": {
@@ -190,6 +216,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'PocketX',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/PocketX/Black.png",
     },
     "28": {
@@ -197,6 +224,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Aspire",
         "model":'Nord4Kit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/BlackArmor.png",
     },
     "29": {
@@ -204,6 +232,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Nord2Kit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/RainbowCobra.png",
     },
     "30": {
@@ -211,6 +240,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Novo2xKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/GreenCobra.png",
     },
     "31": {
@@ -218,6 +248,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Nord2Kit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/Gold.png",
     },
     "32": {
@@ -225,6 +256,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Nord480WKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/RainbowFluid.png",
     },
     "33": {
@@ -232,6 +264,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Nord480WKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/RastaGreenArmor.png",
     },
     "34": {
@@ -239,6 +272,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Nord2Kit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/Red.png",
     },
     "35": {
@@ -246,6 +280,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Novo2xKit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/Redwood.png",
     },
     "36": {
@@ -253,6 +288,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Novo2Kit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/Wexford.png",
     },
     "37": {
@@ -260,6 +296,7 @@ const NonDisposableBrandData {
         "price": 39.99,
         "brand": "Smok",
         "model":'Nord2Kit',
+        "type": 'nonDisposable',
         "image": "https://s3.amazonaws.com/candii-bucket/pictures/NonDisposableVapePics/Disposables/Smok/WhiteCobra.png",
     },
 

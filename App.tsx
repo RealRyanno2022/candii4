@@ -56,7 +56,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Customer">
+      <Stack.Navigator initialRouteName="ShopFront">
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
         <Stack.Screen name="QueryLanguageSelector" component={QueryLanguageSelector} />
