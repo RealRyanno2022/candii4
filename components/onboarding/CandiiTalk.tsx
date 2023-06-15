@@ -1,59 +1,68 @@
-import React from 'react';
-import { ScrollView, View, Text, TouchableOpacity, TextInput, StyleSheet, Image, Linking } from 'react-native';
+import React, { useState } from 'react';
+import { View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native';
+import { launchImageLibrary } from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import ShopHeader from '../shop/ShopHeader';
 import ShopFooter from '../shop/ShopFooter';
 
-
-type CandiiTalkProps = {
+type IDCheckScreenProps = {
   navigation: any;
-}
+};
 
-const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
+const IDCheckScreen: React.FC<IDCheckScreenProps> = ({ navigation }) => {
+  const [idImage, setIdImage] = useState('');
+
+  const handleIdUpload = () => {
+    launchImageLibrary({ mediaType: 'photo' }, (response) => {
+      if (response.didCancel) {
+        console.log('User cancelled image picker');
+        Alert.alert('Image picker cancelled', 'You need to upload your ID for verification. Please try again.');
+      } else if (response.errorMessage) {
+        console.log('ImagePicker Error: ', response.errorMessage);
+        Alert.alert('Image picker error', `Error picking image: ${response.errorMessage}`);
+      } else {
+        if (response.assets && response.assets[0] && response.assets[0].uri) {
+          setIdImage(response.assets[0].uri);
+          // Simulating a call to backend server for ID verification
+          setTimeout(() => {
+            const verificationPassed = Math.random() < 0.5;
+            if (verificationPassed) {
+              Alert.alert('Verification Success', 'Your ID has been verified. Happy shopping!');
+              navigation.navigate('DeliveryAddress');
+            } else {
+              Alert.alert('Verification Failure', 'Unfortunately, you have failed the ID test.');
+              navigation.navigate('ShopFront');
+            }
+          }, 2000);
+        }
+      }
+    });
+  };
+
   return (
+    <View>
+    <ShopHeader navigation={navigation} />
     <View style={styles.container}>
-        <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.scrollView}>
-        <Image source={require('../pictures/logosvg2.png')} style={styles.candiiLogo} />
-        <View style={styles.header}>
-          <Text style={styles.headerText}>Welcome to Candii: </Text>
-          <Text style={styles.headerText}>The responsible vape store</Text>
-        </View>
-        
-        <Text style={styles.policyContent}>
-          Candii is your trusted partner in a journey towards a healthier lifestyle. As a 100% Irish-owned business, we're redefining the vaping landscape by focusing on responsible vaping.
-        </Text>
+ 
+      <Text style={styles.headerText}>ID Check</Text>
+      <Text style={styles.subText}>
+        In Ireland, you must be at least 18 years old to purchase e-cigarettes, e-juice or related products.
+        To prove you can legally buy from us, we require a quick ID verification check for this name and e-mail address.
+        It shouldn't take longer than a minute. Candii does not store your ID beyond this.
+      </Text>
+      <Text style={styles.subText}>
+        Valid forms of identification include: Your driver's license, passport or identity card.
+        The most important thing is that we can verify you are over 18 years of age. Please note that using fake 
+        identification to purchase our products is against the law.
+      </Text>
+      <TouchableOpacity onPress={handleIdUpload} style={styles.idUploadButton}>
+        <Icon name="upload" size={30} color="white" />
+        <Text style={styles.idUploadButtonText}>Upload ID</Text>
+      </TouchableOpacity>
+      {idImage.length > 0 && <Text style={styles.idUploadStatusText}>ID uploaded. Verifying...</Text>}
 
-        <Image source={require('../pictures/vapeboxfinal.png')} style={styles.candiiLogo} />
-        
-        <Text style={styles.policyContent}>
-          We proudly collaborate with the Vape Redemption Project, a social entrepreneurship company that recycles e-cigarette batteries. We also have a smaller carbon footprint compared to traditional vape stores.
-        </Text>
-
-        <Image source={require('../pictures/earthfinal2.gif')} style={styles.candiiLogo} />
-
-        <Text style={styles.policyContent}>
-            We support seven different languages on our platform, making it effortless for anyone to navigate our offerings.
-        </Text>
-
-        <Image source={require('../pictures/vapegood.png')} style={styles.photo2} />
-
-        <Text style={styles.policyContent}>
-        We provide a nicotine concentration range from 3mg to 20mg of nicotine. This provides a flexible route to gradual nicotine reduction, allowing for a smoother and more manageable transition.
-        </Text>
-
-        <Image source={require('../pictures/vapepile.png')} style={styles.photo2} />
-
-        <Text style={styles.policyContent}>
-        Contact us through Instagram!
-        </Text>
-
-        <TouchableOpacity style={styles.insta} onPress={() => Linking.openURL('https://www.instagram.com/candii.vapes/?hl=en')}>
-          <Icon name="instagram" size={150} color="white" />
-        </TouchableOpacity>
-        <View style={styles.space} />
-      </ScrollView>
-      <ShopFooter navigation={navigation} />
+    </View>
+          <ShopFooter navigation={navigation} />
     </View>
   );
 };
@@ -61,52 +70,42 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#FCCC7C',
-  },
-  scrollView: {
-    alignItems: 'center',
+    justifyContent: 'center',
     padding: 20,
-  },
-  space: {
-    marginTop: 100,
-  },
-  insta: {
-    alignItems: "center",
-  },
-  candiiLogo: {
-    width: '100%',
-    height: 200,
-    resizeMode: 'contain',
-  },
-  photo2: {
-    height: 280,
-    width: '100%',
-    resizeMode: 'contain',
-  },
-  header: {
-    marginBottom: 20,
-    alignItems:'center',
+    backgroundColor: '#FCCC7C',
   },
   headerText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: 'white',
-  },
-  policyContainer: {
-    width: '100%',
-    height: 200,
-    borderWidth: 1,
-    borderColor: '#ccc',
     marginBottom: 20,
-    backgroundColor: '#f5f5f5',
-  },
-  policyContent: {
-    padding: 10,
     color: 'white',
-    fontSize: 20,
+  },
+  subText: {
+    fontSize: 16,
+    marginBottom: 30,
+    color: 'white',
     fontWeight: 'bold',
-    textAlign: 'left',
+  },
+  idUploadButton: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 10,
+    backgroundColor: '#D3D3D3',
+    borderRadius: 5,
+  },
+  idUploadButtonText: {
+    marginLeft: 10,
+    fontSize: 18,
+    color: 'white',
+    fontWeight: 'bold',
+  },
+  idUploadStatusText: {
+    marginTop: 20,
+    fontSize: 16,
+    color: 'white',
+    fontWeight: 'bold',
   },
 });
 
-export default CandiiTalk;
+export default IDCheckScreen;

@@ -53,7 +53,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Intro">
+      <Stack.Navigator initialRouteName="IDCheckScreen">
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
