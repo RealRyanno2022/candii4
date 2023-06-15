@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { View, Text, TextInput, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
 import ShopHeader from './ShopHeader';
-import brandData from '../data/BrandData';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
-
 type NonDisposableScreenProps = {
   navigation: StackNavigationProp<StackParamList>;
-}
-
+};
 
 const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation }) => {
 
@@ -23,31 +20,41 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
 
   const handleBackPress = () => {
     navigation.pop();
-  }
+  };
 
   const handleSearch = () => {
     navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
-  }
+  };
 
+  const brands = [
+    { name: "Flexus", image: require('../pictures/flexus2.png') },
+    { name: "DragX", image: require('../pictures/dragx.png') },
+    { name: "Favostix", image: require('../pictures/favostix2.png') },
+    { name: "PocketX", image: require('../pictures/pocketx.png') },
+    { name: "Smok", image: require('../pictures/smok.png') },
+    { name: "TeknoKit", image: require('../pictures/teknokit.png') },
+  ];
 
   return (
-    <View style={{flex: 1}}>
-      <ShopHeader navigation={navigation}  />
-      <ScrollView>
+    <View style={styles.container}>
+     <ShopHeader navigation={navigation} />
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.cardContainer}>
-          {["Kinship", "BMG", "Hale", "Slushie", "Yeti", "IVG Salt", "Elfiq"].map(brand => (
+          {brands.map(brand => (
             <TouchableOpacity
-              key={brand}
+              key={brand.name}
               style={styles.card}
-              onPress={() => handleBrandPress(brand)}
+              onPress={() => handleBrandPress(brand.name)}
             >
-              <Text style={styles.cardText}>{brand}</Text>
+              <Image style={styles.image} source={brand.image}></Image>
+              <Text style={styles.cardText}>{brand.name}</Text>
             </TouchableOpacity>
           ))}
           <TouchableOpacity
             style={styles.card}
             onPress={() => handleBackPress()}
           >
+            <Image style={styles.image} source={require('../pictures/goback.png')}></Image>
             <Text style={styles.cardText}>Go Back</Text>
           </TouchableOpacity>
         </View>
@@ -55,11 +62,12 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
       <ShopFooter navigation={navigation}/>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F5F5F5',
+    flex: 1,
+    backgroundColor: '#FCCC7C',
   },
   header: {
     paddingTop: 50,
@@ -67,6 +75,10 @@ const styles = StyleSheet.create({
     backgroundColor: '#1F1F1F',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  scrollContent: {
+    flexGrow: 1,
+    
   },
   smallText: {
     fontWeight: 'bold',
@@ -78,6 +90,12 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     padding: 20,
+  },
+  image: {
+    width: '100%',
+    height: 100,
+    resizeMode: 'contain',
+    marginBottom: 10,
   },
   card: {
     width: '45%',

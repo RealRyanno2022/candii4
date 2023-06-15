@@ -45,7 +45,7 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
             onPress={() => handleBrandPress('NonDisposable')}
           >
             <Image
-              source={require('../pictures/VapePics/dragx.png')}
+              source={require('../pictures/dragx.png')}
               style={styles.imageStyle}
             />
             <Text style={styles.cardText}>Non Disposables</Text>

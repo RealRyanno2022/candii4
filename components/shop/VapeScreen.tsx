@@ -38,7 +38,7 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
      <ShopHeader navigation={navigation} />
-      <ScrollView>
+      <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.cardContainer}>
           {brands.map(brand => (
             <TouchableOpacity
@@ -67,6 +67,11 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FCCC7C',
+    flex: 1,
+  },
+  scrollContent: {
+    flexGrow: 1,
+    
   },
   header: {
     paddingTop: 50,
