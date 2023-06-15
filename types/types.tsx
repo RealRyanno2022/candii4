@@ -19,6 +19,7 @@ type Subscription = {
 export type StackParamList = {
   AccountInfo: { userId: number };
   CustomerBasket: { email: string };
+  EditEmail: undefined;
   DeleteAccount: undefined;
   ProjectInfo: undefined;
   Queries: undefined;

@@ -5,11 +5,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import ShopFooter from '../shop/ShopFooter';
 import ShopHeader from '../shop/ShopHeader';
 import CustomerBasket from '../shop/CustomerBasket';
+import { RouteProp } from '@react-navigation/native';
 
 
 
 type ShopFrontProps = {
   navigation: StackNavigationProp<StackParamList, "CustomerBasket">;
+  route: RouteProp<StackParamList, "CustomerBasket">;
   email: string;
 };
 
@@ -89,9 +91,6 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
         <View style={styles.space} />
       </ScrollView>
       <ShopFooter navigation={navigation} />
-      {email && (
-        <CustomerBasket navigation={navigation} email={email} />
-      )}
     </View>
   );
 };

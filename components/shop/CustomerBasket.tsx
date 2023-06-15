@@ -20,13 +20,14 @@ type Product = {
 
 type CustomerBasketProps = {
   navigation: StackNavigationProp<StackParamList, 'CustomerBasket'>;
-  email: string;
+  route: RouteProp<StackParamList, 'CustomerBasket'>; // add this line
 };
 
-const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, email }) => {
+const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => {
   const [basket, setBasket] = useState<Product[]>([]);
   const subtotal = basket.reduce((total, product) => total + product.price, 0);
   const numItems = basket.length;
+  const email = route.params?.email || '';
 
   const handleCheckoutPress = () => {
     navigation.navigate('DeliveryAddress');
