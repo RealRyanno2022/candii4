@@ -48,7 +48,7 @@ const IDCheckScreen: React.FC<IDCheckScreenProps> = ({ navigation }) => {
       <Text style={styles.subText}>
         Valid forms of identification include: Your driver's license, passport or identity card.
         The most important thing is that we can verify you are over 18 years of age. Please note that using fake 
-        identification is against the law.
+        identification to purchase our products is against the law.
       </Text>
       <TouchableOpacity onPress={handleIdUpload} style={styles.idUploadButton}>
         <Icon name="upload" size={30} color="white" />
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 30,
     color: 'white',
+    fontWeight: 'bold',
   },
   idUploadButton: {
     flexDirection: 'row',
@@ -89,11 +90,13 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     fontSize: 18,
     color: 'white',
+    fontWeight: 'bold',
   },
   idUploadStatusText: {
     marginTop: 20,
     fontSize: 16,
     color: 'white',
+    fontWeight: 'bold',
   },
 });
 
