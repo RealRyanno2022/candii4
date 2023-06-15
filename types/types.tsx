@@ -41,9 +41,10 @@ export type StackParamList = {
   DeliveryAddress: undefined;
   BrandVarieties: { brand: string };
   ContinueShopping: undefined;
-  JuiceProductPage: undefined;
+  JuiceProductPage: { product: Product };
+  NonDisposableProductPage: { product: Product };
+  ProductPage: { product: Product };
   JuiceScreen: undefined;
-  ProductPage: undefined;
   SearchProducts: undefined;
   VapeScreen: undefined;
   FormScreen: undefined;
@@ -57,7 +58,6 @@ export type StackParamList = {
   ChangeFlavours: undefined;
   CancelConfirm: undefined;
   NonDisposableScreen: undefined;
-  NonDisposableProductPage: undefined;
   BrandBox: { product: any, selected: boolean, quantity: number, onSelect: () => void, onDeselect: () => void };
   ShopFooter: { subscription: Subscription };
 };

@@ -25,7 +25,7 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleBrandPress = (brandName: string) => {
-    navigation.dispatch(StackActions.push('BrandVarieties', { brandName }));
+    navigation.dispatch(StackActions.push('BrandVarieties', { brandName, type: 'juice' }));
   };
   
   const handleBackPress = () => {

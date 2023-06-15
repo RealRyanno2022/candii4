@@ -15,18 +15,17 @@ type BrandVarietiesProps = {
   navigation: StackNavigationProp<StackParamList, 'BrandVarieties'>;
 };
 
-// 300 commits!
-
 type Product = {
   id: string;
   name: string;
   price: number;
   brand: string;
   image: ProductImage;
+  type: 'juice' | 'disposable' | 'nonDisposable' | 'part';
 };
 
 const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) => {
-  const { brand } = route.params;
+  const { brand, type } = route.params; // Corrected this line
 
   const [varieties, setVarieties] = useState<Product[]>([]);
 
@@ -36,8 +35,6 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
     setVarieties(filteredData);
     console.log("Filtered data for brand:", filteredData);
   }, [brand]);
-  
-  
 
   const handleSelect = () => {
     console.log('Selected product');
@@ -47,19 +44,35 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
     console.log('Deselected product');
   };
 
+  const handleSelectProduct = (product: Product) => {
+    switch(type) {
+      case 'juice':
+        navigation.navigate('JuiceProductPage', { product });
+        break;
+      case 'nonDisposable':
+        navigation.navigate('NonDisposableProductPage', { product });
+        break;
+      default:
+        navigation.navigate('ProductPage', { product });
+        break;
+    }
+  };
+  
+  
+
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
       <Text style={styles.title}>{brand} Varieties</Text>
       <FlatList 
         data={varieties}
-        keyExtractor={(item, index) => 'key'+index}
+        keyExtractor={(item, index) => 'key' + index}
         renderItem={({ item }) => (
           <BrandBox 
             navigation={navigation} 
             selected={false}
             quantity={0}
-            onSelect={handleSelect}
+            onSelect={() => handleSelectProduct(item)}
             onDeselect={handleDeselect}
             product={item}
           />
