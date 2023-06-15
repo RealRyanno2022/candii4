@@ -33,7 +33,7 @@ const FormScreen: React.FC<FormScreenProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView contentContainerStyle={styles.scrollContainer} bounces={false}>
         <Text style={styles.headerText}>Registration</Text>
         <Image source={require('../pictures/largepic.png')} style={styles.largeImage} />
         <View style={styles.instagramInfo}>

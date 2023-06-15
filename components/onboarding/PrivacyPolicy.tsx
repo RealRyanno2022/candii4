@@ -28,7 +28,7 @@ const PrivacyPolicy: React.FC<PrivacyPolicyProps> = ({ navigation }) => {
         <Text style={styles.headerText}>Privacy Policy</Text>
       </View>  
       <View style={styles.policyContainer}>
-      <ScrollView style={styles.policyScrollView}>
+      <ScrollView style={styles.policyScrollView} bounces={false}>
         <Text>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi at rutrum ipsum. Cras pharetra vulputate mattis.
         </Text>

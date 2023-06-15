@@ -228,7 +228,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <View style={styles.container}>
           <ShopHeader navigation={navigation} />
-          <ScrollView ref={scrollViewRef} contentContainerStyle={{ paddingBottom: 100 }}>
+          <ScrollView ref={scrollViewRef} contentContainerStyle={{ paddingBottom: 100 }} bounces={false}  >
             <View style={{ paddingBottom: 100 }}>
               {renderLabel('Delivery Address', false)}
 

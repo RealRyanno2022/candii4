@@ -13,7 +13,7 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
   return (
     <View style={styles.container}>
         <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.scrollView}>
+      <ScrollView contentContainerStyle={styles.scrollView} bounces={false}>
         <Image source={require('../pictures/logosvg2.png')} style={styles.candiiLogo} />
         <View style={styles.header}>
           <Text style={styles.headerText}>Welcome to Candii: </Text>

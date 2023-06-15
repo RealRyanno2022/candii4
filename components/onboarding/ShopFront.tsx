@@ -37,7 +37,7 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
 
   return (
     <View style={styles.container}>
-      <ShopHeader navigation={navigation} />
+      <ShopHeader navigation={navigation} bounces={false} />
       <ScrollView contentContainerStyle={styles.scrollViewContent}>
         <View style={styles.cardContainer}>
           <View style={styles.space} />
