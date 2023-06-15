@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useForm } from 'react-hook-form';
-import FormInput from './FormInput';
+import FormInput from '../sales/FormInput';
 
 type UserAddress = {
   address: string;

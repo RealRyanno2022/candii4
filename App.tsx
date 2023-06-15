@@ -48,6 +48,7 @@ import RegisterEmail from './components/shop/RegisterEmail';
 import CandiiTalk from './components/onboarding/CandiiTalk';
 import PartScreen from './components/shop/PartScreen';
 import EditEmail from './components/shop/EditEmail';
+import EditEmailDeliveryAddress from './components/shop/EditEmailDeliveryAddress';
 
 export default function App() {
   const Stack = createStackNavigator();
@@ -60,6 +61,7 @@ export default function App() {
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
         <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
         <Stack.Screen name="EditEmail" component={EditEmail} />
+        <Stack.Screen name="EditEmailDeliveryAddress" component={EditEmailDeliveryAddress} />
         <Stack.Screen name="ShopFront" component={ShopFront} />
         <Stack.Screen name="VerifyAge" component={VerifyAge} />
         <Stack.Screen name="VapeScreen" component={VapeScreen} />
