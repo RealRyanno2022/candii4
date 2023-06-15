@@ -27,8 +27,10 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
       <ScrollView contentContainerStyle={styles.container}>
   
         <View style={styles.content}>
-          <Text style={styles.title}>Try our Vape Pass!</Text>
-          <Text style={styles.title}>Get a discounted vape every week!</Text>
+          <View style={styles.subscriptionInfo}>
+          <Text style={styles.subscriptionInfoHeader}>Try our Vape Pass!</Text>
+          <Text style={styles.subscriptionInfoHeader}>Get a discounted vape every week!</Text>
+        </View>
           <Text style={styles.title}></Text>
           <Image source={require('../pictures/subs.jpg')} style={styles.image} />
           <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push('SubVapeScreen'))}>
@@ -56,6 +58,12 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
             <Text style={styles.subscriptionInfoHeader}>What varieties are there?</Text>
             <Text style={styles.subscriptionInfoDescription}>
               Any e-juice flavor we sell is available.
+            </Text>
+          </View>
+          <View style={styles.subscriptionInfo}>
+            <Text style={styles.subscriptionInfoHeader}>How much is it? </Text>
+            <Text style={styles.subscriptionInfoDescription}>
+              The Vape Pass costs €23.99 a month.
             </Text>
           </View>
           <View style={styles.space}></View>
@@ -88,7 +96,6 @@ const styles = StyleSheet.create({
   },
   content: {
     paddingHorizontal: 20,
-    paddingTop: 30,
     marginBottom: 20,
     backgroundColor: 'transparent',
     borderRadius: 10,

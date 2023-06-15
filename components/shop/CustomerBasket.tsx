@@ -41,9 +41,10 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, email }) =>
       <ShopHeader navigation={navigation} />
       <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.content}>
+          
           <Text style={styles.title}>Your Basket</Text>
-          <View style={styles.emailContainer}>
-            <Text style={styles.emailText}>
+          <View style={styles.subscriptionInfo}>
+            <Text style={styles.boldText}>
               {email ? `For: ${email}` : 'NO EMAIL GIVEN'}
             </Text>
             <TouchableOpacity onPress={() => navigation.navigate('RegisterEmail')}>
@@ -52,8 +53,11 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, email }) =>
               </View>
             </TouchableOpacity>
           </View>
+
+          
           {numItems > 0 ? (
             <View>
+               <View style={styles.subscriptionInfo}>
               <Text style={styles.subtotal}>Subtotal: {subtotal.toFixed(2)}</Text>
               <FlatList
                 data={basket}
@@ -72,13 +76,15 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, email }) =>
               <TouchableOpacity style={styles.button} onPress={handleCheckoutPress}>
                 <Text style={styles.buttonText}>Proceed to Checkout ({numItems} items)</Text>
               </TouchableOpacity>
+              </View>
             </View>
           ) : (
-            <View style={styles.emptyBasket}>
-              <Text style={styles.emptyText}>Your basket is currently empty.</Text>
-              <Text style={styles.emptyText}>Let's get shopping!</Text>
+            <View>
+            <View style={styles.subscriptionInfo}>
+              <Text style={styles.boldText}>Your basket is currently empty.</Text>
+            </View>
               <TouchableOpacity style={styles.button} onPress={handleShopFrontPress}>
-                <Text style={styles.buttonText}>Start Shopping</Text>
+                <Text style={styles.buttonText}>Start Shopping!</Text>
               </TouchableOpacity>
             </View>
           )}
@@ -104,6 +110,36 @@ const styles = StyleSheet.create({
   },
   scrollViewContainer: {
     flexGrow: 1,
+  },
+  subscriptionInfo: {
+    flexDirection: 'row', // Add this line
+    justifyContent: 'space-between', // Add this line
+    alignItems: 'center', // Add this line
+    padding: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  boldText: {
+    fontSize: 16,
+    fontFamily: 'OpenSans-Regular',
+    fontWeight: 'bold', // Add this line
+  },
+  subscriptionInfoHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#333',
+    marginBottom: 10,
+    fontFamily: 'OpenSans-Bold',
+  },
+  subscriptionInfoDescription: {
+    fontSize: 16,
+    fontFamily: 'OpenSans-Regular',
   },
   emailContainer: {
     flexDirection: 'row',

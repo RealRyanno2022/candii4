@@ -73,17 +73,17 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
             />
             <Text style={styles.cardText}>Juice</Text>
           </TouchableOpacity>
-          <TouchableOpacity
+          {/* <TouchableOpacity
             id="parts"
             style={styles.card}
             onPress={() => handleBrandPress('Parts')}
           >
             <Image
-              source={require('../pictures/VapePics/juice.png')}
+              source={require('../pictures/coil.png')}
               style={styles.imageStyle}
             />
-            <Text style={styles.cardText}>Juice</Text>
-          </TouchableOpacity>
+            <Text style={styles.cardText}>Parts</Text>
+          </TouchableOpacity> */}
         </View>
         <View style={styles.space} />
         <View style={styles.space} />

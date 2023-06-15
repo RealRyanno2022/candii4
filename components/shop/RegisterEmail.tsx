@@ -95,13 +95,13 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.header}>
         <ShopHeader navigation={navigation} />
+      <ScrollView contentContainerStyle={styles.content} bounces={false}>
+      <View style={styles.subscriptionInfo}>
+        <Text style={styles.title}>Add or Delete Email Address</Text>
       </View>
-      <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>Choose an Email</Text>
         {addedEmail.map((email, index) => (
-          <View key={index} style={styles.emailContainer}>
+          <View key={index} style={styles.subscriptionInfo}>
             {verificationInProcess && email === verificationEmail ? (
               <TouchableOpacity onPress={handlePressSpinner}>
                 <ActivityIndicator size="small" color="#FF6347" />
@@ -115,6 +115,7 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
             </TouchableOpacity>
           </View>
         ))}
+        <View style={styles.subscriptionInfo}>
         <TextInput
           style={styles.input}
           value={email}
@@ -123,25 +124,34 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
           keyboardType="email-address"
           autoCapitalize="none"
         />
+        </View>
+        <View style={styles.subscriptionInfo}>
         <TouchableOpacity style={styles.button} onPress={handleAddPress}>
           <Text style={styles.buttonText}>Add Email</Text>
         </TouchableOpacity>
+        </View>
         {verificationInProcess && (
           <>
+            <View style={styles.subscriptionInfo}>
             <Text style={styles.title}>Enter your six digit code here:</Text>
-            <TextInput
-              style={styles.input}
-              value={verificationCode}
-              onChangeText={setVerificationCode}
-              placeholder="6-Digit Code"
-              keyboardType="number-pad"
-              maxLength={6}
-            />
+            </View>
+            <View style={styles.subscriptionInfo}>
+              <TextInput
+                style={styles.input}
+                value={email}
+                onChangeText={setEmail}
+                placeholder="123456"
+                keyboardType="numeric"
+                autoCapitalize="none"
+              />
+              </View>
             <TouchableOpacity style={styles.button} onPress={handleVerify}>
               <Text style={styles.buttonText}>Verify</Text>
             </TouchableOpacity>
           </>
         )}
+
+        <View style={styles.space}></View>
       </ScrollView>
       <Modal
         animationType="slide"
@@ -175,10 +185,27 @@ const styles = StyleSheet.create({
     backgroundColor: '#FCCC7C',
   },
   header: {
-    position: 'absolute',
     top: 0,
     left: 0,
     right: 0,
+    height: 100,
+  },
+  space: {
+    paddingBottom: 120,
+  },
+  subscriptionInfo: {
+    flexDirection: 'row', // Add this line
+    justifyContent: 'space-between', // Add this line
+    alignItems: 'center', // Add this line
+    marginTop: 20,
+    borderRadius: 10,
+    padding: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
   },
   content: {
     marginTop: 50,
@@ -189,10 +216,9 @@ const styles = StyleSheet.create({
   title: {
     fontWeight: 'bold',
     fontSize: 25,
-    color: 'white',
+    color: 'black',
     textAlign: 'center',
-    paddingVertical: 10,
-    marginBottom: 10,
+    padding: 10,
   },
   emailContainer: {
     flexDirection: 'row',
@@ -202,7 +228,8 @@ const styles = StyleSheet.create({
   },
   addedEmail: {
     marginHorizontal: 10,
-    color: 'white',
+    color: 'black',
+    fontWeight: 'bold',
   },
   input: {
     height: 40,
@@ -211,7 +238,9 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'white',
     borderRadius: 5,
-    color: 'white',
+    fontSize: 16,
+    color: 'black',
+    fontWeight: 'bold',
     padding: 10,
   },
   button: {
