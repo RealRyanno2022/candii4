@@ -16,16 +16,12 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
   const route = useRoute();
 
   const componentNames = ['BrandVarieties','JuiceProductPage','SearchProducts','ContinueShopping','ProductPage','ShopFront', 'VapeScreen', 'JuiceScreen'];
-
   const signUpComponentNames = ["SubSignUp", "YourFlavours","ManageSubscription","SubVapeScreen","ChooseFlavours"];
   const isQueryLanguageSelectorComponent = route?.name === 'QueryLanguageSelector';
-
   const isShopComponent = componentNames.includes(route?.name);
   const isAccountInfoComponent = route?.name === 'AccountInfo';
-
   const isSubSignUpComponent = signUpComponentNames.includes(route?.name);
   const subscription = { isSubscribed, setIsSubscribed };
-
   const isCandiiTalkComponent = route?.name === 'CandiiTalk';
   const isCustomerBasketComponent = route?.name === 'CustomerBasket';
 
@@ -51,12 +47,6 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
           <Image 
             source={require('../pictures/heart.png')} 
             style={[styles.icon, isCandiiTalkComponent && styles.disabledIcon]} 
-          />
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('QueryLanguageSelector')} disabled={isQueryLanguageSelectorComponent}>
-          <Image 
-            source={require('../pictures/message-icon.png')} 
-            style={[styles.icon, isQueryLanguageSelectorComponent && styles.disabledIcon]} 
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('CustomerBasket')} disabled={isCustomerBasketComponent}>
@@ -96,7 +86,7 @@ const styles = StyleSheet.create({
   },
   footerContent: {
     flexDirection: 'row',
-    justifyContent: 'space-between',
+    justifyContent: 'space-evenly',
     width: '100%',
     paddingHorizontal: 10,
   },

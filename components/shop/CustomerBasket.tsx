@@ -48,7 +48,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
         <View style={styles.content}>
           
         <Text style={styles.title}>Your Basket</Text>
-        <View style={styles.subscriptionInfo}>
+        {/* <View style={styles.subscriptionInfo}>
           <Text style={styles.boldText}>
             {email ? `For: ${email}` : 'NO EMAIL GIVEN'}
           </Text>
@@ -64,7 +64,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
               </View>
             </TouchableOpacity>
           </View> 
-        </View>
+        </View> */}
 
           
           {numItems > 0 ? (
