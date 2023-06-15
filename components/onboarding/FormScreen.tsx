@@ -108,7 +108,7 @@ const styles = StyleSheet.create({
     marginRight: 10,
     textAlign: 'center',
     fontWeight: 'bold',
-    fontSize: 18,
+    fontSize: 16,
     color: 'white',
   },
   headerText: {

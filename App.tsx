@@ -49,15 +49,17 @@ import CandiiTalk from './components/onboarding/CandiiTalk';
 import PartScreen from './components/shop/PartScreen';
 import EditEmail from './components/shop/EditEmail';
 import EditEmailDeliveryAddress from './components/shop/EditEmailDeliveryAddress';
+import QueryLanguageSelector from './components/shop/QueryLanguageSelector';
 
 export default function App() {
   const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="IDCheckScreen">
+      <Stack.Navigator initialRouteName="Intro">
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
+        <Stack.Screen name="QueryLanguageSelector" component={QueryLanguageSelector} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
         <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
         <Stack.Screen name="EditEmail" component={EditEmail} />
@@ -67,6 +69,7 @@ export default function App() {
         <Stack.Screen name="VapeScreen" component={VapeScreen} />
         <Stack.Screen name="JuiceScreen" component={JuiceScreen} />
         <Stack.Screen name="NonDisposableScreen" component={NonDisposableScreen} />
+        <Stack.Screen name="QueryLanguageSelector" component={QueryLanguageSelector} />
         <Stack.Screen name="LostConnection" component={LostConnection} />
         <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
         <Stack.Screen name="DeliveryAddress" component={DeliveryAddress} />

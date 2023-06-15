@@ -18,8 +18,10 @@ type Subscription = {
 
 export type StackParamList = {
   AccountInfo: { userId: number };
-  CustomerBasket: { email: string };
+  CustomerBasket: { email?: string };
   EditEmail: undefined;
+  EditEmailDeliveryAddress: undefined;
+  QueryLanguageSelector: undefined;
   DeleteAccount: undefined;
   ProjectInfo: undefined;
   Queries: undefined;
@@ -27,7 +29,7 @@ export type StackParamList = {
   LanguageSelect: undefined;
   Intro: undefined;
   PrivacyPolicy: undefined;
-  ShopFront: { email: string };
+  ShopFront:undefined;
   VerifyAge: undefined;
   ForgotPassword: undefined;
   LoginScreen: undefined;

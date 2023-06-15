@@ -17,6 +17,7 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
   const componentNames = ['BrandVarieties','JuiceProductPage','SearchProducts','ContinueShopping','ProductPage','ShopFront', 'VapeScreen', 'JuiceScreen'];
 
   const signUpComponentNames = ["SubSignUp", "YourFlavours","ManageSubscription","SubVapeScreen","ChooseFlavours"];
+  const isQueryLanguageSelectorComponent = route?.name === 'QueryLanguageSelector';
 
   const isShopComponent = componentNames.includes(route?.name);
   const isAccountInfoComponent = route?.name === 'AccountInfo';
@@ -48,6 +49,12 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
           <Image 
             source={require('../pictures/heart.png')} 
             style={[styles.icon, isCandiiTalkComponent && styles.disabledIcon]} 
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('QueryLanguageSelector')} disabled={isQueryLanguageSelectorComponent}>
+          <Image 
+            source={require('../pictures/message-icon.png')} 
+            style={[styles.icon, isQueryLanguageSelectorComponent && styles.disabledIcon]} 
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('CustomerBasket')} disabled={isCustomerBasketComponent}>
