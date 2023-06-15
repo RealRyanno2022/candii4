@@ -17,7 +17,7 @@ const CandiiTalk: React.FC<CandiiTalkProps> = ({ navigation }) => {
         <Image source={require('../pictures/logosvg2.png')} style={styles.candiiLogo} />
         <View style={styles.header}>
           <Text style={styles.headerText}>Welcome to Candii: </Text>
-          <Text style={styles.headerText}>The responsible vape brand</Text>
+          <Text style={styles.headerText}>The responsible vape store</Text>
         </View>
         
         <Text style={styles.policyContent}>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View,
   Text,
@@ -16,6 +16,7 @@ import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackNavigationProp } from '@react-navigation/stack';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type RegisterEmailProps = {
   navigation: StackNavigationProp<StackParamList, 'RegisterEmail'>;
@@ -23,43 +24,70 @@ type RegisterEmailProps = {
 
 const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
   const [email, setEmail] = useState('');
-  const [addedEmail, setAddedEmail] = useState(null);
   const [showModal, setShowModal] = useState(false);
   const [verificationCode, setVerificationCode] = useState('');
   const [verificationInProcess, setVerificationInProcess] = useState(false);
+  const [addedEmail, setAddedEmail] = useState([]);
+  const [verificationEmail, setVerificationEmail] = useState('');
+
+
+  useEffect(() => {
+    const getEmails = async () => {
+      const storedEmails = await AsyncStorage.getItem('emails');
+      if (storedEmails !== null) {
+        setAddedEmail(JSON.parse(storedEmails));
+      }
+    };
+
+    getEmails();
+  }, []);
+
+  useEffect(() => {
+    const storeEmails = async () => {
+      await AsyncStorage.setItem('emails', JSON.stringify(addedEmail));
+    };
+
+    storeEmails();
+  }, [addedEmail]);
 
   const handleAddPress = () => {
-    if (email && !verificationInProcess) {
-      setAddedEmail(email);
+    if (email && !verificationInProcess && addedEmail.length < 3) {
+      setAddedEmail(prev => [...prev, email]);
+      setVerificationEmail(email);
       setEmail('');
       setVerificationInProcess(true);
       Alert.alert('A six-digit verification code has been sent to your e-mail address, if it exists.');
     } else if (verificationInProcess) {
       Alert.alert('You must first verify your email');
+    } else if (addedEmail.length >= 3) {
+      Alert.alert('You can only add a maximum of 3 emails');
     }
   };
+  
 
- 
-
-  const handleDeletePress = () => {
+  const handleDeletePress = (emailToDelete: string) => {
     setShowModal(true);
+    handleConfirmDelete(emailToDelete);
   };
 
-  const handleConfirmDelete = () => {
-    setAddedEmail(null);
+  const handleConfirmDelete = (emailToDelete: string) => {
+    setAddedEmail(prev => prev.filter(email => email !== emailToDelete));
     setShowModal(false);
   };
 
   const verificationCode2 = '123456';
+
   const handleVerify = () => {
-    if (verificationCode2 === '123456') {
-      setVerificationInProcess(false);
-      Alert.alert('Success!', 'Your e-mail has been verified.');
-    } else {
-      Alert.alert('Verification code is incorrect. Please try again.');
-    }
-    setVerificationCode('');
+  if (verificationCode === verificationCode2) {
+    setVerificationInProcess(false);
+    setVerificationEmail('');
+    Alert.alert('Success!', 'Your e-mail has been verified.');
+  } else {
+    Alert.alert('Verification code is incorrect. Please try again.');
+  }
+  setVerificationCode('');
   };
+
 
   const handlePressSpinner = () => {
     Alert.alert('Check your e-mail for a 6-digit code, especially your spam folder.');
@@ -72,21 +100,21 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
       </View>
       <ScrollView contentContainerStyle={styles.content}>
         <Text style={styles.title}>Choose an Email</Text>
-        {addedEmail && (
-          <View style={styles.emailContainer}>
-            {verificationInProcess ? (
+        {addedEmail.map((email, index) => (
+          <View key={index} style={styles.emailContainer}>
+            {verificationInProcess && email === verificationEmail ? (
               <TouchableOpacity onPress={handlePressSpinner}>
                 <ActivityIndicator size="small" color="#FF6347" />
               </TouchableOpacity>
             ) : (
               <AntDesign name="checkcircle" size={24} color="green" />
             )}
-            <Text style={styles.addedEmail}>{addedEmail}</Text>
-            <TouchableOpacity onPress={handleDeletePress}>
+            <Text style={styles.addedEmail}>{email}</Text>
+            <TouchableOpacity onPress={() => handleDeletePress(email)}>
               <Icon name="times" size={24} color="#FF6347" />
             </TouchableOpacity>
           </View>
-        )}
+        ))}
         <TextInput
           style={styles.input}
           value={email}
@@ -125,7 +153,7 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
           <View style={styles.modalView}>
             <Text style={styles.modalText}>Are you sure you want to delete this email?</Text>
             <View style={styles.modalButtons}>
-              <TouchableOpacity style={styles.button} onPress={handleConfirmDelete}>
+              <TouchableOpacity style={styles.button} onPress={() => handleConfirmDelete(email)}>
                 <Text style={styles.buttonText}>YES</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.button} onPress={() => setShowModal(false)}>
@@ -139,6 +167,7 @@ const RegisterEmail: React.FC<RegisterEmailProps> = ({ navigation }) => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

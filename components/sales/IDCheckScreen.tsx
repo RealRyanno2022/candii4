@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { View, Text, TouchableOpacity, Alert, StyleSheet } from 'react-native';
 import { launchImageLibrary } from 'react-native-image-picker';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import ShopHeader from '../shop/ShopHeader';
+import ShopFooter from '../shop/ShopFooter';
 
 type IDCheckScreenProps = {
   navigation: any;
@@ -38,7 +40,10 @@ const IDCheckScreen: React.FC<IDCheckScreenProps> = ({ navigation }) => {
   };
 
   return (
+    <View>
+    <ShopHeader navigation={navigation} />
     <View style={styles.container}>
+ 
       <Text style={styles.headerText}>ID Check</Text>
       <Text style={styles.subText}>
         In Ireland, you must be at least 18 years old to purchase e-cigarettes, e-juice or related products.
@@ -55,6 +60,9 @@ const IDCheckScreen: React.FC<IDCheckScreenProps> = ({ navigation }) => {
         <Text style={styles.idUploadButtonText}>Upload ID</Text>
       </TouchableOpacity>
       {idImage.length > 0 && <Text style={styles.idUploadStatusText}>ID uploaded. Verifying...</Text>}
+
+    </View>
+          <ShopFooter navigation={navigation} />
     </View>
   );
 };
