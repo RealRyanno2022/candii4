@@ -63,9 +63,7 @@ const Queries: React.FC<QueriesProps> = ({ navigation }) => {
     ];
   
     return (
-      <View style={{flex: 1}}>
-      <ShopHeader navigation={navigation}  />
-      <ScrollView contentContainerStyle={styles.container}>
+      <View style={styles.container}>
         <Text style={styles.bigText}>Have a query? Feel free to ask us!</Text>
         <TextInput
           label="Name"
@@ -73,6 +71,7 @@ const Queries: React.FC<QueriesProps> = ({ navigation }) => {
           onChangeText={(text) => setName(text)}
           style={styles.inputBox}
           maxLength={100}
+          theme={{colors: { text: 'white', primary: 'white' }}}
         />
         <TextInput
           label="Email"
@@ -80,6 +79,7 @@ const Queries: React.FC<QueriesProps> = ({ navigation }) => {
           onChangeText={(text) => setEmail(text)}
           style={styles.inputBox}
           maxLength={100}
+          theme={{colors: { text: 'white', primary: 'white' }}}
         />
         <TextInput
           label="Subject"
@@ -87,6 +87,7 @@ const Queries: React.FC<QueriesProps> = ({ navigation }) => {
           onChangeText={(text) => setSubject(text)}
           style={styles.inputBox}
           maxLength={100}
+          theme={{colors: { text: 'white', primary: 'white' }}}
         />
         <TextInput
           label="Body"
@@ -94,21 +95,17 @@ const Queries: React.FC<QueriesProps> = ({ navigation }) => {
           onChangeText={(text) => setBody(text)}
           multiline
           style={styles.inputBox}
+          theme={{colors: { text: 'white', primary: 'white' }}}
         />
         <View style={styles.space}></View>
-        <TouchableOpacity
-              style={styles.card}
-              onPress={handleSubmit}
-            >
-              <Text style={styles.cardText}>Submit</Text>
-            </TouchableOpacity>
-            <View style={styles.space}></View>
+        <TouchableOpacity style={styles.button} onPress={handleSubmit}>
+          <Text style={styles.buttonText}>Submit</Text>
+        </TouchableOpacity>
+        <View style={styles.space}></View>
         <Text style={styles.faqTitle}>Frequently Asked Questions</Text>
         {faqData.map((item, index) => (
           <FAQItem key={index} question={item.question} answer={item.answer} />
         ))}
-      </ScrollView>
-      <ShopFooter navigation={navigation}/>
       </View>
     );
   };
@@ -116,10 +113,22 @@ const Queries: React.FC<QueriesProps> = ({ navigation }) => {
 
   const styles = StyleSheet.create({
       container: {
-        backgroundColor: '#F5F5F5',
+        backgroundColor: '#FCCC7C',
         padding: 20,
         alignItems: 'center',
       },
+      button: {
+        backgroundColor: '#FF6347',
+        borderRadius: 5,
+        padding: 10,
+        margin: 20,
+        alignItems: 'center',
+      },
+      buttonText: {
+        color: 'white',
+        fontWeight: 'bold',
+        textAlign: 'center',
+      },      
       faqTitle: {
         color: '#1F1F1F',
         fontSize: 18,
@@ -154,10 +163,16 @@ const Queries: React.FC<QueriesProps> = ({ navigation }) => {
         paddingBottom: 10,
       },
       inputBox: {
-        width: '80%',
-        color: '#1F1F1F',
+        width: '100%', // Changed from 80% to 100%
+        color: '#FFFFFF',
         marginTop: 10,
         fontSize: 17,
+        backgroundColor: '#fff',
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.3,
+        shadowRadius: 2,
+        elevation: 2,
       },
       bigText: {
         color: '#1F1F1F',

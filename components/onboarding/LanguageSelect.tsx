@@ -6,12 +6,13 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { NavigationProp } from '@react-navigation/native';
 
 type LanguageSelectProps = {
-  navigation: NavigationProp<StackParamList>;
+  navigation: NavigationProp<StackParamList, "LanguageSelect">;
+  route: RouteProp<StackParamList, 'LanguageSelect'> | undefined;
 }
 
-const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation }) => {
+const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation, route }) => {
   const [index, setIndex] = useState(0);
-  const [activeButton, setActiveButton] = useState(null);
+  const [activeButton, setActiveButton] = useState<number | null>(null);
 
   const languageData = [
     { language: 'English', flag: require('../pictures/british-flag.png'), translation: 'Select a language' },
@@ -23,15 +24,19 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation }) => {
     { language: 'French', flag: require('../pictures/french-flag.png'), translation: 'Sélectionnez une langue' },
   ];
 
-  const handleLanguageSelect = (language) => {
-    // You can set your selected language here
-    // This is a filler function for now.
-    console.log("Selected Language:", language);
-
-    // Navigate to the VerifyAge screen
-    navigation.navigate("VerifyAge");
+  const handleLanguageSelect = (language: string) => {
+    if (route!.params!.fromQueryLanguageSelector!) {
+      navigation.navigate("QueryLanguageSelector", { selectedLanguage: language });
+    } else {
+      navigation.navigate("VerifyAge");
+    }
   };
+  
 
+  const handleLanguageSelectPress = () => {
+    navigation.navigate("LanguageSelect", { fromQueryLanguageSelector: true } as never); // fallback value for route.params
+  };
+  
 
   useEffect(() => {
     const timer = setInterval(() => {

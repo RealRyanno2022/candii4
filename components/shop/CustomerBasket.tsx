@@ -52,7 +52,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
           <Text style={styles.boldText}>
             {email ? `For: ${email}` : 'NO EMAIL GIVEN'}
           </Text>
-          <View style={styles.iconContainer}>  // Add this line
+          <View style={styles.iconContainer}>  
             <TouchableOpacity onPress={handleEditAddressPress}>
               <View style={styles.addIconContainer}>
                 <Icon name="gear" size={15} color="white" />
@@ -63,7 +63,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
                 <Icon name="plus" size={15} color="white" />
               </View>
             </TouchableOpacity>
-          </View>  // Add this line
+          </View> 
         </View>
 
           

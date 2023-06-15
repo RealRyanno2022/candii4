@@ -25,7 +25,6 @@ const FAQItem: React.FC<FAQItemProps> = ({ question, answer }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     backgroundColor: '#F5F5F5',
     padding: 20,
   },

@@ -19,7 +19,7 @@ const VerifyAge: React.FC<VerifyAgeProps> = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-            <Text style={styles.typingText}>You must be at least 18 years old in Ireland to purchase vape.</Text>
+            <Text style={styles.typingText}>You must be at least 18 years old in Ireland to purchase vape. We will ask for verification on your first purchase.</Text>
       <TouchableOpacity
         style={styles.button}
         onPress={() => handleVerification(true)}

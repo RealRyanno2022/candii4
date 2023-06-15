@@ -7,9 +7,10 @@ import { NavigationProp } from '@react-navigation/native';
 
 type ShopFooterProps = {
   navigation: NavigationProp<StackParamList>;
+  style?: Object;
 }
 
-const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
+const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
   const [isSubscribed, setIsSubscribed] = useState(false);
 
   const route = useRoute();
@@ -37,6 +38,7 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
   }
 
   return (
+    <View style={style}>
     <SafeAreaView style={styles.container}>
       <View style={styles.footerContent}>
         <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('ShopFront')} disabled={isShopComponent}>
@@ -71,6 +73,7 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation }) => {
         </TouchableOpacity>
       </View>
     </SafeAreaView>
+    </View>
   );
 };
 

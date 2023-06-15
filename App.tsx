@@ -56,7 +56,7 @@ export default function App() {
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Intro">
+      <Stack.Navigator initialRouteName="CustomerBasket">
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
         <Stack.Screen name="QueryLanguageSelector" component={QueryLanguageSelector} />
@@ -69,7 +69,6 @@ export default function App() {
         <Stack.Screen name="VapeScreen" component={VapeScreen} />
         <Stack.Screen name="JuiceScreen" component={JuiceScreen} />
         <Stack.Screen name="NonDisposableScreen" component={NonDisposableScreen} />
-        <Stack.Screen name="QueryLanguageSelector" component={QueryLanguageSelector} />
         <Stack.Screen name="LostConnection" component={LostConnection} />
         <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
         <Stack.Screen name="DeliveryAddress" component={DeliveryAddress} />
