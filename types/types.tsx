@@ -11,6 +11,15 @@ export type BrandVarietiesProps = {
   brandName: string;
 };
 
+type Product = {
+  id: string;
+  name: string;
+  price: number;
+  brand: string;
+  type: 'juice' | 'disposable' | 'nonDisposable' | 'part';
+  image: ProductImage;
+};
+
 type Subscription = {
   isSubscribed: boolean;
   setIsSubscribed: React.Dispatch<React.SetStateAction<boolean>>;

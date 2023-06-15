@@ -1022,4 +1022,4 @@ const BrandData = {
 "undefined":{}
 }
 
-// export default BrandData;
+export default BrandData;

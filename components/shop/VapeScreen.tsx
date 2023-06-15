@@ -24,7 +24,7 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleBrandPress = (brand: string) => {
-    navigation.dispatch(StackActions.push('BrandVarieties', { brand }));
+    navigation.dispatch(StackActions.push('BrandVarieties', { brand, type: 'disposable' }));
   };
 
   const handleBackPress = () => {
