@@ -30,7 +30,6 @@ import NotFoundScreen from './components/anomalies/NotFoundScreen';
 import ConfirmationPage from './components/sales/ConfirmationPage';
 import DeliveryAddress from './components/sales/DeliveryAddress';
 import FormInput from './components/sales/FormInput';
-import ProductPage from './components/shop/ProductPage';
 import JuiceProductPage from './components/shop/JuiceProductPage';
 import NonDisposableProductPage from './components/shop/NonDisposableProductPage';
 
@@ -92,6 +91,12 @@ export default function App() {
         <Stack.Screen name="SubVapeScreen" component={SubVapeScreen} />
         <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
         <Stack.Screen name="SubSignUp" component={SubSignUp} />
+
+        <Stack.Screen
+          name="SearchProducts"
+          component={SearchProducts}
+          options={{ headerShown: false }}  // This hides the header for the SearchProducts screen
+        />
 
         <Stack.Screen name="DisposableProductPage" component={DisposableProductPage} />
         <Stack.Screen name="JuiceProductPage" component={JuiceProductPage} />

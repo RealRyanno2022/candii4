@@ -27,7 +27,7 @@ const DisposableProductPage: React.FC<DisposableProductPageProps> = ({ navigatio
           <Image source={{uri: product.image}} style={styles.image} />
           <TouchableOpacity 
             style={styles.buyButton} 
-            onPress={() => navigation.dispatch(StackActions.push('Checkout', { product }))}
+            onPress={() => navigation.dispatch(StackActions.push('VerifyEmail', { product }))}
           >
             <Text style={styles.buyButtonText}>Buy Now</Text>
           </TouchableOpacity>

@@ -25,18 +25,9 @@ const LanguageSelect: React.FC<LanguageSelectProps> = ({ navigation, route }) =>
   ];
 
   const handleLanguageSelect = (language: string) => {
-    if (route!.params!.fromQueryLanguageSelector!) {
-      navigation.navigate("QueryLanguageSelector", { selectedLanguage: language });
-    } else {
       navigation.navigate("VerifyAge");
-    }
   };
-  
 
-  const handleLanguageSelectPress = () => {
-    navigation.navigate("LanguageSelect", { fromQueryLanguageSelector: true } as never); // fallback value for route.params
-  };
-  
 
   useEffect(() => {
     const timer = setInterval(() => {
