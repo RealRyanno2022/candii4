@@ -9,12 +9,11 @@ import PrivacyPolicy from './components/onboarding/PrivacyPolicy';
 import LanguageSelect from './components/onboarding/LanguageSelect';
 import ShopFront from './components/onboarding/ShopFront';
 import VerifyAge from './components/onboarding/VerifyAge';
-import FormScreen from './components/onboarding/FormScreen';
-
 
 import IDCheckScreen from './components/sales/IDCheckScreen';
 
 import CustomerBasket from './components/shop/CustomerBasket';
+// import SearchProducts from './components/shop/SearchProducts';
 
 // Shop components
 import VapeScreen from './components/shop/VapeScreen';
@@ -48,7 +47,6 @@ import CandiiTalk from './components/onboarding/CandiiTalk';
 import PartScreen from './components/shop/PartScreen';
 import EditEmail from './components/shop/EditEmail';
 import EditEmailDeliveryAddress from './components/shop/EditEmailDeliveryAddress';
-import QueryLanguageSelector from './components/shop/QueryLanguageSelector';
 
 import DisposableProductPage from './components/shop/DisposableProductPage';
 
@@ -60,7 +58,6 @@ export default function App() {
       <Stack.Navigator initialRouteName="ShopFront">
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
-        <Stack.Screen name="QueryLanguageSelector" component={QueryLanguageSelector} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
         <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
         <Stack.Screen name="EditEmail" component={EditEmail} />
@@ -74,7 +71,6 @@ export default function App() {
         <Stack.Screen name="ConfirmationPage" component={ConfirmationPage} />
         <Stack.Screen name="DeliveryAddress" component={DeliveryAddress} />
         <Stack.Screen name="RegisterEmail" component={RegisterEmail} />
-        <Stack.Screen name="FormScreen" component={FormScreen} />
         <Stack.Screen name="CustomerBasket" component={CustomerBasket} />
         <Stack.Screen name="IDCheckScreen" component={IDCheckScreen} />
 
@@ -91,12 +87,12 @@ export default function App() {
         <Stack.Screen name="SubVapeScreen" component={SubVapeScreen} />
         <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
         <Stack.Screen name="SubSignUp" component={SubSignUp} />
-
+{/* 
         <Stack.Screen
           name="SearchProducts"
           component={SearchProducts}
           options={{ headerShown: false }}  // This hides the header for the SearchProducts screen
-        />
+        /> */}
 
         <Stack.Screen name="DisposableProductPage" component={DisposableProductPage} />
         <Stack.Screen name="JuiceProductPage" component={JuiceProductPage} />

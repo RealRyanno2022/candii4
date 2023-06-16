@@ -1,6 +1,6 @@
-import { View, StyleSheet } from 'react-native';
 import React, { useState } from 'react';
-import { Header, Icon, SearchBar } from 'react-native-elements';
+import { View, StyleSheet } from 'react-native';
+import { Header, Icon, SearchBar, Image } from 'react-native-elements';
 import { NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
@@ -12,14 +12,19 @@ type ShopHeaderProps = {
 const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
-
-  const handleSearchTextChange = () => {
+  const handleSearchTextChange = (newTerm: string) => {
     // Implement your logic here to handle the text change
+    setSearchTerm(newTerm);
+  };
+
+  const handleSearchFocus = () => {
+    // When search bar is focused, navigate to SearchProducts screen
+    navigation.navigate('SearchProducts');
   };
 
   return (
     <View style={styles.headerColor}>
-      <SearchBar
+      {/* <SearchBar
         platform="default"
         containerStyle={styles.searchBarContainer}
         lightTheme
@@ -29,25 +34,40 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
         placeholder="Search..."
         style={styles.searchBar}
         value={searchTerm}
-        loadingProps={{}} // Add empty object for loadingProps
-        showLoading={false} // Set showLoading to false
-        round={false} // Set round to false
-        onFocus={() => {}} // Add empty function for onFocus
-        onBlur={() => {}} // Add empty function for onBlur
+        loadingProps={{}} 
+        showLoading={false} 
+        round={false} 
+        onFocus={handleSearchFocus} // Add function to handle focus
+        onBlur={() => {}} 
         onCancel={() => {}}
-        cancelButtonTitle="" // Provide a value for cancelButtonTitle
-        cancelButtonProps={{}} // Add empty object for cancelButtonProps
-        clearIcon={{ name: 'clear' }} // Provide a valid icon name for clearIcon
-        showCancel={false} // Set showCancel to false
+        cancelButtonTitle=""
+        cancelButtonProps={{}} 
+        clearIcon={{ name: 'clear' }} 
+        showCancel={false} 
         inputContainerStyle={styles.inputContainerStyle}
-      />
+      /> */}
+    <View style={styles.container}>
+      <Image source={require('../pictures/icon.png')} style={styles.image} />
+      </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   headerColor: {     
-    backgroundColor: '#FFFFFF',
+    backgroundColor: '#FCCC7C',
+    alignItems: 'center',
+    width: '100%',
+  },
+  image: {
+    height: 100,
+    width: 100,
+
+  },
+  container: {
+    width: '100%',
+    alignItems: 'center',
+    backgroundColor: ''
   },
   searchBarContainer: { 
     width: '100%', 

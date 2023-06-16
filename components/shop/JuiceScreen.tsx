@@ -97,6 +97,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     padding: 20,
+    backgroundColor: '#FCCC7C',
   },
   image: {
     width: '100%',
