@@ -33,7 +33,7 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
         </View>
           <Text style={styles.title}></Text>
           <Image source={require('../pictures/subs.jpg')} style={styles.image} />
-          <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push('SubVapeScreen'))}>
+          <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push('SubJuiceScreen'))}>
             <Text style={styles.signUpButtonText}>Sign Up</Text>
           </TouchableOpacity>
           <View style={styles.subscriptionInfo}>

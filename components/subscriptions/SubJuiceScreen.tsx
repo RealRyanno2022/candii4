@@ -17,24 +17,22 @@ type ProductType = {
   image: string;
 };
 
-type SubVapeScreenProps = {
-  navigation: StackNavigationProp<StackParamList, "SubVapeScreen">;
+type SubJuiceScreenProps = {
+  navigation: StackNavigationProp<StackParamList, "SubJuiceScreen">;
 }
 
-const SubVapeScreen: React.FC<SubVapeScreenProps> = ({ navigation }) => {
+const SubJuiceScreen: React.FC<SubJuiceScreenProps> = ({ navigation }) => {
   const [searchTerm, setSearchTerm] = useState('');
 
   const handleBrandPress = (brandName: string) => {
-    navigation.dispatch(StackActions.push('BrandVarieties', { brandName }));
+    navigation.dispatch(StackActions.push('BrandVarieties', { brand: brandName, type: 'juice' }));
   };
+  
   
   const handleBackPress = () => {
     navigation.pop();
   };
 
-  const handleSearch = () => {
-    navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
-  }
 
   const brands = [
     { name: "Kinship", image: require('../pictures/JuiceScreen/kinship.png') },
@@ -78,7 +76,7 @@ const SubVapeScreen: React.FC<SubVapeScreenProps> = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: '#F5F5F5',
+    backgroundColor: '#FCCC7C',
   },
   header: {
     paddingTop: 50,
@@ -97,6 +95,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     flexWrap: 'wrap',
     padding: 20,
+    backgroundColor: '#FCCC7C',
   },
   image: {
     width: '100%',
@@ -130,4 +129,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SubVapeScreen;
+export default SubJuiceScreen;

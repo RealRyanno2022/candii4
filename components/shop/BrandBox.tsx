@@ -22,7 +22,7 @@ type BrandBoxProps = {
 
 const BrandBox: React.FC<BrandBoxProps> = ({
   product,
-  selected,
+  selected = false,
   quantity,
   onSelect,
   onDeselect,
@@ -31,7 +31,6 @@ const BrandBox: React.FC<BrandBoxProps> = ({
   const handleProductPress = () => {
     navigation.navigate('DisposableProductPage', { product });
   };
-  console.log(product);
 
   return (
     <TouchableOpacity style={styles.brandBox} onPress={handleProductPress}>
@@ -42,18 +41,22 @@ const BrandBox: React.FC<BrandBoxProps> = ({
   );
 };
 
-
-
-
-
 const styles = StyleSheet.create({
   brandBox: {
-    backgroundColor: '#f0f0f0',
+    backgroundColor: 'white', // make the background white
     borderRadius: 5,
     padding: 10,
     marginBottom: 15,
     alignItems: 'center',
     width: '100%',
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
   },
   productImage: {
     width: '100%',

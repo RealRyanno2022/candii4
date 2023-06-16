@@ -128,7 +128,7 @@ const incrementQuantity = () => {
         maximumValue={product.images.length - 1}
         step={1}
       />
-      <Text style={styles.name}>{product.name}</Text>
+      <Text style={styles.name}>{product.brand} - {product.name}</Text>
       <Text style={styles.price}>${product.price.toFixed(2)}</Text>
       <View style={styles.quantityContainer}>
         <TouchableOpacity onPress={decrementQuantity}>

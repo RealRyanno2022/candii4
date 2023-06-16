@@ -60,7 +60,7 @@ export type StackParamList = {
   VapeScreen: undefined;
   FormScreen: undefined;
   SubSignUp: { subscription: Subscription, navigation: any, route: any };
-  SubVapeScreen: undefined;
+  SubJuiceScreen: undefined;
   NotFoundScreen: undefined;
   ChooseFlavours: undefined;
   ManageSubscription: { subscription: Subscription };

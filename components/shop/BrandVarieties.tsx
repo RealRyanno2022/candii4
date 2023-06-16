@@ -58,10 +58,11 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
         renderItem={({ item }) => (
           <BrandBox 
             navigation={navigation} 
-            selected={false}
             quantity={0}
             onSelect={() => handleSelectProduct(item)}
+            onDeselect={() => {}}
             product={item}
+            selected={false}
           />
         )}
       />
@@ -74,6 +75,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#fff',
+    alignItems: 'center',
   },
   title: {
     fontWeight: 'bold',

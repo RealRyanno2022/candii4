@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, ScrollView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
 import BrandBox from './BrandBox';
 import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import Icon from 'react-native-vector-icons/FontAwesome';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import PurchaseInfo from './PurchaseInfo';
 
 type ProductImage = string;
 
@@ -15,6 +16,7 @@ type Product = {
   name: string;
   price: number;
   brand: string;
+  type: 'juice' | 'disposable' | 'nonDisposable' | 'part';
   image: ProductImage;
 };
 
@@ -23,11 +25,37 @@ type CustomerBasketProps = {
   route: RouteProp<StackParamList, 'CustomerBasket'>; // add this line
 };
 
+type BasketItem = {
+  product: any;
+  quantity: number;
+}
+
+
 const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => {
+  const [basketItems, setBasketItems] = useState<BasketItem[]>([]);
   const [basket, setBasket] = useState<Product[]>([]);
   const subtotal = basket.reduce((total, product) => total + product.price, 0);
   const numItems = basket.length;
   const email = route.params?.email || '';
+
+
+
+  useEffect(() => {
+    const loadBasket = async () => {
+      try {
+        const storedBasket = await AsyncStorage.getItem('basket');
+        
+        if (storedBasket !== null) {
+          setBasket(JSON.parse(storedBasket));
+        }
+      } catch (error) {
+        console.error('Failed to load the basket.', error);
+      }
+    };
+
+    loadBasket();
+  }, []);
+
 
   const handleEditAddressPress = () => {
     navigation.navigate('EditEmailDeliveryAddress');
@@ -41,79 +69,117 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
     navigation.navigate('ShopFront');
   };
 
+  useEffect(() => {
+    if (route.params?.item) {
+      setBasket(oldBasket => [...oldBasket, route.params.item]);
+    }
+  }, [route.params?.item]);
+
+
+  const increaseQuantity = (index: number) => {
+    const newBasketItems = [...basketItems];
+    newBasketItems[index].quantity += 1;
+    setBasketItems(newBasketItems);
+  };
+
+  const decreaseQuantity = (index: number) => {
+    const newBasketItems = [...basketItems];
+    newBasketItems[index].quantity -= 1;
+    if (newBasketItems[index].quantity === 0) {
+      newBasketItems.splice(index, 1);
+    }
+    setBasketItems(newBasketItems);
+  };
+
+  const renderBasketItem = ({ item, index }: { item: Product, index: number }) => (
+    <View>
+      <BrandBox
+        navigation={navigation}
+        quantity={1}
+        onSelect={() => {}}
+        onDeselect={() => {}}
+        product={item}
+        selected={true}  // Always selected in basket
+      />
+      <PurchaseInfo quantity={1} subtotal={item.price} />
+    </View>
+  );
+
+
+  // const handleSelectProduct = (product: Product) => {
+  //   switch(type) {
+  //     case 'juice':
+  //       navigation.navigate('JuiceProductPage', { product });
+  //       break;
+  //     case 'nonDisposable':
+  //       navigation.navigate('NonDisposableProductPage', { product });
+  //       break;
+  //     default:
+  //       navigation.navigate('DisposableProductPage', { product }); // Assuming 'ProductPage' corresponds to 'DisposableProductPage'
+  //       break;
+  //   }
+  // };
+
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.scrollViewContainer} bounces={false}>
-        <View style={styles.content}>
-          
+      <View style={styles.content}>
         <Text style={styles.title}>Your Basket</Text>
-        {/* <View style={styles.subscriptionInfo}>
-          <Text style={styles.boldText}>
-            {email ? `For: ${email}` : 'NO EMAIL GIVEN'}
-          </Text>
-          <View style={styles.iconContainer}>  
-            <TouchableOpacity onPress={handleEditAddressPress}>
-              <View style={styles.addIconContainer}>
-                <Icon name="gear" size={15} color="white" />
-              </View>
-            </TouchableOpacity>
-            <TouchableOpacity onPress={() => navigation.navigate('RegisterEmail')}>
-              <View style={styles.addIconContainer}>
-                <Icon name="plus" size={15} color="white" />
-              </View>
-            </TouchableOpacity>
-          </View> 
-        </View> */}
-
-          
-          {numItems > 0 ? (
-            <View>
-               <View style={styles.subscriptionInfo}>
-              <Text style={styles.subtotal}>Subtotal: {subtotal.toFixed(2)}</Text>
-              <FlatList
-                data={basket}
-                keyExtractor={(item) => item.id}
-                renderItem={({ item }) => (
-                  <BrandBox
-                    navigation={navigation}
-                    selected={false}
-                    quantity={1}
-                    onSelect={() => {}}
-                    onDeselect={() => {}}
-                    product={item}
-                  />
-                )}
-              />
+        {numItems > 0 ? (
+          <View style={styles.basketContent}>
+            <View style={styles.checkoutInfo}>
+              <Text style={styles.subtotal}>Subtotal: €{subtotal.toFixed(2)}</Text>
               <TouchableOpacity style={styles.button} onPress={handleCheckoutPress}>
                 <Text style={styles.buttonText}>Proceed to Checkout ({numItems} items)</Text>
               </TouchableOpacity>
-              </View>
             </View>
-          ) : (
-            <View>
-            <View style={styles.subscriptionInfo}>
-              <Text style={styles.boldBasketText}>Your basket is currently empty.</Text>
-            </View>
-              <TouchableOpacity style={styles.button} onPress={handleShopFrontPress}>
-                <Text style={styles.buttonText}>Start Shopping!</Text>
-              </TouchableOpacity>
-            </View>
-          )}
-        </View>
-      </ScrollView>
-      <ShopFooter navigation={navigation} />
+            <FlatList
+              data={basket}
+              keyExtractor={(item, index) => 'key' + index}
+              renderItem={renderBasketItem}
+            />
+          </View>
+        ) : (
+          <View />
+      )}
+      </View>
+      <View style={styles.footerContainer}>
+        <ShopFooter navigation={navigation} />
+      </View>
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FCCC7C',
+    alignItems: 'center',
   },
   iconContainer: {
     flexDirection: 'row',
+    backgroundColor: '#FCCC7C',
+  },
+  footerContainer: {
+    position: 'absolute', // make the ShopFooter fixed
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+  space: {
+    marginBottom: 100,
+  },
+  // container: {
+  //   flex: 1,
+  //   backgroundColor: '#FCCC7C',
+  //   justifyContent: 'space-between', // to push footer at the bottom
+  // },
+  content: {
+    width: '100%', // to take full width
+  },
+  basketContent: {
+    alignItems: 'center',
   },
   title: {
     fontWeight: 'bold',
@@ -129,14 +195,13 @@ const styles = StyleSheet.create({
   boldBasketText: {
     fontSize: 16,
     fontFamily: 'OpenSans-Regular',
-    fontWeight: 'bold', // Add this line
+    fontWeight: 'bold',
     alignItems: 'center',
   },
   subscriptionInfo: {
-    flexDirection: 'row', // Add this line
-    justifyContent: 'space-between', // Add this line
-    alignItems: 'center', // Add this line
-    padding: 20,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     marginTop: 20,
     borderRadius: 10,
     backgroundColor: '#fff',
@@ -149,23 +214,7 @@ const styles = StyleSheet.create({
   boldText: {
     fontSize: 16,
     fontFamily: 'OpenSans-Regular',
-    fontWeight: 'bold', // Add this line
-  },
-  subscriptionInfoHeader: {
-    fontSize: 22,
     fontWeight: 'bold',
-    color: '#333',
-    marginBottom: 10,
-    fontFamily: 'OpenSans-Bold',
-  },
-  subscriptionInfoDescription: {
-    fontSize: 16,
-    fontFamily: 'OpenSans-Regular',
-  },
-  emailContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'center',
   },
   addIconContainer: {
     marginLeft: 10,
@@ -182,18 +231,7 @@ const styles = StyleSheet.create({
     color: 'white',
     paddingHorizontal: 20,
     paddingVertical: 10,
-  },
-  emptyBasket: {
-    flex: 1,
-    justifyContent: 'center',
     alignItems: 'center',
-  },
-  emptyText: {
-    fontSize: 22,
-    color: 'white',
-    fontWeight: 'bold',
-    marginBottom: 5,
-    textAlign: 'center',
   },
   button: {
     backgroundColor: '#FF6347',
@@ -206,16 +244,12 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
   },
-  emailText: {
-    fontSize: 18,
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-    marginBottom: 10,
+  checkoutInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-around', // make "Your Basket", "Subtotal: ...", "Proceed to Checkout" buttons closer together
+    marginBottom: 20,
   },
-  content: {
-    flex: 1,
-  }
 });
+
 
 export default CustomerBasket;
