@@ -29,7 +29,7 @@ const BrandBox: React.FC<BrandBoxProps> = ({
   navigation,
 }) => {
   const handleProductPress = () => {
-    navigation.navigate('ProductScreen', { product });
+    navigation.navigate('DisposableProductPage', { product });
   };
   console.log(product);
 
