@@ -1,18 +1,18 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
-import ShopHeader from '../shop/ShopHeader';
-import ShopFooter from '../shop/ShopFooter';
+import ShopHeader from './ShopHeader';
+import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 
-type ProductPageProps = {
+type DisposableProductPageProps = {
   navigation: StackNavigationProp<StackParamList>;
-  route: RouteProp<StackParamList, 'ProductPage'>;
+  route: RouteProp<StackParamList, 'DisposableProductPage'>;
 }
 
-const ProductPage: React.FC<ProductPageProps> = ({ navigation, route }) => {
+const DisposableProductPage: React.FC<DisposableProductPageProps> = ({ navigation, route }) => {
   const { product } = route.params;
 
   return (
@@ -110,4 +110,4 @@ const styles = StyleSheet.create({
   },
 })
 
-export default ProductPage;
+export default DisposableProductPage;

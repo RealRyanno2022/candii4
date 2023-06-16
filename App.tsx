@@ -51,6 +51,8 @@ import EditEmail from './components/shop/EditEmail';
 import EditEmailDeliveryAddress from './components/shop/EditEmailDeliveryAddress';
 import QueryLanguageSelector from './components/shop/QueryLanguageSelector';
 
+import DisposableProductPage from './components/shop/DisposableProductPage';
+
 export default function App() {
   const Stack = createStackNavigator();
 
@@ -91,7 +93,7 @@ export default function App() {
         <Stack.Screen name="NotFoundScreen" component={NotFoundScreen} />
         <Stack.Screen name="SubSignUp" component={SubSignUp} />
 
-        <Stack.Screen name="ProductPage" component={ProductPage} />
+        <Stack.Screen name="DisposableProductPage" component={DisposableProductPage} />
         <Stack.Screen name="JuiceProductPage" component={JuiceProductPage} />
         <Stack.Screen name="NonDisposableProductPage" component={NonDisposableProductPage} />
       </Stack.Navigator>

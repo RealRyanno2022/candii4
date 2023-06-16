@@ -11,6 +11,8 @@ export type BrandVarietiesProps = {
   brandName: string;
 };
 
+type ProductImage = string;
+
 type Product = {
   id: string;
   name: string;
@@ -52,7 +54,7 @@ export type StackParamList = {
   ContinueShopping: undefined;
   JuiceProductPage: { product: Product };
   NonDisposableProductPage: { product: Product };
-  ProductPage: { product: Product };
+  DisposableProductPage: { product: Product };
   JuiceScreen: undefined;
   SearchProducts: undefined;
   VapeScreen: undefined;

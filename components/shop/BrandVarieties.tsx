@@ -25,24 +25,14 @@ type Product = {
 };
 
 const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) => {
-  const { brand, type } = route.params; // Corrected this line
+  const { brand, type } = route.params; 
 
   const [varieties, setVarieties] = useState<Product[]>([]);
 
   useEffect(() => {
-    console.log("Brand from route parameters:", brand);
     const filteredData = Object.values(BrandData).filter((product: any) => product.brand === brand) as Product[];
     setVarieties(filteredData);
-    console.log("Filtered data for brand:", filteredData);
   }, [brand]);
-
-  const handleSelect = () => {
-    console.log('Selected product');
-  };
-
-  const handleDeselect = () => {
-    console.log('Deselected product');
-  };
 
   const handleSelectProduct = (product: Product) => {
     switch(type) {
@@ -53,13 +43,11 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
         navigation.navigate('NonDisposableProductPage', { product });
         break;
       default:
-        navigation.navigate('ProductPage', { product });
+        navigation.navigate('DisposableProductPage', { product }); // Assuming 'ProductPage' corresponds to 'DisposableProductPage'
         break;
     }
   };
   
-  
-
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
@@ -73,7 +61,6 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
             selected={false}
             quantity={0}
             onSelect={() => handleSelectProduct(item)}
-            onDeselect={handleDeselect}
             product={item}
           />
         )}
