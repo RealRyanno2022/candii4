@@ -141,7 +141,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
           </View>
         ) : (
           <View />
-      )}
+        )}
       </View>
       <View style={styles.footerContainer}>
         <ShopFooter navigation={navigation} />
@@ -160,6 +160,43 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
     backgroundColor: '#FCCC7C',
+  },
+  basketContent: {
+    alignItems: 'center',
+    width: '100%', // Decrease width to make BrandBox and ProductInfo components appear wider
+  },
+  title: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: 'white',
+    textAlign: 'center',
+    paddingVertical: 10,
+    marginBottom: 10,
+  },
+  subtotal: {
+    fontWeight: 'bold',
+    fontSize: 20,
+    color: 'white',
+    paddingHorizontal: 20,
+    paddingVertical: 10,
+    textAlign: 'center', // Align text to center
+  },
+  button: {
+    backgroundColor: '#FF6347',
+    borderRadius: 5,
+    padding: 10,
+    margin: 20,
+  },
+  buttonText: {
+    color: 'white',
+    fontWeight: 'bold',
+    textAlign: 'center',
+  },
+  checkoutInfo: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    marginBottom: 20,
+    alignItems: 'center', // Align items to center
   },
   footerContainer: {
     position: 'absolute', // make the ShopFooter fixed
@@ -224,30 +261,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#FF6347',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  subtotal: {
-    fontWeight: 'bold',
-    fontSize: 20,
-    color: 'white',
-    paddingHorizontal: 20,
-    paddingVertical: 10,
-    alignItems: 'center',
-  },
-  button: {
-    backgroundColor: '#FF6347',
-    borderRadius: 5,
-    padding: 10,
-    margin: 20,
-  },
-  buttonText: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
-  },
-  checkoutInfo: {
-    flexDirection: 'row',
-    justifyContent: 'space-around', // make "Your Basket", "Subtotal: ...", "Proceed to Checkout" buttons closer together
-    marginBottom: 20,
   },
 });
 

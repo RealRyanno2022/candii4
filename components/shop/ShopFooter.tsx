@@ -4,6 +4,8 @@ import { useRoute } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { NavigationProp } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 type ShopFooterProps = {
   navigation: NavigationProp<StackParamList>;
@@ -25,10 +27,12 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
   const isCandiiTalkComponent = route?.name === 'CandiiTalk';
   const isCustomerBasketComponent = route?.name === 'CustomerBasket';
 
-  const handleVapePress = () => {
+  const handleVapePress = async () => {
     if (isSubscribed) {
+      await AsyncStorage.setItem('lastTab', 'ManageSubscription');
       navigation.dispatch(StackActions.push('ManageSubscription', { subscription }));
     } else {
+      await AsyncStorage.setItem('lastTab', 'SubSignUp');
       navigation.dispatch(StackActions.push('SubSignUp', { subscription }));
     }
   }

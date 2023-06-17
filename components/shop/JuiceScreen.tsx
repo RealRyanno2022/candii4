@@ -32,9 +32,7 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
     navigation.pop();
   };
 
-  const handleSearch = () => {
-    navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
-  }
+
 
   const brands = [
     { name: "Kinship", image: require('../pictures/JuiceScreen/kinship.png') },
