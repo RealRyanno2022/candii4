@@ -42,34 +42,50 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
     <SafeAreaView style={styles.container}>
       <View style={styles.footerContent}>
         <TouchableOpacity
-        
-        onPress={async () => {
-          await AsyncStorage.setItem('lastTab', 'ShopFront');
-          navigation.navigate('ShopFront');
-        }} 
-        disabled={isShopComponent}
-        style={styles.iconContainer}>
+          onPress={async () => {
+            await AsyncStorage.setItem('lastTab', 'ShopFront');
+            navigation.navigate('ShopFront');
+          }} 
+          disabled={isShopComponent}
+          style={[styles.iconContainer, isShopComponent && styles.disabledIcon]}>
           <Image
             source={require('../pictures/haus-removebg-preview.png')}
-            style={[styles.icon, isShopComponent && styles.disabledIcon]}
+            style={styles.icon}
           />
+          {isShopComponent && <View style={styles.line} />}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.dispatch(StackActions.push('CandiiTalk'))} disabled={isCandiiTalkComponent}>
+        <TouchableOpacity
+          style={[styles.iconContainer, isCandiiTalkComponent && styles.disabledIcon]}
+          onPress={() => navigation.dispatch(StackActions.push('CandiiTalk'))}
+          disabled={isCandiiTalkComponent}
+        >
           <Image 
             source={require('../pictures/heart.png')} 
-            style={[styles.icon, isCandiiTalkComponent && styles.disabledIcon]} 
+            style={styles.icon} 
           />
+          {isCandiiTalkComponent && <View style={styles.line} />}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('CustomerBasket')} disabled={isCustomerBasketComponent}>
+        <TouchableOpacity
+          style={[styles.iconContainer, isCustomerBasketComponent && styles.disabledIcon]}
+          onPress={() => navigation.navigate('CustomerBasket')}
+          disabled={isCustomerBasketComponent}
+        >
           <Image 
             source={require('../pictures/basket-removebg-preview.png')} 
-            style={[styles.icon, isCustomerBasketComponent && styles.disabledIcon]} 
+            style={styles.icon} 
           />
+          {isCustomerBasketComponent && <View style={styles.line} />}
         </TouchableOpacity>
-        <TouchableOpacity style={styles.iconContainer} onPress={handleVapePress} disabled={isSubSignUpComponent}>
+        {isSubSignUpComponent && <View style={styles.line} />}
+        <TouchableOpacity
+          style={[styles.iconContainer, isSubSignUpComponent && styles.disabledIcon]}
+          onPress={handleVapePress}
+          disabled={isSubSignUpComponent}
+        >
+               
           <Image 
             source={require('../pictures/vape-removebg-preview.png')} 
-            style={[styles.icon, isSubSignUpComponent && styles.disabledIcon]} 
+            style={styles.icon} 
           />
         </TouchableOpacity>
       </View>
@@ -104,6 +120,7 @@ const styles = StyleSheet.create({
   iconContainer: {
     flex: 1,
     alignItems: 'center',
+    position: 'relative',
   },
   icon: {
     width: 25,
@@ -112,6 +129,13 @@ const styles = StyleSheet.create({
   },
   disabledIcon: {
     tintColor: '#FCCC7C',
+  },
+  line: {
+    position: 'absolute',
+    bottom: -1,
+    width: 25,
+    height: 6,
+    backgroundColor: '#FCCC7C',
   },
 });
 

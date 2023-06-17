@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView, Alert } from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import ShopHeader from '../shop/ShopHeader';
 import ShopFooter from '../shop/ShopFooter';
 import { StackParamList } from '../../types/types';
@@ -11,16 +12,36 @@ import LazySubSignUpContent from './LazySubSignUpContent';
 type SubSignUpProps = {
   navigation: StackNavigationProp<StackParamList>;
   route: RouteProp<StackParamList, 'SubSignUp'>;
-}
+};
 
 const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
   const [subscriptionType, setSubscriptionType] = useState('yearly');
-  const { subscription } = route.params;
+  const { subscription = { isSubscribed: false, setIsSubscribed: () => {} } } = route.params || {};
   const { isSubscribed, setIsSubscribed } = subscription;
+  const [alertShown, setAlertShown] = useState(false);
 
   const handleSubscriptionTypeChange = (type: string) => {
     setSubscriptionType(type);
   };
+
+  useEffect(() => {
+    const checkAlertShown = async () => {
+      try {
+        const value = await AsyncStorage.getItem('subSignUpAlertShown');
+        if (value === null) {
+          Alert.alert('Welcome to the Vape Pass!', 'Choose four e-juices from our selection.');
+          await AsyncStorage.setItem('subSignUpAlertShown', 'true');
+        }
+        setAlertShown(true);
+      } catch (error) {
+        console.log('AsyncStorage Error:', error);
+      }
+    };
+
+    if (!alertShown) {
+      checkAlertShown();
+    }
+  }, [alertShown]);
 
   return (
     <View style={styles.mainContainer}>
@@ -33,9 +54,8 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
       <ShopFooter navigation={navigation} />
     </View>
   );
-
-
 };
+
 
 const styles = StyleSheet.create({
   mainContainer: {

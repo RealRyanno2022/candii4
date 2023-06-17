@@ -29,13 +29,14 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
   const { brand, type } = route.params; 
 
   useEffect(() => {
-    const filteredData = Object.values(BrandData).filter((product: any) => product.brand === brand) as Product[];
-    setVarieties(filteredData);
-  
+    console.log('BrandVarieties is being rendered');
+  }, []);
+
+  useEffect(() => {
     const getLastTab = async () => {
       const lastTab = await AsyncStorage.getItem('lastTab');
       if (lastTab) {
-        navigation.navigate(lastTab);
+        navigation.navigate(lastTab as keyof StackParamList); // <-- this line changed
       }
     };
   
@@ -92,7 +93,7 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
       </View>
 
       <View style={styles.footerContainer}>
-        <ShopFooter navigation={navigation}/>
+        <ShopFooter navigation={navigation} />
       </View>
     </View>
   );
