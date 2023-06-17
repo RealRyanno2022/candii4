@@ -23,16 +23,16 @@ const ManageSubscription: React.FC<ManageSubscriptionProps> = ({ navigation, use
         },
         flavours: [
           {
-            image: require("../pictures/VapePics/Elfbar/Cola0.png"),
+            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
           },
           {
-            image: require("../pictures/VapePics/Elfbar/Cola0.png"),
+            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
           },
           {
-            image: require("../pictures/VapePics/Elfbar/Cola0.png"),
+            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
           },
           {
-            image: require("../pictures/VapePics/Elfbar/Cola0.png"),
+            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
           },
         ],
       }
