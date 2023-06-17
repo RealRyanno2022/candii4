@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import BrandBox from './BrandBox';
 import BrandData from '../data/BrandData';
 import ShopHeader from './ShopHeader';
@@ -7,9 +7,6 @@ import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
-import AsyncStorage from '@react-native-async-storage/async-storage';
-
-type ProductImage = string;
 
 type BrandVarietiesProps = {
   route: RouteProp<StackParamList, 'BrandVarieties'>;
@@ -22,24 +19,32 @@ type Product = {
   price: number;
   brand: string;
   type: 'juice' | 'disposable' | 'nonDisposable' | 'part';
-  image: ProductImage;
+  image: string;
 };
 
 const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) => {
-  const { brand, type } = route.params; 
-
-  useEffect(() => {
-    console.log('BrandVarieties is being rendered');
-  }, []);
-
   const [varieties, setVarieties] = useState<Product[]>([]);
 
   useEffect(() => {
-    const filteredData = Object.values(BrandData).filter((product: any) => product.brand === brand) as Product[];
-    setVarieties(filteredData);
-  }, [brand]);
+    console.log('BrandVarieties is being rendered');
+    if (route.params) {
+      const { brand } = route.params;
+      loadBrandsData(brand);
+    }
+  }, [route.params]);
+
+  const loadBrandsData = (brand: string) => {
+    // Filter out the products of the specified brand.
+    const brandProducts = BrandData.filter(product => product.brand === brand);
+    setVarieties(brandProducts);
+  }
+
+  const reloadData = () => {
+    navigation.navigate('ShopFront');
+  }
 
   const handleSelectProduct = (product: Product) => {
+    const type = product.type;
     switch(type) {
       case 'juice':
         navigation.navigate('JuiceProductPage', { product });
@@ -48,75 +53,92 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
         navigation.navigate('NonDisposableProductPage', { product });
         break;
       default:
-        navigation.navigate('DisposableProductPage', { product }); // Assuming 'ProductPage' corresponds to 'DisposableProductPage'
+        navigation.navigate('DisposableProductPage', { product });
         break;
     }
   };
-  
+
+  const brand = route.params?.brand ?? 'Unknown';
+
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
       <Text style={styles.title}>{brand} Varieties</Text>
       <View style={styles.basketContent}>
-      <FlatList 
-              style= {{ width: '60%' }}
-              showsVerticalScrollIndicator={false}
-        data={varieties}
-        keyExtractor={(item, index) => 'key' + index}
-        bounces={false}
-        ListFooterComponent={<View style={{ height: 75 }} />}
-        renderItem={({ item }) => (
-          <BrandBox 
-            navigation={navigation} 
-            quantity={0}
-            onSelect={() => handleSelectProduct(item)}
-            onDeselect={() => {}}
-            product={item}
-            selected={false}
+        {varieties.length > 0 ? (
+          <FlatList 
+            style= {{ width: '60%' }}
+            showsVerticalScrollIndicator={false}
+            data={varieties}
+            keyExtractor={(item, index) => 'key' + index}
+            bounces={false}
+            ListFooterComponent={<View style={{ height: 75 }} />}
+            renderItem={({ item }) => (
+              <BrandBox 
+                navigation={navigation} 
+                quantity={0}
+                onSelect={() => handleSelectProduct(item)}
+                onDeselect={() => {}}
+                product={item}
+                selected={false}
+              />
+            )}
           />
+        ) : (
+          <View style={{ alignItems: 'center' }}>
+            <Text style={styles.noBrandTitle}>No varieties loaded.</Text>
+            <TouchableOpacity style={styles.button} onPress={reloadData}>
+              <Text style={styles.buttonText}>Reload</Text>
+            </TouchableOpacity>
+          </View>
         )}
-        
-      />
-         {/* <View style={styles.space} /> */}
       </View>
-
       <View style={styles.footerContainer}>
         <ShopFooter navigation={navigation} />
       </View>
     </View>
   );
 }
-  
-  const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#FCCC7C',
-      alignItems: 'center',
-    },
-    basketContent: {
-      flex: 1,
-      alignItems: 'center',
-      width: '90%', // Decrease width to make BrandBox and ProductInfo components appear wider
-    },
-    space: {
-      marginBottom: 150,
-    },
-    title: {
-      fontWeight: 'bold',
-      fontSize: 25,
-      color: '#FFFFFF',
-      paddingHorizontal: 20,
-      paddingVertical: 10,
-      marginBottom: 10,
-      borderBottomWidth: 1,
-      borderBottomColor: '#e0e0e0',
-      alignItems: 'center',
-    },
-    footerContainer: {
-      position: 'absolute',
-      width: '100%',
-      bottom: 0,
-    }
-  });
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#FCCC7C',
+  },
+  basketContent: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  title: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    color: 'white',
+  },
+  noBrandTitle: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
+    color: 'white',
+  },
+  button: {
+    backgroundColor: '#FF6347',
+    borderRadius: 5,
+    padding: 10,
+    margin: 20,
+  },
+  buttonText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: 'white',
+  },
+  footerContainer: {
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: 0,
+  },
+});
 
 export default BrandVarieties;

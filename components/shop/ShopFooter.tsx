@@ -37,18 +37,27 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
     }
   }
 
+  if (isShopComponent) {
+    AsyncStorage.setItem('lastShopTab', route?.name);
+  }
+
+  const onPressHome = async () => {
+    const lastShopTab = await AsyncStorage.getItem('lastShopTab');
+    if (lastShopTab) {
+      navigation.navigate(lastShopTab as keyof StackParamList);
+    } else {
+      navigation.navigate('ShopFront');
+    }
+  }
+
   return (
     <View style={style}>
     <SafeAreaView style={styles.container}>
       <View style={styles.footerContent}>
         <TouchableOpacity
-        
-        onPress={async () => {
-          await AsyncStorage.setItem('lastTab', 'ShopFront');
-          navigation.navigate('ShopFront');
-        }} 
-        disabled={isShopComponent}
-        style={styles.iconContainer}>
+          onPress={onPressHome}
+          disabled={isShopComponent}
+          style={styles.iconContainer}>
           <Image
             source={require('../pictures/haus-removebg-preview.png')}
             style={[styles.icon, isShopComponent && styles.disabledIcon]}
