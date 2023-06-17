@@ -32,18 +32,6 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
     console.log('BrandVarieties is being rendered');
   }, []);
 
-  useEffect(() => {
-    const getLastTab = async () => {
-      const lastTab = await AsyncStorage.getItem('lastTab');
-      if (lastTab) {
-        navigation.navigate(lastTab as keyof StackParamList); // <-- this line changed
-      }
-    };
-  
-    getLastTab();
-  }, [brand, navigation]);
-  
-
   const [varieties, setVarieties] = useState<Product[]>([]);
 
   useEffect(() => {
