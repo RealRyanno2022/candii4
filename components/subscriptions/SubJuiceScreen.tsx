@@ -61,6 +61,7 @@ const SubJuiceScreen: React.FC<SubJuiceScreenProps> = ({ navigation }) => {
            </TouchableOpacity>
          ))}
        </View>
+       <View style={styles.space} />
      </ScrollView>
      <ShopFooter navigation={navigation}/>
    </View>
@@ -70,6 +71,9 @@ const SubJuiceScreen: React.FC<SubJuiceScreenProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#FCCC7C',
+  },
+  space: {
+    marginBottom: 50,
   },
   header: {
     paddingTop: 50,
