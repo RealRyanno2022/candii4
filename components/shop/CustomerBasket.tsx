@@ -153,10 +153,14 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
     );
   };
 
+  const handleStartShopping = () => {
+    navigation.navigate('ShopFront');
+  };
+
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
-      <ScrollView style={styles.content} bounces={false}>
+      <ScrollView style={styles.content} bounces={false} contentContainerStyle={{ paddingBottom: 60 }}>
         <Text style={styles.title}>Your Basket</Text>
         {numItems > 0 ? (
           <View style={styles.basketContent}>
@@ -164,7 +168,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
               <Text style={styles.subtotal}>Subtotal: €{subtotal.toFixed(2)}</Text>
               <TouchableOpacity style={styles.button} onPress={handleCheckoutPress}>
                 <Text style={styles.buttonText}>Proceed to Checkout ({numItems} items)</Text>
-              </TouchableOpacity>a
+              </TouchableOpacity>
             </View>
             <FlatList
               style= {{ width: '100%' }}
@@ -175,7 +179,12 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
             />
           </View>
         ) : (
-          <View />
+          <View style={styles.centerContainer}>
+            <Text style={styles.emptyBasketText}>Your basket is empty</Text>
+            <TouchableOpacity style={styles.button} onPress={handleStartShopping}>
+              <Text style={styles.buttonText}>Start Shopping!</Text>
+            </TouchableOpacity>
+          </View>
         )}
       </ScrollView>
       <View style={styles.footerContainer}>
@@ -209,6 +218,18 @@ emptyBasketText: {
   color: 'white',
   fontSize: 18,
   marginBottom: 20,
+  fontWeight: 'bold',
+},
+footerContainer: {
+  position: 'absolute',
+  left: 0,
+  right: 0,
+  bottom: 0,
+},
+centerContainer: {
+  flex: 1,
+  justifyContent: 'center',
+  alignItems: 'center',
 },
   title: {
     fontWeight: 'bold',
