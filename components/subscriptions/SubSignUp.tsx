@@ -6,6 +6,7 @@ import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
+import LazySubSignUpContent from './LazySubSignUpContent';
 
 type SubSignUpProps = {
   navigation: StackNavigationProp<StackParamList>;
@@ -24,65 +25,27 @@ const SubSignUp: React.FC<SubSignUpProps> = ({ navigation, route }) => {
   return (
     <View style={styles.mainContainer}>
       <ShopHeader navigation={navigation} />
-      <ScrollView contentContainerStyle={styles.container} bounces={false}>
-  
-        <View style={styles.content}>
-          <View style={styles.subscriptionInfo}>
-          <Text style={styles.subscriptionInfoHeader}>Try our Vape Pass!</Text>
-          <Text style={styles.subscriptionInfoHeader}>Get a discounted vape every week!</Text>
-        </View>
-          <Text style={styles.title}></Text>
-          <Image source={require('../pictures/subs.jpg')} style={styles.image} />
-          <TouchableOpacity style={styles.signUpButton} onPress={() => navigation.dispatch(StackActions.push('SubJuiceScreen'))}>
-            <Text style={styles.signUpButtonText}>Sign Up</Text>
-          </TouchableOpacity>
-          <View style={styles.subscriptionInfo}>
-            <Text style={styles.subscriptionInfoHeader}>What do I get?</Text>
-            <Text style={styles.subscriptionInfoDescription}>
-              Get a juice of your choice each week, hassle-free!
-            </Text>
-          </View>
-          <View style={styles.subscriptionInfo}>
-            <Text style={styles.subscriptionInfoHeader}>Why Vape Pass?</Text>
-            <Text style={styles.subscriptionInfoDescription}>
-              Save a fortune on shipping and have your flavors delivered automatically. You can cancel your subscription at any time.
-            </Text>
-          </View>
-          <View style={styles.subscriptionInfo}>
-            <Text style={styles.subscriptionInfoHeader}>Can I change flavors?</Text>
-            <Text style={styles.subscriptionInfoDescription}>
-              Of course! You can change your flavors at any time.
-            </Text>
-          </View>
-          <View style={styles.subscriptionInfo}>
-            <Text style={styles.subscriptionInfoHeader}>What varieties are there?</Text>
-            <Text style={styles.subscriptionInfoDescription}>
-              Any e-juice flavor we sell is available.
-            </Text>
-          </View>
-          <View style={styles.subscriptionInfo}>
-            <Text style={styles.subscriptionInfoHeader}>How much is it? </Text>
-            <Text style={styles.subscriptionInfoDescription}>
-              The Vape Pass costs €23.99 a month.
-            </Text>
-          </View>
-          <View style={styles.space}></View>
-        </View>
+      <ScrollView bounces={false} style={styles.container}>
+        <React.Suspense fallback={null}>
+          <LazySubSignUpContent navigation={navigation} />
+        </React.Suspense>
       </ScrollView>
       <ShopFooter navigation={navigation} />
-  
     </View>
   );
+
+
 };
 
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
     backgroundColor: '#FCCC7C',
+    justifyContent: 'space-between',  // new line
   },
   container: {
     backgroundColor: '#FCCC7C',
-    padding: 10,
+    marginBottom: 20,  // new line
   },
   backgroundWave: {
     position: 'absolute',

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, StyleSheet, FlatList, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import BrandBox from './BrandBox';
 import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
@@ -8,6 +8,8 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import PurchaseInfo from './PurchaseInfo';
+import { LogBox } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 type ProductImage = string;
 
@@ -43,23 +45,43 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
 
   const numItems = basketItems.reduce((total, item) => total + item.quantity, 0);
 
-  useEffect(() => {
-    const loadBasket = async () => {
-      try {
-        const storedBasket = await AsyncStorage.getItem('basket');
-        if (storedBasket !== null) {
-          setBasketItems(JSON.parse(storedBasket));
-        }
-      } catch (error) {
-        console.error('Failed to parse the basket.', error);
-      }
-    };
 
+  
+  
+  LogBox.ignoreLogs(['Warning: ...']);
+
+  const loadBasket = async () => {
+    try {
+      const storedBasket = await AsyncStorage.getItem('basket');
+      if (storedBasket !== null) {
+        const parsedBasket = JSON.parse(storedBasket);
+        // If parsedBasket is not an array or contains any undefined elements, default to an empty array
+        setBasketItems(Array.isArray(parsedBasket) ? parsedBasket.filter(item => item && item.product) : []);
+        console.log('parsedBasket:', parsedBasket); // Moved console log here
+      }
+      console.log('storedBasket:', storedBasket); // This console log remains here
+    } catch (error) {
+      console.error('Failed to parse the basket.', error);
+    }
+  };
+  
+
+  useEffect(() => {
     loadBasket();
   }, []);
 
+  // rest of your useEffects
+
+
+  console.log('basketItems:', basketItems); // Added console log
+
+
+  
+  
+
+
   useEffect(() => {
-    if (route.params?.item) {
+    if (route.params?.item && route.params.item.id) {
       const foundIndex = basketItems.findIndex(item => item.product.id === route.params.item.id);
       if (foundIndex !== -1) {
         const newBasketItems = [...basketItems];
@@ -92,33 +114,49 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
       return null; // don't render this item if product is not defined
     }
   
+    const navigation = useNavigation();
+
     return (
-      <Animated.View>
-        <BrandBox
-          navigation={navigation}
-          quantity={item.quantity}
-          onIncrease={() => increaseQuantity(index)}
-          onDecrease={() => decreaseQuantity(index)}
-          product={item.product}
-          selected={true}
-        />
-        <PurchaseInfo quantity={item.quantity} subtotal={item.product.price * item.quantity} />
-      </Animated.View>
+      <View style={styles.container}>
+        <ShopHeader navigation={navigation} />
+        <ScrollView style={styles.content} bounces={false}>
+          <Text style={styles.title}>Your Basket</Text>
+          {numItems > 0 ? (
+            <View style={styles.basketContent}>
+              <View style={styles.checkoutInfo}>
+                <Text style={styles.subtotal}>Subtotal: €{subtotal.toFixed(2)}</Text>
+                <TouchableOpacity style={styles.button} onPress={handleCheckoutPress}>
+                  <Text style={styles.buttonText}>Proceed to Checkout ({numItems} items)</Text>
+                </TouchableOpacity>
+              </View>
+              <FlatList
+                style= {{ width: '100%' }}
+                showsVerticalScrollIndicator={false}
+                data={basketItems}
+                keyExtractor={(item, index) => 'key' + index}
+                renderItem={renderBasketItem}
+              />
+            </View>
+          ) : (
+            <View style={styles.emptyBasketContainer}>
+              <Text style={styles.emptyBasketText}>Your basket is empty</Text>
+              <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('ShopFront')}>
+                <Text style={styles.buttonText}>Start Shopping!</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </ScrollView>
+        <View style={styles.footerContainer}>
+          <ShopFooter navigation={navigation} />
+        </View>
+      </View>
     );
-  };
-
-  useEffect(() => {
-    console.log(basketItems);
-  }, [basketItems]);
-
-  const handleCheckoutPress = () => {
-    // define your checkout functionality here
   };
 
   return (
     <View style={styles.container}>
       <ShopHeader navigation={navigation} />
-      <View style={styles.content}>
+      <ScrollView style={styles.content} bounces={false}>
         <Text style={styles.title}>Your Basket</Text>
         {numItems > 0 ? (
           <View style={styles.basketContent}>
@@ -126,11 +164,11 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
               <Text style={styles.subtotal}>Subtotal: €{subtotal.toFixed(2)}</Text>
               <TouchableOpacity style={styles.button} onPress={handleCheckoutPress}>
                 <Text style={styles.buttonText}>Proceed to Checkout ({numItems} items)</Text>
-              </TouchableOpacity>
+              </TouchableOpacity>a
             </View>
             <FlatList
-              style= {{ width: '60%' }}
-             showsVerticalScrollIndicator={false}
+              style= {{ width: '100%' }}
+              showsVerticalScrollIndicator={false}
               data={basketItems}
               keyExtractor={(item, index) => 'key' + index}
               renderItem={renderBasketItem}
@@ -139,7 +177,7 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
         ) : (
           <View />
         )}
-      </View>
+      </ScrollView>
       <View style={styles.footerContainer}>
         <ShopFooter navigation={navigation} />
       </View>
@@ -162,6 +200,16 @@ const styles = StyleSheet.create({
     width: '100%', // Decrease width to make BrandBox and ProductInfo components appear wider
     flexGrow: 1,
   },
+  emptyBasketContainer: {
+  alignItems: 'center',
+  justifyContent: 'center',
+  flex: 1,
+},
+emptyBasketText: {
+  color: 'white',
+  fontSize: 18,
+  marginBottom: 20,
+},
   title: {
     fontWeight: 'bold',
     fontSize: 25,

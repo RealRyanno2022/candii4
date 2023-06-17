@@ -24,28 +24,6 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
 
   return (
     <View style={styles.headerColor}>
-      {/* <SearchBar
-        platform="default"
-        containerStyle={styles.searchBarContainer}
-        lightTheme
-        searchIcon={{ name: 'search', size: 24 }}
-        onChangeText={handleSearchTextChange}
-        onClear={() => setSearchTerm('')}
-        placeholder="Search..."
-        style={styles.searchBar}
-        value={searchTerm}
-        loadingProps={{}} 
-        showLoading={false} 
-        round={false} 
-        onFocus={handleSearchFocus} // Add function to handle focus
-        onBlur={() => {}} 
-        onCancel={() => {}}
-        cancelButtonTitle=""
-        cancelButtonProps={{}} 
-        clearIcon={{ name: 'clear' }} 
-        showCancel={false} 
-        inputContainerStyle={styles.inputContainerStyle}
-      /> */}
     <View style={styles.container}>
       <Image source={require('../pictures/icon.png')} style={styles.image} />
       </View>
