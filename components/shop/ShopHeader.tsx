@@ -25,7 +25,10 @@ const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
   return (
     <View style={styles.headerColor}>
     <View style={styles.container}>
+    <View style={styles.container}>
       <Image source={require('../pictures/icon.png')} style={styles.image} />
+    </View>
+      <Image source={require('../pictures/goback.png')} style={styles.image2} />
       </View>
     </View>
   );
@@ -40,6 +43,11 @@ const styles = StyleSheet.create({
   image: {
     height: 100,
     width: 100,
+
+  },
+  image2: {
+    height: 50,
+    width: 50,
 
   },
   container: {
