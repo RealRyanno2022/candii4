@@ -1,73 +1,79 @@
-import React, { useState } from 'react';
-import { View, StyleSheet } from 'react-native';
-import { Header, Icon, SearchBar, Image } from 'react-native-elements';
-import { NavigationProp } from '@react-navigation/native';
+import React from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image } from 'react-native-elements';
+import { useNavigation, useNavigationState, NavigationProp } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';
-import { StackActions } from '@react-navigation/native';
 
 type ShopHeaderProps = {
   navigation: NavigationProp<StackParamList>;
 };
 
 const ShopHeader: React.FC<ShopHeaderProps> = ({ navigation }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const canGoBack = navigation.canGoBack();
+  const noGoBackRoutes = ['ShopFront','SubSignUp','ManageSubscription','CandiiTalk','CustomerBasket'];
+  const currentRouteName = useNavigationState(state => state.routes[state.index].name);
+  const shouldRenderGoBack = canGoBack && !noGoBackRoutes.includes(currentRouteName);
 
-  const handleSearchTextChange = (newTerm: string) => {
-    // Implement your logic here to handle the text change
-    setSearchTerm(newTerm);
-  };
-
-  const handleSearchFocus = () => {
-    // When search bar is focused, navigate to SearchProducts screen
-    navigation.navigate('SearchProducts');
+  const goBack = () => {
+    if (canGoBack) {
+      navigation.goBack();
+    }
   };
 
   return (
     <View style={styles.headerColor}>
-    <View style={styles.container}>
-    <View style={styles.container}>
-      <Image source={require('../pictures/icon.png')} style={styles.image} />
-    </View>
-      <Image source={require('../pictures/goback.png')} style={styles.image2} />
+      <View style={styles.container}>
+        <View style={styles.leftContainer}>
+          {shouldRenderGoBack && (
+            <TouchableOpacity onPress={goBack}>
+              <Image source={require('../pictures/goback.png')} style={styles.image2} />
+            </TouchableOpacity>
+          )}
+        </View>
+        <View style={styles.logoContainer}>
+          <Image source={require('../pictures/icon.png')} style={styles.image} />
+        </View>
+        <View style={styles.rightContainer} />
       </View>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
-  headerColor: {     
+  headerColor: {
+    flexDirection: 'row',
+    justifyContent: 'center',
     backgroundColor: '#FCCC7C',
     alignItems: 'center',
     width: '100%',
+    paddingHorizontal: 10,
   },
   image: {
     height: 100,
     width: 100,
-
   },
   image2: {
     height: 50,
     width: 50,
-
   },
   container: {
     width: '100%',
+    flexDirection: 'row',
+    justifyContent: 'space-between',
     alignItems: 'center',
-    backgroundColor: ''
   },
-  searchBarContainer: { 
-    width: '100%', 
-    backgroundColor: '#FFFFFF',
-    borderBottomColor: 'transparent', // Remove the border at the bottom
-    borderTopColor: 'transparent', // Remove the border at the top
+  leftContainer: {
+    width: '33%',
+    alignItems: 'flex-start',
   },
-  inputContainerStyle: {
-    backgroundColor: '#FFFFFF', // Set the background color of the input field
+  logoContainer: {
+    width: '33%',
+    alignItems: 'center',
   },
-  searchBar: {
-    backgroundColor: '#FFFFFF',
-  },
+  rightContainer: {
+    width: '33%',
+    alignItems: 'flex-end',
+  }
 })
-
 
 export default ShopHeader;

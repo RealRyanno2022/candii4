@@ -27,10 +27,6 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
   const handleBrandPress = (brandName: string) => {
     navigation.dispatch(StackActions.push('BrandVarieties', { brand: brandName, type: 'juice' }));
   };
-  
-  const handleBackPress = () => {
-    navigation.pop();
-  };
 
 
 
@@ -60,13 +56,6 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
              <Text style={styles.cardText}>{brand.name}</Text>
            </TouchableOpacity>
          ))}
-         <TouchableOpacity
-           style={styles.card}
-           onPress={() => handleBackPress()}
-         >
-           <Image style={styles.image} source={require('../pictures/goback.png')}></Image>
-           <Text style={styles.cardText}>Go Back</Text>
-         </TouchableOpacity>
        </View>
      </ScrollView>
      <ShopFooter navigation={navigation}/>

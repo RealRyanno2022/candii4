@@ -27,13 +27,6 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
     navigation.dispatch(StackActions.push('BrandVarieties', { brand, type: 'disposable' }));
   };
 
-  const handleBackPress = () => {
-    navigation.pop();
-  }
-
-  const handleSearch = () => {
-    navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
-  }
 
   return (
     <View style={styles.container}>
@@ -50,13 +43,6 @@ const VapeScreen: React.FC<VapeScreenProps> = ({ navigation }) => {
               <Text style={styles.cardText}>{brand.name}</Text>
             </TouchableOpacity>
           ))}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => handleBackPress()}
-          >
-            <Image style={styles.image} source={require('../pictures/goback.png')}></Image>
-            <Text style={styles.cardText}>Go Back</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
       <ShopFooter navigation={navigation}/>
