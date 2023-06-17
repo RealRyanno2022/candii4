@@ -33,7 +33,7 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
   const brands = [
     { name: "Kinship", image: require('../pictures/JuiceScreen/kinship.png') },
     { name: "BMG", image: require('../pictures/JuiceScreen/bmg.png') },
-    { name: "Hale", image: require('../pictures/JuiceScreen/hale.png') },
+    { name: "Hale", image: require('../pictures/JuiceScreen/hale3.png') },
     { name: "Slushie", image: require('../pictures/JuiceScreen/slushie.png') },
     { name: "Yeti", image: require('../pictures/JuiceScreen/yeti.png') },
     { name: "IVGSalt", image: require('../pictures/VapePics/juice.png') },

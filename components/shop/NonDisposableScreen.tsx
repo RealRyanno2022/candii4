@@ -18,9 +18,7 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
     navigation.dispatch(StackActions.push('BrandVarieties', { brandName }));
   };
 
-  const handleBackPress = () => {
-    navigation.pop();
-  };
+
 
   const handleSearch = () => {
     navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
@@ -50,13 +48,6 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
               <Text style={styles.cardText}>{brand.name}</Text>
             </TouchableOpacity>
           ))}
-          <TouchableOpacity
-            style={styles.card}
-            onPress={() => handleBackPress()}
-          >
-            <Image style={styles.image} source={require('../pictures/goback.png')}></Image>
-            <Text style={styles.cardText}>Go Back</Text>
-          </TouchableOpacity>
         </View>
       </ScrollView>
       <ShopFooter navigation={navigation}/>
