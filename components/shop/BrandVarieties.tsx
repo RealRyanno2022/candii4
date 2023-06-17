@@ -71,10 +71,11 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
       <View style={styles.basketContent}>
       <FlatList 
               style= {{ width: '60%' }}
-
+              showsVerticalScrollIndicator={false}
         data={varieties}
         keyExtractor={(item, index) => 'key' + index}
         bounces={false}
+        ListFooterComponent={<View style={{ height: 75 }} />}
         renderItem={({ item }) => (
           <BrandBox 
             navigation={navigation} 
@@ -85,8 +86,11 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
             selected={false}
           />
         )}
+        
       />
+         {/* <View style={styles.space} /> */}
       </View>
+
       <View style={styles.footerContainer}>
         <ShopFooter navigation={navigation}/>
       </View>
@@ -101,8 +105,12 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
       alignItems: 'center',
     },
     basketContent: {
+      flex: 1,
       alignItems: 'center',
       width: '90%', // Decrease width to make BrandBox and ProductInfo components appear wider
+    },
+    space: {
+      marginBottom: 150,
     },
     title: {
       fontWeight: 'bold',

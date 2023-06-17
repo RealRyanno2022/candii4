@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity, Dimensions } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Animated } from 'react-native';
 import BrandBox from './BrandBox';
 import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
@@ -22,59 +22,54 @@ type Product = {
 
 type CustomerBasketProps = {
   navigation: StackNavigationProp<StackParamList, 'CustomerBasket'>;
-  route: RouteProp<StackParamList, 'CustomerBasket'>; // add this line
+  route: RouteProp<StackParamList, 'CustomerBasket'>;
 };
 
 type BasketItem = {
-  product: any;
+  product: Product;
   quantity: number;
 }
 
-
 const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => {
   const [basketItems, setBasketItems] = useState<BasketItem[]>([]);
-  const [basket, setBasket] = useState<Product[]>([]);
-  const subtotal = basket.reduce((total, product) => total + product.price, 0);
-  const numItems = basket.length;
-  const email = route.params?.email || '';
 
+  const subtotal = basketItems.reduce((total, item) => {
+    if (!item.product) {
+      console.error('Item does not have a product property:', item);
+      return total;
+    }
+    return total + item.product.price * item.quantity + (item.quantity > 1 ? (item.quantity - 1) / 100 : 0);
+  }, 0);
 
+  const numItems = basketItems.reduce((total, item) => total + item.quantity, 0);
 
   useEffect(() => {
     const loadBasket = async () => {
       try {
         const storedBasket = await AsyncStorage.getItem('basket');
-        
         if (storedBasket !== null) {
-          setBasket(JSON.parse(storedBasket));
+          setBasketItems(JSON.parse(storedBasket));
         }
       } catch (error) {
-        console.error('Failed to load the basket.', error);
+        console.error('Failed to parse the basket.', error);
       }
     };
 
     loadBasket();
   }, []);
 
-
-  const handleEditAddressPress = () => {
-    navigation.navigate('EditEmailDeliveryAddress');
-  };
-
-  const handleCheckoutPress = () => {
-    navigation.navigate('DeliveryAddress');
-  };
-
-  const handleShopFrontPress = () => {
-    navigation.navigate('ShopFront');
-  };
-
   useEffect(() => {
     if (route.params?.item) {
-      setBasket(oldBasket => [...oldBasket, route.params.item]);
+      const foundIndex = basketItems.findIndex(item => item.product.id === route.params.item.id);
+      if (foundIndex !== -1) {
+        const newBasketItems = [...basketItems];
+        newBasketItems[foundIndex].quantity += 1;
+        setBasketItems(newBasketItems);
+      } else {
+        setBasketItems(oldBasket => [...oldBasket, { product: route.params.item, quantity: 1 }]);
+      }
     }
   }, [route.params?.item]);
-
 
   const increaseQuantity = (index: number) => {
     const newBasketItems = [...basketItems];
@@ -91,34 +86,34 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
     setBasketItems(newBasketItems);
   };
 
-  const renderBasketItem = ({ item, index }: { item: Product, index: number }) => (
-    <View>
-      <BrandBox
-        navigation={navigation}
-        quantity={1}
-        onSelect={() => {}}
-        onDeselect={() => {}}
-        product={item}
-        selected={true}  // Always selected in basket
-      />
-      <PurchaseInfo quantity={1} subtotal={item.price} />
-    </View>
-  );
+  const renderBasketItem = ({ item, index }: { item: BasketItem, index: number }) => {
+    if (!item.product) {
+      console.error('Attempting to render basket item without product property:', item);
+      return null; // don't render this item if product is not defined
+    }
+  
+    return (
+      <Animated.View>
+        <BrandBox
+          navigation={navigation}
+          quantity={item.quantity}
+          onIncrease={() => increaseQuantity(index)}
+          onDecrease={() => decreaseQuantity(index)}
+          product={item.product}
+          selected={true}
+        />
+        <PurchaseInfo quantity={item.quantity} subtotal={item.product.price * item.quantity} />
+      </Animated.View>
+    );
+  };
 
+  useEffect(() => {
+    console.log(basketItems);
+  }, [basketItems]);
 
-  // const handleSelectProduct = (product: Product) => {
-  //   switch(type) {
-  //     case 'juice':
-  //       navigation.navigate('JuiceProductPage', { product });
-  //       break;
-  //     case 'nonDisposable':
-  //       navigation.navigate('NonDisposableProductPage', { product });
-  //       break;
-  //     default:
-  //       navigation.navigate('DisposableProductPage', { product }); // Assuming 'ProductPage' corresponds to 'DisposableProductPage'
-  //       break;
-  //   }
-  // };
+  const handleCheckoutPress = () => {
+    // define your checkout functionality here
+  };
 
   return (
     <View style={styles.container}>
@@ -134,7 +129,9 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
               </TouchableOpacity>
             </View>
             <FlatList
-              data={basket}
+              style= {{ width: '60%' }}
+             showsVerticalScrollIndicator={false}
+              data={basketItems}
               keyExtractor={(item, index) => 'key' + index}
               renderItem={renderBasketItem}
             />
@@ -150,7 +147,6 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
   );
 };
 
-
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -164,6 +160,7 @@ const styles = StyleSheet.create({
   basketContent: {
     alignItems: 'center',
     width: '100%', // Decrease width to make BrandBox and ProductInfo components appear wider
+    flexGrow: 1,
   },
   title: {
     fontWeight: 'bold',
@@ -207,24 +204,8 @@ const styles = StyleSheet.create({
   space: {
     marginBottom: 100,
   },
-  // container: {
-  //   flex: 1,
-  //   backgroundColor: '#FCCC7C',
-  //   justifyContent: 'space-between', // to push footer at the bottom
-  // },
   content: {
     width: '100%', // to take full width
-  },
-  basketContent: {
-    alignItems: 'center',
-  },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 25,
-    color: 'white',
-    textAlign: 'center',
-    paddingVertical: 10,
-    marginBottom: 10,
   },
   scrollViewContainer: {
     flexGrow: 1,
@@ -263,6 +244,5 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
 });
-
 
 export default CustomerBasket;

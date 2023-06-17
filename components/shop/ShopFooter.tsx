@@ -41,7 +41,14 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
     <View style={style}>
     <SafeAreaView style={styles.container}>
       <View style={styles.footerContent}>
-        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('ShopFront')} disabled={isShopComponent}>
+        <TouchableOpacity
+        
+        onPress={async () => {
+          await AsyncStorage.setItem('lastTab', 'ShopFront');
+          navigation.navigate('ShopFront');
+        }} 
+        disabled={isShopComponent}
+        style={styles.iconContainer}>
           <Image
             source={require('../pictures/haus-removebg-preview.png')}
             style={[styles.icon, isShopComponent && styles.disabledIcon]}
