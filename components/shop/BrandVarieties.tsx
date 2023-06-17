@@ -29,6 +29,9 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
   const { brand, type } = route.params; 
 
   useEffect(() => {
+    const filteredData = Object.values(BrandData).filter((product: any) => product.brand === brand) as Product[];
+    setVarieties(filteredData);
+  
     const getLastTab = async () => {
       const lastTab = await AsyncStorage.getItem('lastTab');
       if (lastTab) {
@@ -37,9 +40,6 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
     };
   
     getLastTab();
-  
-    const filteredData = Object.values(BrandData).filter((product: any) => product.brand === brand) as Product[];
-    setVarieties(filteredData);
   }, [brand, navigation]);
   
 
