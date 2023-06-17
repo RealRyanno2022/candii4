@@ -30,7 +30,7 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
     { name: "Favostix", image: require('../pictures/favostix2.png') },
     { name: "PocketX", image: require('../pictures/pocketx.png') },
     { name: "Smok", image: require('../pictures/smok.png') },
-    { name: "TeknoKit", image: require('../pictures/teknokit.png') },
+    { name: "Tekno Kit", image: require('../pictures/teknokit.png') },
   ];
 
   return (
@@ -49,6 +49,7 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
             </TouchableOpacity>
           ))}
         </View>
+        <View style={styles.space} />
       </ScrollView>
       <ShopFooter navigation={navigation}/>
     </View>
@@ -59,6 +60,9 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FCCC7C',
+  },
+  space: {
+    marginBottom: 50,
   },
   header: {
     paddingTop: 50,

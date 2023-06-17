@@ -7,7 +7,7 @@ import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RouteProp } from '@react-navigation/native';
-import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 type DisposableProductPageProps = {
   navigation: StackNavigationProp<StackParamList>;
@@ -103,7 +103,7 @@ const DisposableProductPage: React.FC<DisposableProductPageProps> = ({ navigatio
 
           <TouchableOpacity 
             style={[styles.buyButton, styles.buttonSpacing]} 
-            onPress={addToBasket}
+            onPress={() => navigation.dispatch(StackActions.push('CustomerBasket', { product, quantity }))}
           >
             <Text style={styles.buyButtonText}>Add to Basket</Text>
           </TouchableOpacity>

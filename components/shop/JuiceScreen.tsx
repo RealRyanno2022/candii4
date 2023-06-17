@@ -36,7 +36,7 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
     { name: "Hale", image: require('../pictures/JuiceScreen/hale3.png') },
     { name: "Slushie", image: require('../pictures/JuiceScreen/slushie.png') },
     { name: "Yeti", image: require('../pictures/JuiceScreen/yeti.png') },
-    { name: "IVGSalt", image: require('../pictures/VapePics/juice.png') },
+    { name: "IVG Salt", image: require('../pictures/VapePics/juice.png') },
     { name: "Elfiq", image: require('../pictures/JuiceScreen/elfiq.png') },
   ];
 
@@ -57,6 +57,7 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
            </TouchableOpacity>
          ))}
        </View>
+       <View style={styles.space} />
      </ScrollView>
      <ShopFooter navigation={navigation}/>
    </View>
@@ -66,6 +67,9 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#F5F5F5',
+  },
+  space: {
+    marginBottom: 50,
   },
   header: {
     paddingTop: 50,
