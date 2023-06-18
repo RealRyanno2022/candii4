@@ -53,8 +53,10 @@ const styles = StyleSheet.create({
     width: 100,
   },
   image2: {
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
+    tintColor: '#FFA500',
+    
   },
   container: {
     width: '100%',

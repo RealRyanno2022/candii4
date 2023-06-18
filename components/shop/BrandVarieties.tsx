@@ -35,7 +35,8 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
 
   const loadBrandsData = (brand: string) => {
     // Filter out the products of the specified brand.
-    const brandProducts = BrandData.filter(product => product.brand === brand);
+    const brandProducts = Object.values(BrandData).filter(product => product.brand === brand);
+
     setVarieties(brandProducts);
   }
 
