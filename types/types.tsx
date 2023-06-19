@@ -32,6 +32,7 @@ export type StackParamList = {
   CustomerBasket: { email?: string };
   EditEmail: undefined;
   EditEmailDeliveryAddress: undefined;
+  TestPayments: undefined;
   QueryLanguageSelector: { selectedLanguage: string }
   DeleteAccount: undefined;
   ProjectInfo: undefined;

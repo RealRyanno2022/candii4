@@ -49,13 +49,15 @@ import EditEmail from './components/shop/EditEmail';
 import EditEmailDeliveryAddress from './components/shop/EditEmailDeliveryAddress';
 
 import DisposableProductPage from './components/shop/DisposableProductPage';
+import TestPayments from './components/sales/TestPayments';
 
 export default function App() {
   const Stack = createStackNavigator();
 
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="ShopFront">
+      <Stack.Navigator initialRouteName="TestPayments">
+      <Stack.Screen name="TestPaymentws" component={TestPayments} />
         <Stack.Screen name="Intro" component={Intro} />
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
