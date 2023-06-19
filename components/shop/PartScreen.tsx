@@ -33,6 +33,11 @@ const PartScreen: React.FC<PartScreenProps> = ({ navigation, email }) => {
 
   return (
     <View style={{flex: 1}}>
+                 <Image
+        source={require('../pictures/smoke.png')}
+        style={styles.backgroundImage}
+      />
+      
       <ShopHeader navigation={navigation} bounces={false}  />
       <ScrollView>
         <View style={styles.cardContainer}>
@@ -68,6 +73,15 @@ const styles = StyleSheet.create({
     backgroundColor: '#1F1F1F',
     alignItems: 'center',
     justifyContent: 'center',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // Adjust the image resizing mode as needed
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   smallText: {
     fontWeight: 'bold',

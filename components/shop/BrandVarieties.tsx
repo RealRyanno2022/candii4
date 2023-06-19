@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, FlatList, TouchableOpacity, Image } from 'react-native';
 import BrandBox from './BrandBox';
 import BrandData, { BrandProduct } from '../data/BrandData';
 import ShopHeader from './ShopHeader';
@@ -63,6 +63,10 @@ const BrandVarieties: React.FC<BrandVarietiesProps> = ({ route, navigation }) =>
 
   return (
     <View style={styles.container}>
+                <Image
+        source={require('../pictures/smoke.png')}
+        style={styles.backgroundImage}
+      />
       <ShopHeader navigation={navigation} />
       <Text style={styles.title}>{brand} Varieties</Text>
       <View style={styles.basketContent}>
@@ -122,6 +126,15 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     alignSelf: 'center',
     color: 'white',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // Adjust the image resizing mode as needed
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   button: {
     backgroundColor: '#FF6347',

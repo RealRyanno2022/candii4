@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, FlatList, ScrollView, TouchableOpacity, Animated } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Image, ScrollView, TouchableOpacity, Animated } from 'react-native';
 import BrandBox from './BrandBox';
 import ShopHeader from './ShopHeader';
 import ShopFooter from './ShopFooter';
@@ -159,6 +159,11 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
 
   return (
     <View style={styles.container}>
+                     <Image
+        source={require('../pictures/smoke.png')}
+        style={styles.backgroundImage}
+      />
+      
       <ShopHeader navigation={navigation} />
       <ScrollView style={styles.content} bounces={false} contentContainerStyle={{ paddingBottom: 60 }}>
         <Text style={styles.title}>Your Basket</Text>
@@ -203,6 +208,15 @@ const styles = StyleSheet.create({
   iconContainer: {
     flexDirection: 'row',
     backgroundColor: '#FCCC7C',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // Adjust the image resizing mode as needed
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   basketContent: {
     alignItems: 'center',

@@ -35,6 +35,10 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
 
   return (
     <View style={styles.container}>
+                 <Image
+        source={require('../pictures/smoke.png')}
+        style={styles.backgroundImage}
+      />
      <ShopHeader navigation={navigation} />
       <ScrollView contentContainerStyle={styles.scrollContent} bounces={false}>
         <View style={styles.cardContainer}>
@@ -63,6 +67,15 @@ const styles = StyleSheet.create({
   },
   space: {
     marginBottom: 50,
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // Adjust the image resizing mode as needed
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   header: {
     paddingTop: 50,

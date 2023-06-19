@@ -43,6 +43,10 @@ const JuiceScreen: React.FC<JuiceScreenProps> = ({ navigation }) => {
 
   return (
     <View style={{flex: 1}}>
+              <Image
+        source={require('../pictures/smoke.png')}
+        style={styles.backgroundImage}
+      />
     <ShopHeader navigation={navigation} />
      <ScrollView bounces={false}>
        <View style={styles.cardContainer}>
@@ -89,6 +93,15 @@ const styles = StyleSheet.create({
     flexWrap: 'wrap',
     padding: 20,
     backgroundColor: '#FCCC7C',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // Adjust the image resizing mode as needed
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   image: {
     width: '100%',
