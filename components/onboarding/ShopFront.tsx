@@ -37,6 +37,10 @@ const ShopFront: React.FC<ShopFrontProps> = ({ navigation, email }) => {
 
   return (
     <View style={styles.container}>
+          <Image
+        source={require('../pictures/smoke.png')}
+        style={styles.backgroundImage}
+      />
       <ShopHeader navigation={navigation} bounces={false} />
       <ScrollView contentContainerStyle={styles.scrollViewContent} bounces={false} >
         <View style={styles.cardContainer}>
@@ -100,6 +104,15 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#FCCC7C',
+  },
+  backgroundImage: {
+    flex: 1,
+    resizeMode: 'cover', // Adjust the image resizing mode as needed
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
   },
   scrollViewContent: {
     flexGrow: 1,
