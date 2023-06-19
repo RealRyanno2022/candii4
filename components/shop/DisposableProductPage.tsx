@@ -115,7 +115,7 @@ const DisposableProductPage: React.FC<DisposableProductPageProps> = ({ navigatio
                 </TouchableOpacity>
                 <TouchableOpacity 
                   style={[styles.buyButton, styles.buttonSpacing]} 
-                  onPress={() => navigation.dispatch(StackActions.push('VerifyEmail', { product }))}
+                  onPress={() => navigation.dispatch(StackActions.push('DeliveryAddress', { product }))}
                 >
                   <Text style={styles.buyButtonText}>Buy Now</Text>
                 </TouchableOpacity>

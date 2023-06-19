@@ -17,25 +17,25 @@ const ManageSubscription: React.FC<ManageSubscriptionProps> = ({ navigation, use
     const [isSubscribed, setIsSubscribed] = useState(user.subscription);
     const [flavours, setFlavours] = useState(user.flavours);
 
-    const dummyUser = {
-        subscription: {
-          type: 'monthly',
-        },
-        flavours: [
-          {
-            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
-          },
-          {
-            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
-          },
-          {
-            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
-          },
-          {
-            image: require("../pictures/VapePics/Elf Bar/Cola0.png"),
-          },
-        ],
-      }
+    // const dummyUser = {
+    //     subscription: {
+    //       type: 'monthly',
+    //     },
+    //     flavours: [
+    //       {
+    //         image: require("https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Cola.png"),
+    //       },
+    //       {
+    //         image: require("https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Cola.png"),
+    //       },
+    //       {
+    //         image: require("https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Cola.png"),
+    //       },
+    //       {
+    //         image: require("https://s3.amazonaws.com/candii-bucket/pictures/VapePics/Cola.png"),
+    //       },
+    //     ],
+    //   }
 
 
 

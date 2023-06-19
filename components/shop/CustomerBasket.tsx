@@ -200,6 +200,49 @@ const CustomerBasket: React.FC<CustomerBasketProps> = ({ navigation, route}) => 
 };
 
 const styles = StyleSheet.create({
+  title: {
+    fontWeight: 'bold',
+    fontSize: 25,
+    color: 'black',
+    textAlign: 'center',
+    paddingVertical: 10,
+    marginBottom: 10,
+    padding: 20,
+    borderRadius: 10,
+    backgroundColor: 'rgba(255, 255, 255, 0.8)',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+    alignSelf: 'center',  // Added alignSelf
+},
+
+emptyBasketText: {
+  color: 'black',
+  fontSize: 18,
+  marginBottom: 20,
+  fontWeight: 'bold',
+  textAlign: 'center',
+  paddingVertical: 10,
+  padding: 20,
+  borderRadius: 10,
+  backgroundColor: 'rgba(255, 255, 255, 0.8)',
+  shadowColor: '#000',
+  shadowOffset: { width: 0, height: 2 },
+  shadowOpacity: 0.3,
+  shadowRadius: 2,
+  elevation: 2,
+  alignSelf: 'center',  // Added alignSelf
+},
+
+button: {
+    backgroundColor: '#FF6347',
+    borderRadius: 5,
+    padding: 10,
+    margin: 20,
+    alignSelf: 'center',  // Added alignSelf
+},
   container: {
     flex: 1,
     backgroundColor: '#FCCC7C',
@@ -230,25 +273,9 @@ const styles = StyleSheet.create({
   justifyContent: 'center',
   flex: 1,
   width: '60%',
+  alignSelf: 'center',
 },
-emptyBasketText: {
-  color: 'black',
-  fontSize: 18,
-  marginBottom: 20,
-  fontWeight: 'bold',
-  textAlign: 'center',
-  paddingVertical: 10,
-  padding: 20,
-  borderRadius: 10,
-  backgroundColor: 'rgba(255, 255, 255, 0.8)',
-  shadowColor: '#000',
-  shadowOffset: { width: 0, height: 2 },
-  shadowOpacity: 0.3,
-  shadowRadius: 2,
-  elevation: 2,
-  width: '50%',
-  alignItems:'center',
-},
+
 footerContainer: {
   position: 'absolute',
   left: 0,
@@ -261,24 +288,6 @@ centerContainer: {
   alignItems: 'center',
   width: '60%',
 },
-  title: {
-    fontWeight: 'bold',
-    fontSize: 25,
-    color: 'black',
-    textAlign: 'center',
-    paddingVertical: 10,
-    marginBottom: 10,
-    padding: 20,
-    borderRadius: 10,
-    backgroundColor: 'rgba(255, 255, 255, 0.8)',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.3,
-    shadowRadius: 2,
-    elevation: 2,
-    width: '50%',
-    alignItems:'center',
-  },
   subtotal: {
     fontWeight: 'bold',
     fontSize: 20,
@@ -303,12 +312,6 @@ centerContainer: {
     justifyContent: 'space-around',
     marginBottom: 20,
     alignItems: 'center', // Align items to center
-  },
-  footerContainer: {
-    position: 'absolute', // make the ShopFooter fixed
-    left: 0,
-    right: 0,
-    bottom: 0,
   },
   space: {
     marginBottom: 100,
