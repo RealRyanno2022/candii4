@@ -31,7 +31,7 @@
     "typescript": "^4.6.3"
   },
   "scripts": {
-    "start": "expo start",
+    "start": "expo start --ios",
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web"
