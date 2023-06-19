@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { View, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
 import { NavigationProp } from '@react-navigation/native';
+import { NavigationContainerRef } from '@react-navigation/native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type ShopFooterProps = {
@@ -33,6 +34,30 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
     }
   }, [isShopComponent, route]);
 
+  const focusListener = useRef<(() => void) | null>(null);
+
+  useEffect(() => {
+    focusListener.current = navigation.addListener('focus', () => {
+      // Update the active tab state based on the current route
+      if (componentNames.includes(route.name)) {
+        setActiveTab('home');
+      } else if (route.name === 'CandiiTalk') {
+        setActiveTab('candii');
+      } else if (route.name === 'CustomerBasket') {
+        setActiveTab('basket');
+      } else if (signUpComponentNames.includes(route.name)) {
+        setActiveTab('vape');
+      } else {
+        setActiveTab('');
+      }
+    });
+
+    return () => {
+      // Clean up the listener when the component unmounts
+      focusListener.current?.();
+    };
+  }, [navigation, route]);
+
   const handleVapePress = async () => {
     if (isSubscribed) {
       await AsyncStorage.setItem('lastTab', 'ManageSubscription');
@@ -48,19 +73,21 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
   }
 
   const onPressHome = async () => {
+    setActiveTab(''); // Reset activeTab state when home is pressed
     const lastShopTab = await AsyncStorage.getItem('lastShopTab');
     if (lastShopTab) {
       navigation.navigate(lastShopTab as any);
     } else {
       navigation.navigate('ShopFront');
     }
-  }
+    setTimeout(() => setActiveTab('home'), 0); // Set it back to home after the navigation has finished
+}
 
   return (
     <View style={style}>
       <SafeAreaView style={styles.container}>
         <View style={styles.footerContent}>
-          {activeTab === 'home' && <View style={[styles.activeTabLine, styles.activeTabLineOverlay]} />}
+          {/* {activeTab === 'home' && <View style={[styles.activeTabLine, styles.activeTabLineOverlay]} />} */}
           <TouchableOpacity
             onPress={onPressHome}
             disabled={isShopComponent}
