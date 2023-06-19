@@ -73,6 +73,10 @@ const styles = StyleSheet.create({
     resizeMode: 'contain',
     borderRadius: 100, // Adjust the radius value as per your preference
     overflow: 'hidden',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
   },
 
   backgroundImage: {
@@ -93,6 +97,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 2,
+    fontSize: 18,
+    
   },
   scrollView: {
     alignItems: 'center',
