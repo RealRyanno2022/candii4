@@ -9,14 +9,13 @@ type FormInputProps = {
   name: string;
   label: string;
   errors: any;
-  scrollViewRef: any;
   rules?: any;
   placeholder?: string; // Add placeholder prop to the interface
   setCountry?: any;
   style?: StyleProp<ViewStyle>;
 };
 
-const FormInput: React.FC<FormInputProps> = ({ style, control, name, label, errors, scrollViewRef, rules, placeholder, setCountry }) => {
+const FormInput: React.FC<FormInputProps> = ({ style, control, name, label, errors, rules, placeholder, setCountry }) => {
   const layoutRef = useRef<number | null>(null);
   const inputRef = useRef<TextInput | null>(null);
 
@@ -38,7 +37,6 @@ const FormInput: React.FC<FormInputProps> = ({ style, control, name, label, erro
             }}
             value={value}
             ref={inputRef}
-            onFocus={() => scrollViewRef.current && scrollViewRef.current.scrollTo({ x: 0, y: layoutRef.current, animated: true })}
             style={styles.input}
             placeholder={placeholder} // Add placeholder prop here
           />

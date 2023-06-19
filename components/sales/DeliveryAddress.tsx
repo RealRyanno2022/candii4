@@ -1,11 +1,11 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, KeyboardAvoidingView, Platform, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { TextInput, HelperText, Button } from 'react-native-paper';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
+
 import axios from 'axios';
-import { TextInput as RNTextInput } from 'react-native';
 import { Dropin } from 'braintree-web-drop-in';
 
 import countryStateArray from '../data/countryStateArray';
@@ -105,7 +105,6 @@ const validateLastName = (value: string) => {
 const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const [country, setCountry] = useState('');
   const [searchTerm, setSearchTerm] = useState('');
-  const scrollViewRef = useRef<ScrollView>(null);
   const [state, setState] = useState('');
   const [email, setEmail] = useState('');
   const [address, setAddress] = useState('');
@@ -118,7 +117,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
   const handleSaveUserInformation: SubmitHandlerType = async (data: UserData) => {
     try {
-      const response = await axios.post('https://candii-vapes-backend.herokuapp.com/save_user_information', {
+      const response = await axios.post('https:/candii4-backend-b3355261cd2a.herokuapp.com/save_user_information', {
         state: data.state,
         country: data.country,
         email: data.email,
@@ -144,7 +143,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const handlePayment = async () => {
     try {
       // Fetch the client token from your server
-      const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
+      const tokenResponse = await fetch('https:/candii4-backend-b3355261cd2a.herokuapp.com/client_token');
       const { clientToken } = await tokenResponse.json();
   
       const dropinInstance = await Dropin.create({
@@ -159,7 +158,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   
       const { nonce } = await dropinInstance.requestPaymentMethod();
   
-      const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
+      const paymentResponse = await fetch('https:/candii4-backend-b3355261cd2a.herokuapp.com/execute_transaction', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -205,26 +204,26 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   };
 
 
-  useEffect(() => {
-    const unsubscribe = navigation.addListener('beforeRemove', (e: any) => {
-      if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
-        scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
-      }
-    });
+  // useEffect(() => {
+  //   const unsubscribe = navigation.addListener('beforeRemove', (e: any) => {
+  //     if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
+  //       scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
+  //     }
+  //   });
 
-    if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
-      scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
-    }
+  //   if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
+  //     scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
+  //   }
 
-    return unsubscribe;
-  }, [navigation]);
+  //   return unsubscribe;
+  // }, [navigation]);
 
   return (
     <View style={{ flex: 1 }}>
       <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
         <View style={styles.container}>
           <ShopHeader navigation={navigation} />
-          <ScrollView ref={scrollViewRef} contentContainerStyle={{ paddingBottom: 100 }} bounces={false}  >
+          <ScrollView contentContainerStyle={{ paddingBottom: 100 }} bounces={false}  >
             <View style={{ paddingBottom: 100 }}>
               {renderLabel('Delivery Address', false)}
 
@@ -236,7 +235,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
                     name={field.name}
                     label={field.label}
                     placeholder={field.placeholder}
-                    scrollViewRef={scrollViewRef}
                     rules={field.rules}
                     control={control}
                     errors={errors}
