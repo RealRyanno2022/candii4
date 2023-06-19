@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, StyleSheet, SafeAreaView, Image, TouchableOpacity } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import { StackParamList } from '../../types/types';
@@ -14,7 +14,6 @@ type ShopFooterProps = {
 
 const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
   const [isSubscribed, setIsSubscribed] = useState(false);
-  const [activeTab, setActiveTab] = useState('');
 
   const route = useRoute();
 
@@ -38,16 +37,14 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
     }
   }
 
-  useEffect(() => {
-    if (isShopComponent) {
-      AsyncStorage.setItem('lastShopTab', route?.name);
-    }
-  }, [isShopComponent, route]);
+  if (isShopComponent) {
+    AsyncStorage.setItem('lastShopTab', route?.name);
+  }
 
   const onPressHome = async () => {
-    const lastShopTab = await AsyncStorage.getItem('lastShopTab'); // add await here
+    const lastShopTab = await AsyncStorage.getItem('lastShopTab');
     if (lastShopTab) {
-      navigation.navigate(lastShopTab as any);
+      navigation.navigate(lastShopTab as keyof StackParamList);
     } else {
       navigation.navigate('ShopFront');
     }
@@ -55,41 +52,37 @@ const ShopFooter: React.FC<ShopFooterProps> = ({ navigation, style }) => {
 
   return (
     <View style={style}>
-      <SafeAreaView style={styles.container}>
-        <View style={styles.footerContent}>
-          <TouchableOpacity
-            onPress={onPressHome}
-            disabled={isShopComponent}
-            style={styles.iconContainer}>
-            <View style={activeTab === 'home' ? styles.activeTabLine : null} />  {/* Conditionally display the orange line */}
-            <Image
-              source={require('../pictures/haus-removebg-preview.png')}
-              style={[styles.icon, isShopComponent && styles.disabledIcon]}
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconContainer} onPress={() => { setActiveTab('candii'); navigation.dispatch(StackActions.push('CandiiTalk')); }} disabled={isCandiiTalkComponent}>
-            <View style={activeTab === 'candii' ? styles.activeTabLine : null} />  {/* Conditionally display the orange line */}
-            <Image 
-              source={require('../pictures/heart.png')} 
-              style={[styles.icon, isCandiiTalkComponent && styles.disabledIcon]} 
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconContainer} onPress={() => { setActiveTab('basket'); navigation.navigate('CustomerBasket', { email: 'example@example.com' }); }} disabled={isCustomerBasketComponent}>
-            <View style={activeTab === 'basket' ? styles.activeTabLine : null} />  {/* Conditionally display the orange line */}
-            <Image 
-              source={require('../pictures/basket-removebg-preview.png')} 
-              style={[styles.icon, isCustomerBasketComponent && styles.disabledIcon]} 
-            />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.iconContainer} onPress={handleVapePress} disabled={isSubSignUpComponent}>
-            <View style={activeTab === 'vape' ? styles.activeTabLine : null} />  {/* Conditionally display the orange line */}
-            <Image 
-              source={require('../pictures/vape-removebg-preview.png')} 
-              style={[styles.icon, isSubSignUpComponent && styles.disabledIcon]} 
-            />
-          </TouchableOpacity>
-        </View>
-      </SafeAreaView>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.footerContent}>
+        <TouchableOpacity
+          onPress={onPressHome}
+          disabled={isShopComponent}
+          style={styles.iconContainer}>
+          <Image
+            source={require('../pictures/haus-removebg-preview.png')}
+            style={[styles.icon, isShopComponent && styles.disabledIcon]}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.dispatch(StackActions.push('CandiiTalk'))} disabled={isCandiiTalkComponent}>
+          <Image 
+            source={require('../pictures/heart.png')} 
+            style={[styles.icon, isCandiiTalkComponent && styles.disabledIcon]} 
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconContainer} onPress={() => navigation.navigate('CustomerBasket')} disabled={isCustomerBasketComponent}>
+          <Image 
+            source={require('../pictures/basket-removebg-preview.png')} 
+            style={[styles.icon, isCustomerBasketComponent && styles.disabledIcon]} 
+          />
+        </TouchableOpacity>
+        <TouchableOpacity style={styles.iconContainer} onPress={handleVapePress} disabled={isSubSignUpComponent}>
+          <Image 
+            source={require('../pictures/vape-removebg-preview.png')} 
+            style={[styles.icon, isSubSignUpComponent && styles.disabledIcon]} 
+          />
+        </TouchableOpacity>
+      </View>
+    </SafeAreaView>
     </View>
   );
 };
@@ -110,13 +103,6 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.3,
     shadowRadius: 2,
     elevation: 2,
-  },
-  activeTabLine: {
-    width: '100%',
-    height: 2,
-    backgroundColor: 'orange',
-    position: 'absolute',
-    top: 0,
   },
   footerContent: {
     flexDirection: 'row',
