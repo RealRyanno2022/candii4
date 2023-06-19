@@ -9,6 +9,7 @@
     "braintree-web-drop-in": "^1.38.1",
     "emailjs-com": "^3.2.0",
     "expo": "^48.0.7",
+    "latest": "^0.2.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.44.3",
@@ -20,7 +21,8 @@
     "react-native-image-picker": "^5.4.2",
     "react-native-paper": "^5.8.0",
     "react-native-vector-icons": "^9.2.0",
-    "react-native-web": "~0.18.7"
+    "react-native-web": "~0.18.7",
+    "typescript": "^4.9.4"
   },
   "devDependencies": {
     "@babel/core": "^7.19.3",
