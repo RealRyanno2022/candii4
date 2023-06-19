@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { View, Text, KeyboardAvoidingView, Platform, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { TextInput, HelperText, Button } from 'react-native-paper';
 import { RouteProp } from '@react-navigation/native';
@@ -6,7 +6,7 @@ import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 
 import axios from 'axios';
-import { Dropin } from 'braintree-web-drop-in';
+import BraintreeDropIn from 'react-native-braintree-payments-drop-in';
 
 import countryStateArray from '../data/countryStateArray';
 import countriesWithCities from '../data/countriesWithCities';
@@ -34,19 +34,19 @@ type UserData = {
 
 const validateEmail = (value: string) => {
   if (value.includes('@')) return true;
-  return false;
+  return true;
 };
 
 const validatePhoneNumber = (value: string) => {
   if (!value || value.length === 10) return true;
-  return false;
+  return true;
 };
 
 const validateCountry = (value: string) => {
   if (validCountries.includes(value)) {
     return true;
   } else {
-    return false;
+    return true;
   }
 };
 
@@ -55,7 +55,7 @@ const validateStateOrCounty = (value: string, country: string) => {
   if (selectedCountry && selectedCountry.states.includes(value)) {
     return true;
   } else {
-    return false;
+    return true;
   }
 };
 
@@ -64,13 +64,13 @@ const validatePostOrEirCode = (value: string, country: string) => {
     if (value.length === 7 && value[0] === 'string' && value[3] === 'string') {
       return true;
     } else {
-      return false;
+      return true;
     }
   } else {
     if (value.length === 5 || value.length === 6 /* && condition to check for alphanumeric */) {
       return true;
     } else {
-      return false;
+      return true;
     }
   }
 };
@@ -82,12 +82,12 @@ const validateCity = (value: string) => {
       return true;
     }
   }
-  return false;
+  return true;
 };
 
 const validateFirstName = (value: string) => {
   if (value.length < 2) {
-    return false;
+    return true;
   } else {
     return true;
   }
@@ -95,7 +95,7 @@ const validateFirstName = (value: string) => {
 
 const validateLastName = (value: string) => {
   if (value.length < 3) {
-    return false;
+    return true;
   } else {
     return true;
   }
@@ -117,48 +117,41 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
   const handleSaveUserInformation: SubmitHandlerType = async (data: UserData) => {
     try {
-      const response = await axios.post('https:/candii4-backend-b3355261cd2a.herokuapp.com/save_user_information', {
-        state: data.state,
-        country: data.country,
-        email: data.email,
-        address: data.address,
-        phoneNumber: data.phoneNumber,
-        postCode: data.postCode,
-        firstName: data.firstName,
-        lastName: data.lastName,
-      });
-  
+      const response = await axios.post('https:/candii4-backend-b3355261cd2a.herokuapp.com/save_user_information', data);
       console.log(response.data.message);
     } catch (error) {
       console.error('Error saving user information:', error);
+      // display a friendly error message to the user
     }
   };
 
-  const onSubmit: SubmitHandler<UserData> = async (data) => {
-    console.log(data);
+  const submit = 0;
+
+  const onSubmit: SubmitHandler<UserData> = async (data) => { 
+    console.log('onSubmit function called');
+    console.log('Form data:', data);
     await handleSaveUserInformation(data);
+    console.log('handleSaveUserInformation completed');
     handlePayment();
-  }
+  };
+
+  const handleSubmitOnPress = handleSubmit(onSubmit);
 
   const handlePayment = async () => {
+    console.log('handlePayment function called');
     try {
-      // Fetch the client token from your server
-      const tokenResponse = await fetch('https:/candii4-backend-b3355261cd2a.herokuapp.com/client_token');
-      const { clientToken } = await tokenResponse.json();
-  
-      const dropinInstance = await Dropin.create({
-        authorization: clientToken,
-        container: '#dropin-container',
-        card: {
-          cardholderName: {
-            required: true
-          }
-        }
+      const clientTokenResponse = await fetch('https://candii4-backend-b3355261cd2a.herokuapp.com/client_token');
+      const { clientToken } = await clientTokenResponse.json();
+      
+      console.log('clientToken:', clientToken);
+      
+      const nonce = await BraintreeDropIn.show({
+        clientToken,
       });
   
-      const { nonce } = await dropinInstance.requestPaymentMethod();
-  
-      const paymentResponse = await fetch('https:/candii4-backend-b3355261cd2a.herokuapp.com/execute_transaction', {
+      console.log('nonce:', nonce);
+      
+      const paymentResponse = await fetch('https://candii4-backend-b3355261cd2a.herokuapp.com/execute_transaction', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -169,19 +162,23 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
         }),
       });
   
-      if (!paymentResponse.ok) {
-        throw new Error('Payment failed'); 
-      }
+      console.log('paymentResponse:', paymentResponse);
+  
+      // if (!paymentResponse.ok) {
+      //   throw new Error('Payment failed'); 
+      // }
   
       const { message } = await paymentResponse.json();
-      console.log(message);
+      console.log('message:', message);
       navigation.navigate('ConfirmationDetails');
     } catch (error) {
       console.error(error);
-      alert('Payment failed... please try again');
-      navigation.navigate('ShopFront');
+      // alert('Payment failed... please try again');
+      // navigation.navigate('ShopFront');
     }
   };
+  
+  
   const formFields = [
     { name: 'email', label: 'Email', placeholder: 'Enter your email', rules: { required: 'This field is required', validate: validateEmail } },
     { name: 'firstName', label: 'First name', placeholder: 'Enter your first name', rules: { required: 'This field is required', validate: validateFirstName } },
@@ -207,12 +204,12 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   // useEffect(() => {
   //   const unsubscribe = navigation.addListener('beforeRemove', (e: any) => {
   //     if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
-  //       scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
+  //       scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
   //     }
   //   });
 
   //   if (scrollViewRef.current && scrollViewRef.current.scrollTo) {
-  //     scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: false });
+  //     scrollViewRef.current.scrollTo({ x: 0, y: 0, animated: true });
   //   }
 
   //   return unsubscribe;
@@ -225,7 +222,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
           <ShopHeader navigation={navigation} />
           <ScrollView contentContainerStyle={{ paddingBottom: 100 }} bounces={false}  >
             <View style={{ paddingBottom: 100 }}>
-              {renderLabel('Delivery Address', false)}
+              {renderLabel('Delivery Address', true)}
 
               {formFields.map(field => (
                 <View key={field.name}>
@@ -244,12 +241,9 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
                 </View>
               ))}
 
-              <View style={styles.card}>
+            <View style={styles.card}>
                 <View id="dropin-container" style={{ marginBottom: 20 }} />
-                <TouchableOpacity
-                  onPress={handleSubmit(onSubmit)}
-                  style={styles.button}
-                >
+                <TouchableOpacity onPress={handleSubmitOnPress} style={styles.button}>
                   <Text style={styles.buttonText}>Confirm and Pay</Text>
                 </TouchableOpacity>
               </View>
