@@ -117,22 +117,22 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const { control, handleSubmit, formState: { errors } } = useForm<UserData>();
 
   const handleSaveUserInformation: SubmitHandlerType = async (data: UserData) => {
-    // try {
-    //   const response = await axios.post('https://candii-vapes-backend.herokuapp.com/save_user_information', {
-    //     state: data.state,
-    //     country: data.country,
-    //     email: data.email,
-    //     address: data.address,
-    //     phoneNumber: data.phoneNumber,
-    //     postCode: data.postCode,
-    //     firstName: data.firstName,
-    //     lastName: data.lastName,
-    //   });
+    try {
+      const response = await axios.post('https://candii-vapes-backend.herokuapp.com/save_user_information', {
+        state: data.state,
+        country: data.country,
+        email: data.email,
+        address: data.address,
+        phoneNumber: data.phoneNumber,
+        postCode: data.postCode,
+        firstName: data.firstName,
+        lastName: data.lastName,
+      });
   
-    //   console.log(response.data.message);
-    // } catch (error) {
-    //   console.error('Error saving user information:', error);
-    // }
+      console.log(response.data.message);
+    } catch (error) {
+      console.error('Error saving user information:', error);
+    }
   };
 
   const onSubmit: SubmitHandler<UserData> = async (data) => {
@@ -142,46 +142,46 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   }
 
   const handlePayment = async () => {
-    // try {
-    //   // Fetch the client token from your server
-    //   const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
-    //   const { clientToken } = await tokenResponse.json();
+    try {
+      // Fetch the client token from your server
+      const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
+      const { clientToken } = await tokenResponse.json();
   
-    //   const dropinInstance = await Dropin.create({
-    //     authorization: clientToken,
-    //     container: '#dropin-container',
-    //     card: {
-    //       cardholderName: {
-    //         required: true
-    //       }
-    //     }
-    //   });
+      const dropinInstance = await Dropin.create({
+        authorization: clientToken,
+        container: '#dropin-container',
+        card: {
+          cardholderName: {
+            required: true
+          }
+        }
+      });
   
-    //   const { nonce } = await dropinInstance.requestPaymentMethod();
+      const { nonce } = await dropinInstance.requestPaymentMethod();
   
-    //   const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       paymentMethodNonce: nonce,
-    //       amount: '1.00', // Replace with the actual amount
-    //     }),
-    //   });
+      const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          paymentMethodNonce: nonce,
+          amount: '1.00', // Replace with the actual amount
+        }),
+      });
   
-    //   if (!paymentResponse.ok) {
-    //     throw new Error('Payment failed'); 
-    //   }
+      if (!paymentResponse.ok) {
+        throw new Error('Payment failed'); 
+      }
   
-    //   const { message } = await paymentResponse.json();
-    //   console.log(message);
-    //   navigation.navigate('ConfirmationDetails');
-    // } catch (error) {
-    //   console.error(error);
-    //   alert('Payment failed... please try again');
-    //   navigation.navigate('ShopFront');
-    // }
+      const { message } = await paymentResponse.json();
+      console.log(message);
+      navigation.navigate('ConfirmationDetails');
+    } catch (error) {
+      console.error(error);
+      alert('Payment failed... please try again');
+      navigation.navigate('ShopFront');
+    }
   };
   const formFields = [
     { name: 'email', label: 'Email', placeholder: 'Enter your email', rules: { required: 'This field is required', validate: validateEmail } },
@@ -204,10 +204,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     );
   };
 
-
-  const handleSearch = () => {
-    navigation.push('SearchProducts', { searchTerm });
-  }
 
   useEffect(() => {
     const unsubscribe = navigation.addListener('beforeRemove', (e: any) => {

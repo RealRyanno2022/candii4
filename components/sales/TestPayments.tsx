@@ -1,65 +1,35 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React from 'react';
 import { TouchableOpacity, Text, View, StyleSheet } from 'react-native';
-import dropin from 'braintree-web-drop-in';
+import BraintreeDropIn from 'react-native-braintree-payments-drop-in';
 
 const TestPayments = () => {
-  const [dropinInstance, setDropinInstance] = useState(null);
-  const dropInContainerRef = useRef(null);
-
-  useEffect(() => {
-    const createDropIn = async () => {
-      try {
-        const tokenResponse = await fetch('https://candii-vapes-backend.herokuapp.com/client_token');
-        const { clientToken } = await tokenResponse.json();
-    
-        const instance = await dropin.create({
-          authorization: clientToken,
-          container: dropInContainerRef.current,  
-          card: {
-            cardholderName: {
-              required: true
-            }
-          }
-        });
-
-        setDropinInstance(instance);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    createDropIn();
-  }, []);
 
   const onSubmit = async () => {
-    if (dropinInstance) {
-      handlePayment();
-    }
-  };
-
-  const handlePayment = async () => {
     try {
-      if (dropinInstance) {
-        const { nonce } = await dropinInstance.requestPaymentMethod();
-  
-        const paymentResponse = await fetch('https://candii-vapes-backend.herokuapp.com/execute_transaction', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify({
-            paymentMethodNonce: nonce,
-            amount: '1.00', // Replace with the actual amount
-          }),
-        });
-    
-        if (!paymentResponse.ok) {
-          throw new Error('Payment failed'); 
-        }
-    
-        const { message } = await paymentResponse.json();
-        console.log(message);
+      const clientToken = await fetch('https://candii-backend-525523ceb35f.herokuapp.com/client_token')
+        .then(response => response.text());
+
+      const nonce = await BraintreeDropIn.show({
+        clientToken,
+      });
+
+      const response = await fetch('https://candii-backend-525523ceb35f.herokuapp.com/execute_transaction', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          paymentMethodNonce: nonce,
+          amount: '1.00',
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Payment failed'); 
       }
+
+      const { message } = await response.json();
+      console.log(message);
     } catch (error) {
       console.error(error);
       alert('Payment failed... please try again');
@@ -68,18 +38,16 @@ const TestPayments = () => {
 
   return (
     <View style={{ flex: 1 }}>
-        <View style={styles.card}>
-        <View ref={dropInContainerRef} style={{ marginBottom: 20 }} />
-        <TouchableOpacity
-            onPress={onSubmit}
-            style={styles.button}
-        >
-            <Text style={styles.buttonText}>Confirm and Pay</Text>
+      <View style={styles.card}>
+        <TouchableOpacity onPress={onSubmit} style={styles.button}>
+          <Text style={styles.buttonText}>Confirm and Pay</Text>
         </TouchableOpacity>
-        </View>
+      </View>
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   card: {
