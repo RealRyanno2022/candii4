@@ -117,10 +117,16 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
   const handleSaveUserInformation: SubmitHandlerType = async (data: UserData) => {
     try {
-      const response = await axios.post('https:/candii4-backend-b3355261cd2a.herokuapp.com/save_user_information', data);
+      const response = await axios.post(
+        'https://candii4-backend-b3355261cd2a.herokuapp.com/save_user_information', 
+        data, 
+        { headers: { 'Content-Type': 'application/json' } } 
+      );
+      console.log('Response:', response); // New line to log the full response
       console.log(response.data.message);
     } catch (error) {
-      console.error('Error saving user information:', error);
+      // Log the full error object to help with debugging
+      console.error('Error saving user information:', error); // Changed line to log full error
       // display a friendly error message to the user
     }
   };
