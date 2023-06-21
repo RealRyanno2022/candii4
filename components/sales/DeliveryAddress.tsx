@@ -118,7 +118,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const handleSaveUserInformation: SubmitHandlerType = async (data: UserData) => {
     try {
       const response = await axios.post(
-        'https://candii4-backend-b3355261cd2a.herokuapp.com/save_user_information', 
+        'https://candii4-backend2-3f9abaacb350.herokuapp.com/save_user_information', 
         data, 
         { headers: { 'Content-Type': 'application/json' } } 
       );
@@ -146,7 +146,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const handlePayment = async () => {
     console.log('handlePayment function called');
     try {
-      const clientTokenResponse = await fetch('https://candii4-backend-b3355261cd2a.herokuapp.com/client_token');
+      const clientTokenResponse = await fetch(' https://candii4-backend2-3f9abaacb350.herokuapp.com/client_token');
       const { clientToken } = await clientTokenResponse.json();
       
       console.log('clientToken:', clientToken);
@@ -157,7 +157,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   
       console.log('nonce:', nonce);
       
-      const paymentResponse = await fetch('https://candii4-backend-b3355261cd2a.herokuapp.com/execute_transaction', {
+      const paymentResponse = await fetch(' https://candii4-backend2-3f9abaacb350.herokuapp.com/execute_transaction', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

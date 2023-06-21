@@ -14,14 +14,8 @@ const NonDisposableScreen: React.FC<NonDisposableScreenProps> = ({ navigation })
 
   const [searchTerm, setSearchTerm] = useState('');
 
-  const handleBrandPress = (brandName: string) => {
-    navigation.dispatch(StackActions.push('BrandVarieties', { brandName }));
-  };
-
-
-
-  const handleSearch = () => {
-    navigation.dispatch(StackActions.push('SearchProducts', { searchTerm }));
+  const handleBrandPress = (brand: string) => {
+    navigation.dispatch(StackActions.push('BrandVarieties', { brand, type: 'disposable' }));
   };
 
   const brands = [
