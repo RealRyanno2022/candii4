@@ -49,6 +49,7 @@ import EditEmail from './components/shop/EditEmail';
 import EditEmailDeliveryAddress from './components/shop/EditEmailDeliveryAddress';
 
 import DisposableProductPage from './components/shop/DisposableProductPage';
+import ReorderPage from './components/shop/ReorderPage';
 // import TestPayments from './components/sales/TestPayments';
 
 export default function App() {
@@ -61,6 +62,7 @@ export default function App() {
         <Stack.Screen name="CandiiTalk" component={CandiiTalk} />
         <Stack.Screen name="PrivacyPolicy" component={PrivacyPolicy} />
         <Stack.Screen name="LanguageSelect" component={LanguageSelect} />
+        <Stack.Screen name="ReorderPage" component={ReorderPage} />
         <Stack.Screen name="EditEmail" component={EditEmail} />
         <Stack.Screen name="EditEmailDeliveryAddress" component={EditEmailDeliveryAddress} />
         <Stack.Screen name="ShopFront" component={ShopFront} />

@@ -43,6 +43,7 @@ export type StackParamList = {
   LanguageSelect: undefined;
   Intro: undefined;
   PrivacyPolicy: undefined;
+  ReorderPage: undefined;
   ShopFront:undefined;
   VerifyAge: undefined;
   ForgotPassword: undefined;
