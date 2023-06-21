@@ -117,10 +117,10 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
   const saveUserInformation = async (data) => {
     try {
-      const response = await axios.post('https://candii4-backend2-3f9abaacb350.herokuapp.com//save_user_information', data);
-      console.log(response.data);  // log the response
+      const response = await axios.post('https://candii4-backend2-3f9abaacb350.herokuapp.com/save_user_information', data);
+      console.log('Response data:', response.data);
     } catch (error) {
-      console.error('Axios Error:', error); // Log the Axios error object
+      console.error('Axios Error:', error);
       if (error.response) {
         console.log('Server responded with:', error.response.status);
         console.log('Response data:', error.response.data);
@@ -129,8 +129,10 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
       } else {
         console.log('Error occurred:', error.message);
       }
+      throw error; // Rethrow the error to handle it further, if needed
     }
-  }
+  };
+  
   
   const userData = {
     state: 'YourState', 
