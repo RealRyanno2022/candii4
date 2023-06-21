@@ -19,6 +19,7 @@ type Product = {
   price: number;
   brand: string;
   type: 'juice' | 'disposable' | 'nonDisposable' | 'part';
+  variableStrength: boolean;
   image: ProductImage;
 };
 
