@@ -30,6 +30,10 @@ const DisposableProductPage: React.FC<DisposableProductPageProps> = ({ navigatio
     setTotalPrice(newTotalPrice);
   }, [quantity]);
 
+  const reloadData = () => {
+    navigation.navigate('ShopFront');
+  }
+
   const addToBasket = async () => {
     try {
       const productWithQuantity = {

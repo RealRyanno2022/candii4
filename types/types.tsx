@@ -20,6 +20,7 @@ type Product = {
   brand: string;
   type: 'juice' | 'disposable' | 'nonDisposable' | 'part';
   variableStrength: boolean;
+  nicotineStrengths: string[];
   image: ProductImage;
 };
 

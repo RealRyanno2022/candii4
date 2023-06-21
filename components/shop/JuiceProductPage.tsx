@@ -17,10 +17,39 @@ type JuiceProductPageProps = {
   route: RouteProp<StackParamList, 'JuiceProductPage'>;
 }
 
+
+
+
+
+
+
 const JuiceProductPage: React.FC<JuiceProductPageProps> = ({ navigation, route }) => {
   const { product } = route.params;
   const [quantity, setQuantity] = useState(1);
   const [totalPrice, setTotalPrice] = useState(product.price);
+  const [selectedNicotineStrength, setSelectedNicotineStrength] = useState(product.nicotineStrengths[0]);
+
+  useEffect(() => {
+    setTotalPrice(getProductPrice());
+  }, [quantity, selectedNicotineStrength]);
+
+
+  const reloadData = () => {
+    navigation.navigate('ShopFront');
+  }
+
+  const getProductPrice = () => {
+    let pricePerItem = product.price;
+    if (selectedNicotineStrength === 20) {
+      pricePerItem += 5;
+    }
+
+    if (quantity === 3 && parseInt(selectedNicotineStrength) < 20) {
+      return 12.5;
+    } else {
+      return quantity * pricePerItem;
+    }
+  };
 
   useEffect(() => {
     let newTotalPrice = product.price;
@@ -93,6 +122,13 @@ const JuiceProductPage: React.FC<JuiceProductPageProps> = ({ navigation, route }
                 </View>
                 <View style={styles.productInfo}>
                   <Text style={styles.productInfoDescription}>{brandText}</Text>
+                  <ScrollView contentContainerStyle={styles.container} bounces={false}>
+                    {product.nicotineStrengths.map((strength) => (
+                      <TouchableOpacity key={strength} onPress={() => setSelectedNicotineStrength(strength)}>
+                        <Text>{strength}mg</Text>
+                      </TouchableOpacity>
+                    ))}
+                  </ScrollView>
                 </View>
                 <View style={styles.productInfo}>
                   <View style={styles.priceQuantityContainer}>

@@ -1,364 +1,296 @@
-import React, { useState } from 'react';
-import {
-  StyleSheet,
-  Text,
-  View,
-  TextInput,
-  TouchableOpacity,
-  ScrollView,
-  Image,
-} from 'react-native';
-import Slider from '@react-native-community/slider';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native';
+import { Ionicons } from '@expo/vector-icons'; 
 import ShopHeader from './ShopHeader';
+import ShopFooter from './ShopFooter';
 import { StackParamList } from '../../types/types';
 import { StackActions } from '@react-navigation/native';
-import { NavigationProp } from '@react-navigation/native';
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RouteProp } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import ShopFooter from './ShopFooter';
-// import { Picker } from '@react-native-picker/picker';
+type ProductWithQuantity = typeof product & { quantity: number };
 
 type NonDisposableProductPageProps = {
-  navigation: NavigationProp<StackParamList, "JuiceScreen">;
+  navigation: StackNavigationProp<StackParamList>;
+  route: RouteProp<StackParamList, 'NonDisposableProductPage'>;
 }
 
-const NonDisposableProductPage: React.FC<NonDisposableProductPageProps> = ({ navigation }) => {
-    // dummy product
-    
-    const product = {
-      name: 'Cool Headphones',
-      images: [
-        require('../pictures/basket-removebg-preview.png'),
-        require('../pictures/basket-removebg-preview.png'),
-        require('../pictures/basket-removebg-preview.png'),
-        require('../pictures/basket-removebg-preview.png'),
-      ],
-      price: 150.99,
-      description: '',
-      reviewCount: 185,
-      rating: 4.5,
-      deliveryCharge: 5.95,
-    };
-  
-    // Rest of the code...
-  
-    const renderStarRating = (rating: number) => {
-      const emptyStar = require('../pictures/star1-removebg-preview.png');
-      const halfStar = require('../pictures/star2-removebg-preview.png');
-      const fullStar = require('../pictures/star3-removebg-preview.png');
-    
-      const fullStars = Math.floor(rating);
-      const hasHalfStar = rating % 1 >= 0.5;
-      const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-    
-      return (
-        <View>
-          <View style={styles.starRating}>
-            {Array(fullStars)
-              .fill(null)
-              .map((_, index) => (
-                <Image key={`full_star_${index}`} source={fullStar} style={styles.star} />
-              ))}
-            {hasHalfStar && <Image source={halfStar} style={styles.star} />}
-            {Array(emptyStars)
-              .fill(null)
-              .map((_, index) => (
-                <Image key={`empty_star_${index}`} source={emptyStar} style={styles.star} />
-              ))}
-          </View>
-        </View>
-      );
-    };
-  
+const NonDisposableProductPage: React.FC<NonDisposableProductPageProps> = ({ navigation, route }) => {
+  const { product } = route.params;
   const [quantity, setQuantity] = useState(1);
-  const [sliderValue, setSliderValue] = useState(0);
-  const totalPrice = product.price * quantity + product.deliveryCharge;
+  let initialPrice = product.price;
 
-  const [shippingOption, setShippingOption] = useState('standard');
-  const shippingCost = shippingOption === 'standard' ? 5.95 : 15.95;
-
-  const handleShippingButtonPress = (option: string) => {
-    setShippingOption(option);
-  };
-
-  const isStandardShipping = shippingOption === 'standard';
-  const isExpressShipping = shippingOption === 'express';
-
-  function handleAddtoCart() {
-    navigation.navigate("LoginScreen");
+  if(product.brand === 'DragX') {
+    initialPrice += 9;
   }
 
+  const [totalPrice, setTotalPrice] = useState(initialPrice);
 
+  let brandText = `The ${product.brand} non-disposable e-cigarette is a refillable e-cigarette which comes with detachable pod and coil components (sold separately). To use the e-cigarette, open the juice tank and insert the e-liquid vial nozzle before dripping it in. Be careful not to overfill the tank!`;
 
-  const [mgOption, setMgOption] = useState('6mg'); // new state
+  if (product.brand === 'DragX') {
+    brandText += ' This DragX model requires a battery to function (Factored into the price). The DragX is our strongest non-disposable e-cigarette brand, perfect for long drags!';
+  }
 
-  const handleMgOptionButtonPress = (option: string) => {
-    setMgOption(option);
-  };
+  // The rest of the component code remains the same
 
-  const is6mg = mgOption === '6mg';
-  const is12mg = mgOption === '12mg';
-  const is18mg = mgOption === '18mg';
+  const reloadData = () => {
+    navigation.navigate('ShopFront');
+  }
 
-
-  
-const incrementQuantity = () => {
-    if(quantity < 18) { 
-    setQuantity(quantity + 1);
-    } else {
-        return;
+  const getProductPrice = () => {
+    let pricePerItem = product.price;
+    if (selectedNicotineStrength === 20) {
+      pricePerItem += 5;
     }
-    
+
+    if (quantity === 3 && parseInt(selectedNicotineStrength) < 20) {
+      return 12.5;
+    } else {
+      return quantity * pricePerItem;
+    }
   };
+
+  useEffect(() => {
+    let newTotalPrice = product.price;
+    if (quantity > 1) {
+      newTotalPrice = (product.price + 0.01) * quantity;
+    }
+    setTotalPrice(newTotalPrice);
+  }, [quantity]);
+
+  const addToBasket = async () => {
+    try {
+      const productWithQuantity = {
+        ...product,
+        quantity: quantity,
+      };
+
+      const storedBasket = await AsyncStorage.getItem('basket');
+      let basket = [];
+
+      if (storedBasket !== null) {
+        basket = JSON.parse(storedBasket);
+      }
+
+      basket.push(productWithQuantity);
+      await AsyncStorage.setItem('basket', JSON.stringify(basket));
+
+      navigation.dispatch(StackActions.push('CustomerBasket'));
+    } catch (error) {
+      console.error('Failed to add the item to the basket.', error);
+    }
+  };
+
+  let basket: ProductWithQuantity[] = [];
+
+  const incrementQuantity = () => {
+    if(quantity < 12) {
+      setQuantity(quantity + 1);
+    }
+  }
 
   const decrementQuantity = () => {
-    setQuantity(Math.max(1, quantity - 1));
-  };
+    if(quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  }
 
   return (
-  <View>
-    <ScrollView style={styles.scrollView} bounces={false}>
-      <ShopHeader navigation={navigation}  />
-    <View style={styles.container}>
-      <Image style={styles.image} source={{ uri: product.images[sliderValue] }} />
-      <Slider
-        style={styles.slider}
-        value={sliderValue}
-        onValueChange={setSliderValue}
-        minimumValue={0}
-        maximumValue={product.images.length - 1}
-        step={1}
-      />
-      <Text style={styles.name}>{product.brand} - {product.name}</Text>
-      <Text style={styles.price}>${product.price.toFixed(2)}</Text>
-      <View style={styles.quantityContainer}>
-        <TouchableOpacity onPress={decrementQuantity}>
-          <Text style={styles.arrow}>-</Text>
-        </TouchableOpacity>
-
-
-
-        <Text style={styles.quantityText}>{quantity}</Text>
-
-
-
-
-        <TouchableOpacity onPress={incrementQuantity}>
-          <Text style={styles.arrow}>+</Text>
-        </TouchableOpacity>
-      </View>
-      <View style={styles.shippingContainer}>
-      <TouchableOpacity
-          onPress={() => handleShippingButtonPress('standard')}
-          style={[
-            styles.shippingButton,
-            isStandardShipping && styles.shippingButtonActive,
-          ]}
-        >
-          <Text
-            style={[
-              styles.shippingButtonText,
-              isStandardShipping && styles.shippingButtonTextActive,
-            ]}
-          >
-            Standard Shipping
-          </Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => handleShippingButtonPress('express')}
-          style={[
-            styles.shippingButton,
-            isExpressShipping && styles.shippingButtonActive,
-          ]}
-        >
-          <Text
-            style={[
-              styles.shippingButtonText,
-              isExpressShipping && styles.shippingButtonTextActive,
-            ]}
-          >
-            Express Shipping
-          </Text>
-        </TouchableOpacity>
-      </View>
-      </View>
-
-      <View style={styles.priceInfoContainer}>
-        <Text style={styles.totalPrice}>
-          Delivery Charge: ${shippingCost.toFixed(2)}
-        </Text>
-        <Text style={styles.totalPrice}>
-          Total Price: ${(totalPrice + shippingCost).toFixed(2)}
-        </Text>
-      </View>
-      <TouchableOpacity
-            style={styles.card}
-            onPress={() => handleAddtoCart()}
-          >
-            <Text style={styles.cardText}>Add to Cart</Text>
-          </TouchableOpacity>
-  </ScrollView>
-     <ShopFooter navigation={navigation}/>
-  </View>
+    <View style={styles.mainContainer}>
+      <ShopHeader navigation={navigation} />
+      <ScrollView contentContainerStyle={styles.container} bounces={false}>
+        <View style={styles.content}>
+          {product ? (
+            <>
+              <View style={styles.productInfo2}>
+                <Text style={styles.productInfoHeader}>{product.brand} - {product.name}</Text>
+              </View>
+              <View style={styles.productInfo}>
+                {product.image && product.image.length > 0 ? (
+                  <Image source={require('../pictures/logo.png')} style={styles.image} />
+                ) : (
+                  <View style={styles.imagePlaceholder}>
+                    <Text style={styles.placeholderText}>Image Unavailable</Text>
+                  </View>
+                )}
+              </View>
+              <View style={styles.productInfo}>
+                <Text style={styles.productInfoDescription}>{brandText}</Text>
+              </View>
+              <View style={styles.productInfo}>
+                <View style={styles.priceQuantityContainer}>
+                  <Text style={styles.productInfoHeader}>{`€ ${totalPrice.toFixed(2)}`}</Text>
+                  <View style={styles.quantitySelector}>
+                    <TouchableOpacity onPress={decrementQuantity}>
+                      <Ionicons name="remove-circle-outline" size={30} color="black" />
+                    </TouchableOpacity>
+                    <Text style={styles.quantityText}>{quantity}</Text>
+                    <TouchableOpacity onPress={incrementQuantity}>
+                      <Ionicons name="add-circle-outline" size={30} color="black" />
+                    </TouchableOpacity>
+                  </View>
+                </View>
+              </View>
+              <TouchableOpacity 
+                style={[styles.buyButton, styles.buttonSpacing]} 
+                onPress={addToBasket}
+              >
+                <Text style={styles.buyButtonText}>Add to Basket</Text>
+              </TouchableOpacity>
+              <TouchableOpacity 
+                style={[styles.buyButton, styles.buttonSpacing]} 
+                onPress={() => navigation.dispatch(StackActions.push('DeliveryAddress', { product }))}
+              >
+                <Text style={styles.buyButtonText}>Buy Now</Text>
+              </TouchableOpacity>
+              <View style={styles.space}></View>
+            </>
+          ) : (
+            <View style={{ alignItems: 'center' }}>
+              <Text style={styles.title}>You haven't loaded this product.</Text>
+              <TouchableOpacity style={styles.button} onPress={reloadData}>
+                <Text style={styles.buttonText}>Reload</Text>
+              </TouchableOpacity>
+            </View>
+          )}
+        </View>
+      </ScrollView>
+      <ShopFooter navigation={navigation} />
+    </View>
   );
 };
 
-const styles = StyleSheet.create({
-    scrollView: {
-        backgroundColor: '#003f5c',
-    },
-    container: {
-        flexGrow: 1,
-        backgroundColor: '#003f5c',
-        alignItems: 'center',
-        padding: 10,
-    },
-    reviewCounter: {
-        fontSize: 14,
-        color: 'white',
-        marginBottom: 10,
-    },
-    priceInfoContainer: {
-    marginBottom: 20,
-    },
-    starRating: {
-      flexDirection: 'row',
-      alignItems: 'center',
-      justifyContent: 'center',
-      marginBottom: 10,
-    },
-    star: {
-      width: 24,
-      height: 24,
-      marginHorizontal: 2,
-    },
-    image: {
-      width: '100%',
-      height: 300,
-      resizeMode: 'contain',
-    },
-    navyBox: {
-    borderWidth: 2,
-    borderColor: 'navy',
-    borderRadius: 5,
-    padding: 10,
-    marginBottom: 10,
-    height: 150,
-    },
-    slider: {
-      width: '100%',
-      height: 40,
-    },
-    name: {
-      fontSize: 24,
-      fontWeight: 'bold',
-      color: '#fb5b5a',
-      marginTop: 10,
-      marginBottom: 5,
-    },
-    shippingContainer: {
-        flexDirection: 'row',
-        alignItems: 'center',
-        marginBottom: 10,
-        justifyContent: 'space-around',
-    },
-    shippingButton: {
-        paddingHorizontal: 10,
-        paddingVertical: 5,
-        backgroundColor: '#fb5b5a',
-        borderRadius: 5,
-      },
-      shippingButtonActive: {
-        backgroundColor: '#d64947',
-      },
-      card: {
-        width: '45%',
-        backgroundColor: '#FFFFFF',
-        borderRadius: 15,
-        padding: 20,
-        marginBottom: 20,
-        alignItems: 'center',
-        shadowColor: "#000",
-        shadowOffset: {
-          width: 0,
-          height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5,
-      },
-      cardText: {
-        color: '#1F1F1F',
-        fontSize: 18,
-        fontWeight: 'bold',
-      },
-      shippingButtonText: {
-        fontSize: 16,
-        color: 'white',
-      },
-      shippingButtonTextActive: {
-        fontWeight: 'bold',
-      },
 
-      shippingText: {
-        fontSize: 18,
-        color: 'white',
-      },
-      shippingPicker: {
-        height: 50,
-        width: 250,
-        color: 'white',
-      },
-    price: {
-      fontSize: 20,
-      fontWeight: 'bold',
-      color: '#fb5b5a',
-      marginBottom: 10,
-    },
-    quantityContainer: {
-      flexDirection: 'row',
-      alignItems: 'center',
-    },
-    arrow: {
-        fontSize: 60,
-        paddingHorizontal: 10,
-        color: '#fb5b5a',
-    },
-    quantityText: {
-        fontSize: 32,
-        color: 'white',
-        marginHorizontal: 5,
-        readonly:"true",
-      },
-    quantityInput: {
-    width: 50,
-    textAlign: 'center',
+const styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    backgroundColor: '#FCCC7C',
+  },
+  button: {
+
+  },
+  title: {
+  
+  },
+  buttonText: {
+
+  },
+  container: {
+    backgroundColor: '#FCCC7C',
+    padding: 10,
+  },
+  buttonSpacing: {
+    marginVertical: 20,
+  },
+  imagePlaceholder: {
+    height: 225,
+    width: '100%',
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  placeholderText: {
+    fontSize: 16,
+    color: '#333',
+    fontFamily: 'OpenSans-Regular',
+  },
+  content: {
+    paddingHorizontal: 20,
+    marginBottom: 20,
+    backgroundColor: 'transparent',
+    borderRadius: 10,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  image: {
+    height: 225,
+    width: '100%',
+    borderRadius: 10,
+    padding: 20,
+  },
+  productInfo: {
+    padding: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  productInfo2: {
+    padding: 20,
+    marginTop: 20,
+    borderRadius: 10,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+    alignItems: 'center',
+  },
+  productInfoHeader: {
+    fontSize: 22,
+    fontWeight: 'bold',
+    color: '#333',
     marginBottom: 10,
-    color: 'white',
-    },
-    description: {
-        fontSize: 16,
-        color: 'white',
-        marginBottom: 10,
-      },
-      totalPrice: {
-        fontSize: 18,
-        fontWeight: 'bold',
-        color: '#fb5b5a',
-        marginBottom: 10,
-      },
-      button: {
-        width: '80%',
-        backgroundColor: '#fb5b5a',
-        borderRadius: 25,
-        height: 50,
-        alignItems: 'center',
-        justifyContent: 'center',
-        marginTop: 40,
-        marginBottom: 10,
-      },
-      buttonText: {
-        color: 'white',
-      },
-});
+    fontFamily: 'OpenSans-Bold',
+    alignItems: 'center',
+  },
+  productInfoDescription: {
+    fontSize: 16,
+    fontFamily: 'OpenSans-Regular',
+    fontWeight: 'bold',
+  },
+  space: {
+    marginBottom: 50,
+  },
+  buyButton: {
+    backgroundColor: '#FF6347',
+    borderRadius: 10,
+    paddingVertical: 15,
+    alignItems: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.3,
+    shadowRadius: 2,
+    elevation: 2,
+  },
+  buyButtonText: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    color: '#FFFFFF',
+    fontFamily: 'OpenSans-Bold',
+  },
+  priceQuantityContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  quantitySelector: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  quantityText: {
+    marginHorizontal: 10,
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+})
 
 export default NonDisposableProductPage;
