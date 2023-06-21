@@ -101,6 +101,10 @@ const validateLastName = (value: string) => {
   }
 };
 
+const axiosInstance = axios.create({
+  strictSSL: false, // Disable strict SSL certificate checking if needed
+  validateStatus: () => true, // Allow all status codes to be considered successful
+});
 
 const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const [country, setCountry] = useState('');
@@ -115,9 +119,13 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
   const { control, handleSubmit, formState: { errors } } = useForm<UserData>();
 
+
+
+
+
   const saveUserInformation = async (data) => {
     try {
-      const response = await axios.post('https://candii4-backend2-3f9abaacb350.herokuapp.com/save_user_information', data);
+      const response = await axiosInstance.post('https://candii4-backend2-3f9abaacb350.herokuapp.com/save_user_information', data);
       console.log('Response data:', response.data);
     } catch (error) {
       console.error('Axios Error:', error);
