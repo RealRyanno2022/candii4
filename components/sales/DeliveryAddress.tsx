@@ -115,30 +115,43 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
   const { control, handleSubmit, formState: { errors } } = useForm<UserData>();
 
-  const handleSaveUserInformation: SubmitHandlerType = async (data: UserData) => {
+  const saveUserInformation = async (data) => {
     try {
-      const response = await axios.post(
-        'https://candii4-backend2-3f9abaacb350.herokuapp.com/save_user_information', 
-        data, 
-        { headers: { 'Content-Type': 'application/json' } } 
-      );
-      console.log('Response:', response); // New line to log the full response
-      console.log(response.data.message);
+      const response = await axios.post('https://candii4-backend2-3f9abaacb350.herokuapp.com//save_user_information', data);
+      console.log(response.data);  // log the response
     } catch (error) {
-      // Log the full error object to help with debugging
-      console.error('Error saving user information:', error); // Changed line to log full error
-      // display a friendly error message to the user
+      console.error('Axios Error:', error); // Log the Axios error object
+      if (error.response) {
+        console.log('Server responded with:', error.response.status);
+        console.log('Response data:', error.response.data);
+      } else if (error.request) {
+        console.log('No response received:', error.request);
+      } else {
+        console.log('Error occurred:', error.message);
+      }
     }
+  }
+  
+  const userData = {
+    state: 'YourState', 
+    country: 'YourCountry', 
+    email: 'YourEmail', 
+    address: 'YourAddress', 
+    phoneNumber: 'YourPhoneNumber', 
+    postCode: 'YourPostCode', 
+    firstName: 'YourFirstName', 
+    lastName: 'YourLastName'
   };
+  
+  saveUserInformation(userData);
 
   const submit = 0;
 
-  const onSubmit: SubmitHandler<UserData> = async (data) => { 
+  const onSubmit: SubmitHandler<UserData> = async (data) => {
     console.log('onSubmit function called');
     console.log('Form data:', data);
-    await handleSaveUserInformation(data);
-    console.log('handleSaveUserInformation completed');
-    handlePayment();
+    await saveUserInformation(data);
+    console.log('saveUserInformation completed');
   };
 
   const handleSubmitOnPress = handleSubmit(onSubmit);
@@ -146,7 +159,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
   const handlePayment = async () => {
     console.log('handlePayment function called');
     try {
-      const clientTokenResponse = await fetch(' https://candii4-backend2-3f9abaacb350.herokuapp.com/client_token');
+      const clientTokenResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/client_token');
       const { clientToken } = await clientTokenResponse.json();
       
       console.log('clientToken:', clientToken);
