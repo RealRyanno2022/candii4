@@ -42,8 +42,17 @@ const Intro: React.FC<IntroProps> = ({ navigation }) => {
     setTimeout(() => {
       navigation.navigate('LanguageSelect');
     }, 2000);
-  }, []);
 
+    hasBoughtProduct().then(hasBought => {
+      setTimeout(() => {
+        if (hasBought) {
+          navigation.navigate('ReorderPage');
+        } else {
+          navigation.navigate('LanguageSelect');
+        }
+      }, 2000);
+    });
+  }, []);
   return (
     <View style={styles.container}>
       <Animated.Image 
