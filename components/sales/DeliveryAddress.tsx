@@ -162,6 +162,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     console.log('Form data:', data);
     await saveUserInformation(data);
     console.log('saveUserInformation completed');
+    handlePayment();
   };
 
   const handleSubmitOnPress = handleSubmit(onSubmit);
