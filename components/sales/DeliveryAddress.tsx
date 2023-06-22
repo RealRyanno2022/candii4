@@ -182,15 +182,19 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
       console.log('nonce:', nonce);
       
       const paymentResponse = await fetch(' https://candii4-backend2-3f9abaacb350.herokuapp.com/execute_transaction', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          paymentMethodNonce: nonce,
-          amount: '1.00', // Replace with the actual amount
-        }),
-      });
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        paymentMethodNonce: nonce,
+        amount: '1.00', // Replace with the actual amount
+      }),
+    });
+
+    console.log('paymentResponse:', paymentResponse);
+    const responseText = await paymentResponse.text();
+    console.log('responseText:', responseText);
   
       console.log('paymentResponse:', paymentResponse);
   
