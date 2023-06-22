@@ -169,56 +169,64 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
   const handlePayment = async () => {
     console.log('handlePayment function called');
-
+  
     try {
-        // Fetch the client token
-        const clientTokenResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/client_token');
-        const { clientToken } = await clientTokenResponse.json();
-        console.log('clientToken:', clientToken);
-
-        // Show the Braintree Drop-In UI and get the nonce
-        const nonce = await BraintreeDropIn.show({ clientToken });
-        console.log('nonce:', nonce);
-
-        // Define the payment amount and execute the transaction
-        const paymentAmount = '1.00'; // Replace with the actual amount
-        const paymentResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/execute_transaction', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ paymentMethodNonce: nonce, amount: paymentAmount })
-        });
-
-        console.log('paymentResponse:', paymentResponse);
-        console.log('paymentResponse status:', paymentResponse.status);
-        console.log('paymentResponse statusText:', paymentResponse.statusText);
-
-        // Parse and handle the payment response
-        let responseJson;
-        try {
-            responseJson = await paymentResponse.json();
-            console.log('responseJson:', responseJson);
-        } catch (err) {
-            console.error('Failed to parse response as JSON:', err);
-            throw err;
+      // Fetch the client token
+      const clientTokenResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/client_token');
+      const { clientToken } = await clientTokenResponse.json();
+      console.log('clientToken:', clientToken);
+  
+      // Show the Braintree Drop-In UI and get the nonce
+      const nonce = await BraintreeDropIn.show({ clientToken });
+      console.log('nonce:', nonce);
+  
+      // Define the payment amount and execute the transaction
+      const paymentAmount = '1.00'; // Replace with the actual amount
+  
+      // Corrected the fetch URL and defined the data object
+      const paymentResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/execute_transaction', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentMethodNonce: nonce,
+          amount: paymentAmount,
+        }),
+        headers: {
+          'Content-Type': 'application/json'
         }
-
-        if (!paymentResponse.ok) {
-            console.error('Payment failed');
-            throw new Error('Payment failed');
-        }
-
-        const { message } = responseJson;
-        console.log('message:', message);
-
-        // Navigate to the confirmation details
-        navigation.navigate('ConfirmationDetails');
+      });
+  
+      console.log('paymentResponse:', paymentResponse);
+      console.log('paymentResponse status:', paymentResponse.status);
+      console.log('paymentResponse statusText:', paymentResponse.statusText);
+  
+      // Parse and handle the payment response
+      let responseJson;
+      try {
+        responseJson = await paymentResponse.json();
+        console.log('responseJson:', responseJson);
+      } catch (err) {
+        console.error('Failed to parse response as JSON:', err);
+        throw err;
+      }
+  
+      if (!paymentResponse.ok) {
+        console.error('Payment failed');
+        throw new Error('Payment failed');
+      }
+  
+      const { message } = responseJson;
+      console.log('message:', message);
+  
+      // Navigate to the confirmation details
+      navigation.navigate('ConfirmationDetails');
     } catch (error) {
-        console.error(error);
-        // Uncomment these lines if you want to show an alert and navigate to ShopFront when an error occurs
-        // alert('Payment failed... please try again');
-        // navigation.navigate('ShopFront');
+      console.error(error);
+      // Uncomment these lines if you want to show an alert and navigate to ShopFront when an error occurs
+      // alert('Payment failed... please try again');
+      // navigation.navigate('ShopFront');
     }
-};
+  };
+  
 
   
   
