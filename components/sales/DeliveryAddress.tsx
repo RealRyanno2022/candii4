@@ -197,10 +197,20 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     console.log('responseText:', responseText);
   
       console.log('paymentResponse:', paymentResponse);
-  
-      // if (!paymentResponse.ok) {
-      //   throw new Error('Payment failed'); 
-      // }
+      console.log('paymentResponse:', paymentResponse);
+      console.log('paymentResponse status:', paymentResponse.status);
+      console.log('paymentResponse statusText:', paymentResponse.statusText);
+      console.log('responseText:', responseText);
+    
+      try {
+        const responseJson = await paymentResponse.json();
+        console.log('responseJson:', responseJson);
+      } catch (err) {
+        console.error('Failed to parse response as JSON:', err);
+      }
+      if (!paymentResponse.ok) {
+        throw new Error('Payment failed'); 
+      }
   
       const { message } = await paymentResponse.json();
       console.log('message:', message);
