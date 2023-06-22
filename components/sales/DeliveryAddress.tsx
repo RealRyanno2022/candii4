@@ -172,15 +172,15 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     try {
       const clientTokenResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/client_token');
       const { clientToken } = await clientTokenResponse.json();
-      
+  
       console.log('clientToken:', clientToken);
-      
+  
       const nonce = await BraintreeDropIn.show({
         clientToken,
       });
   
       console.log('nonce:', nonce);
-      
+  
       const paymentResponse = await fetch(' https://candii4-backend2-3f9abaacb350.herokuapp.com/execute_transaction', {
       method: 'POST',
       headers: {
@@ -191,28 +191,28 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
         amount: '1.00', // Replace with the actual amount
       }),
     });
-
-    console.log('paymentResponse:', paymentResponse);
+  
     const responseText = await paymentResponse.text();
     console.log('responseText:', responseText);
   
       console.log('paymentResponse:', paymentResponse);
-      console.log('paymentResponse:', paymentResponse);
       console.log('paymentResponse status:', paymentResponse.status);
       console.log('paymentResponse statusText:', paymentResponse.statusText);
       console.log('responseText:', responseText);
-    
+  
+      let responseJson;
       try {
-        const responseJson = await paymentResponse.json();
+        responseJson = await paymentResponse.json(); // First and only time calling .json()
         console.log('responseJson:', responseJson);
       } catch (err) {
         console.error('Failed to parse response as JSON:', err);
       }
+  
       if (!paymentResponse.ok) {
         throw new Error('Payment failed'); 
       }
   
-      const { message } = await paymentResponse.json();
+      const { message } = responseJson; // Reuse the responseJson variable here
       console.log('message:', message);
       navigation.navigate('ConfirmationDetails');
     } catch (error) {
@@ -221,6 +221,7 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
       // navigation.navigate('ShopFront');
     }
   };
+  
   
   
   const formFields = [
