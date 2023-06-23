@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, KeyboardAvoidingView, Platform, TouchableOpacity, ScrollView, StyleSheet, Alert } from 'react-native';
+import { View, Text, KeyboardAvoidingView, Platform, TouchableOpacity, ScrollView, StyleSheet } from 'react-native';
 import { TextInput, HelperText, Button } from 'react-native-paper';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
@@ -173,68 +173,52 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     try {
       // Fetch the client token
       const clientTokenResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/client_token');
-      const clientToken = await clientTokenResponse.text(); // parse the response as text, not JSON
+      const { clientToken } = await clientTokenResponse.json();
       console.log('clientToken:', clientToken);
-
-
-
   
-      // // Show the Braintree Drop-In UI and get the nonce
-      try {
-        const nonce = await BraintreeDropIn.show({ clientToken });
-        console.log('nonce:', nonce);
-    } catch (error) {
-        console.error('BraintreeDropIn Error:', error);
-    }
-    
-     
+      // Show the Braintree Drop-In UI and get the nonce
+      const nonce = await BraintreeDropIn.show({ clientToken });
+      console.log('nonce:', nonce);
   
-      // // Define the payment amount and execute the transaction
-      // const paymentAmount = '1.00'; // Replace with the actual amount
+      // Define the payment amount and execute the transaction
+      const paymentAmount = '1.00'; // Replace with the actual amount
   
-      // Define the data for the body of the request
-      // const data = {
-      //   paymentMethodNonce: nonce,
-      //   amount: paymentAmount,
-      // };
+      // Corrected the fetch URL and defined the data object
+      const paymentResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/execute_transaction', {
+        method: 'POST',
+        body: JSON.stringify({
+          paymentMethodNonce: nonce,
+          amount: paymentAmount,
+        }),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
   
-      // console.log('Sending execute_transaction request with data:', data);
-  
-      // Send the execute_transaction request
-      // const paymentResponse = await fetch('https://candii4-backend2-3f9abaacb350.herokuapp.com/execute_transaction', {
-      //   method: 'POST',
-      //   body: JSON.stringify(data),
-      //   headers: {
-      //     'Content-Type': 'application/json'
-      //   }
-      // });
-  
-      // console.log('paymentResponse:', paymentResponse);
-      // console.log('paymentResponse status:', paymentResponse.status);
-      // console.log('paymentResponse statusText:', paymentResponse.statusText);
+      console.log('paymentResponse:', paymentResponse);
+      console.log('paymentResponse status:', paymentResponse.status);
+      console.log('paymentResponse statusText:', paymentResponse.statusText);
   
       // Parse and handle the payment response
-      // let responseJson;
-      // try {
-      //   responseJson = await paymentResponse.json();
-      //   console.log('responseJson:', responseJson);
-      // } catch (err) {
-      //   console.error('Failed to parse response as JSON:', err);
-      //   throw err;
-      // }
+      let responseJson;
+      try {
+        responseJson = await paymentResponse.json();
+        console.log('responseJson:', responseJson);
+      } catch (err) {
+        console.error('Failed to parse response as JSON:', err);
+        throw err;
+      }
   
-      // if (!paymentResponse.ok) {
-      //   console.error('Payment failed');
-      //   throw new Error('Payment failed');
-      // }
+      if (!paymentResponse.ok) {
+        console.error('Payment failed');
+        throw new Error('Payment failed');
+      }
   
-      // const { message } = responseJson;
-      // console.log('message:', message);
+      const { message } = responseJson;
+      console.log('message:', message);
   
       // Navigate to the confirmation details
-      Alert.alert('OK!');
-      // navigation.navigate('ShopFront');
-
+      navigation.navigate('ConfirmationDetails');
     } catch (error) {
       console.error(error);
       // Uncomment these lines if you want to show an alert and navigate to ShopFront when an error occurs
@@ -324,8 +308,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
     </View>
   );
 }
-
-// going to expo eject
 
 const styles = StyleSheet.create({
   label: {
