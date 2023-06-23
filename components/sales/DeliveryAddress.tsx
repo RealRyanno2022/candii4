@@ -4,7 +4,7 @@ import { TextInput, HelperText, Button } from 'react-native-paper';
 import { RouteProp } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
-import { WebView } from 'react-native-webview';
+
 import axios from 'axios';
 import BraintreeDropIn from 'react-native-braintree-payments-drop-in';
 
@@ -295,7 +295,6 @@ const DeliveryAddress: React.FC<DeliveryAddressProps> = ({ navigation }) => {
 
             <View style={styles.card}>
                 <View id="dropin-container" style={{ marginBottom: 20 }} />
-                <WebView source={{ uri: 'https://candii4-backend2-3f9abaacb350.herokuapp.com/braintree.html' }} />
                 <TouchableOpacity onPress={handleSubmitOnPress} style={styles.button}>
                   <Text style={styles.buttonText}>Confirm and Pay</Text>
                 </TouchableOpacity>
